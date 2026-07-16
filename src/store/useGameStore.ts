@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 const STORAGE_KEY = "aprendix-data-v2";
 const MAX_PROFILES = 3;
+const REMOVED_LESSON_IDS = new Set(["mt-numero"]);
 
 export type PlayerProfile = {
   id: string;
@@ -40,6 +41,11 @@ type GameStore = {
 const sum = (scores: Record<string, number>) =>
   Object.values(scores).reduce((total, value) => total + value, 0);
 
+const sanitizeLessonStars = (scores: Record<string, number> = {}) =>
+  Object.fromEntries(
+    Object.entries(scores).filter(([id]) => !REMOVED_LESSON_IDS.has(id)),
+  );
+
 const emptyData = (): StoredData => ({
   version: 2,
   activeProfileId: null,
@@ -58,7 +64,12 @@ function readStoredData(): StoredData {
       return {
         version: 2,
         activeProfileId: parsed.activeProfileId ?? null,
-        profiles: parsed.profiles.slice(0, MAX_PROFILES),
+        profiles: parsed.profiles
+          .slice(0, MAX_PROFILES)
+          .map((profile: PlayerProfile) => ({
+            ...profile,
+            lessonStars: sanitizeLessonStars(profile.lessonStars),
+          })),
         settings: { sound: parsed.settings?.sound !== false },
       };
     }
@@ -83,7 +94,7 @@ function readStoredData(): StoredData {
     avatar: "🦊",
     color: "#A06AFF",
     createdAt: new Date().toISOString(),
-    lessonStars,
+    lessonStars: sanitizeLessonStars(lessonStars),
   };
   const migrated: StoredData = {
     version: 2,

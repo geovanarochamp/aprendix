@@ -228,6 +228,14 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
 
             <p className="mb-5 text-center text-2xl font-black leading-snug">{item.prompt}</p>
 
+            {item.hint ? (
+              <div className="mb-5 rounded-2xl border-4 border-dashed border-purple/30 bg-white px-5 py-3 text-center text-2xl font-black tracking-wide text-navy shadow-[0_4px_0_rgba(30,31,63,0.1)] sm:text-3xl">
+                {checked
+                  ? item.hint.replace("___", String(answer))
+                  : item.hint}
+              </div>
+            ) : null}
+
             {/* respostas */}
             <div className="w-full max-w-lg">
               {exercise.type === "count" ? (

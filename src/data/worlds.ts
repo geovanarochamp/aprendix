@@ -18,9 +18,6 @@ export const worlds: World[] = [
   { id: "portugues", title: "Ilha das Palavras", subject: "Português", image: assetUrl("words.png"), color: "purple", icon: "📖" },
   { id: "matematica", title: "Vale dos Números", subject: "Matemática", image: assetUrl("numbers.png"), color: "blue", icon: "🔢" },
   { id: "logica", title: "Castelo dos Desafios", subject: "Lógica", image: assetUrl("logic.png"), color: "purple", icon: "🧩" },
-  { id: "geografia", title: "Exploradores do Mundo", subject: "Geografia", image: assetUrl("geography.png"), color: "blue", icon: "🌍" },
-  { id: "caligrafia", title: "Jardim das Letras", subject: "Caligrafia", image: assetUrl("pencil.png"), color: "green", icon: "✏️" },
-  { id: "ciencias", title: "Laboratório da Descoberta", subject: "Ciências", image: assetUrl("science.png"), color: "green", icon: "🔬" },
 ];
 
 /** mundo → categoria de exercícios (null = ainda sem exercícios) */
@@ -28,9 +25,6 @@ export const worldCategory: Record<string, ExerciseCategory | null> = {
   portugues: "portugues",
   matematica: "matematica",
   logica: "logica",
-  geografia: null,
-  caligrafia: null,
-  ciencias: null,
 };
 
 /** uma lição referencia um exercício do arsenal */

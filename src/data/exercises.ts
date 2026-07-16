@@ -3,6 +3,7 @@
 export type ChoiceItem = {
   emoji: string;
   prompt: string;
+  hint?: string;
   choices: string[];
   answer: string;
   explain?: string;
@@ -10,6 +11,7 @@ export type ChoiceItem = {
 export type CountItem = {
   emoji: string;
   prompt: string;
+  hint?: string;
   answer: number;
   explain?: string;
 };
@@ -156,7 +158,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🍌",
-          "prompt": "Qual vogal aparece mais em BANANA?",
+          "prompt": "Qual é a primeira vogal de BANANA?",
           "choices": [
             "A",
             "E",
@@ -320,7 +322,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Qual destas é uma consoante?",
+          "prompt": "Com qual consoante começa GATO?",
           "choices": [
             "A",
             "G",
@@ -330,8 +332,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "G"
         },
         {
-          "emoji": "🌟",
-          "prompt": "Qual destas é uma consoante?",
+          "emoji": "🧳",
+          "prompt": "Com qual consoante começa MALA?",
           "choices": [
             "I",
             "U",
@@ -341,8 +343,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "M"
         },
         {
-          "emoji": "🐝",
-          "prompt": "Qual destas é uma consoante?",
+          "emoji": "⚽",
+          "prompt": "Com qual consoante começa BOLA?",
           "choices": [
             "E",
             "B",
@@ -352,8 +354,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "B"
         },
         {
-          "emoji": "🚗",
-          "prompt": "Qual destas é uma consoante?",
+          "emoji": "🐭",
+          "prompt": "Com qual consoante começa RATO?",
           "choices": [
             "R",
             "A",
@@ -363,8 +365,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "R"
         },
         {
-          "emoji": "🍭",
-          "prompt": "Qual destas é uma consoante?",
+          "emoji": "🦆",
+          "prompt": "Com qual consoante começa PATO?",
           "choices": [
             "O",
             "U",
@@ -566,13 +568,14 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "pt-alfabetica",
-      "title": "Ordem alfabética",
+      "title": "Qual vem primeiro?",
       "icon": "🔡",
       "type": "choice",
       "items": [
         {
-          "emoji": "🐈 🐕",
-          "prompt": "Qual vem primeiro no alfabeto?",
+          "emoji": "🏠 🧳",
+          "prompt": "CASA ou MALA: qual palavra vem primeiro na ordem alfabética?",
+          "hint": "CASA começa com C · MALA começa com M",
           "choices": [
             "CASA",
             "MALA"
@@ -580,8 +583,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "CASA"
         },
         {
-          "emoji": "🍌 🍎",
-          "prompt": "Qual vem primeiro no alfabeto?",
+          "emoji": "🍍 🍌",
+          "prompt": "ABACAXI ou BANANA: qual palavra vem primeiro na ordem alfabética?",
+          "hint": "ABACAXI começa com A · BANANA começa com B",
           "choices": [
             "ABACAXI",
             "BANANA"
@@ -590,7 +594,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🐸 🦁",
-          "prompt": "Qual vem primeiro no alfabeto?",
+          "prompt": "LEÃO ou SAPO: qual palavra vem primeiro na ordem alfabética?",
+          "hint": "LEÃO começa com L · SAPO começa com S",
           "choices": [
             "LEÃO",
             "SAPO"
@@ -598,24 +603,24 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "LEÃO"
         },
         {
-          "emoji": "📚",
-          "prompt": "Qual está em ordem alfabética?",
+          "emoji": "⚽ 🐈",
+          "prompt": "BOLA ou GATO: qual palavra vem primeiro na ordem alfabética?",
+          "hint": "BOLA começa com B · GATO começa com G",
           "choices": [
-            "A, B, C",
-            "C, B, A",
-            "B, A, C"
+            "BOLA",
+            "GATO"
           ],
-          "answer": "A, B, C"
+          "answer": "BOLA"
         },
         {
-          "emoji": "🅰️",
-          "prompt": "Qual está em ordem alfabética?",
+          "emoji": "🦆 🐄",
+          "prompt": "PATO ou VACA: qual palavra vem primeiro na ordem alfabética?",
+          "hint": "PATO começa com P · VACA começa com V",
           "choices": [
-            "G, H, I",
-            "I, H, G",
-            "H, G, I"
+            "PATO",
+            "VACA"
           ],
-          "answer": "G, H, I"
+          "answer": "PATO"
         }
       ]
     },
@@ -628,6 +633,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🐈",
           "prompt": "Qual é a primeira sílaba de GATO?",
+          "hint": "___ · TO",
           "choices": [
             "GA",
             "TO",
@@ -639,6 +645,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🐄",
           "prompt": "Qual é a primeira sílaba de VACA?",
+          "hint": "___ · CA",
           "choices": [
             "CA",
             "VA",
@@ -648,8 +655,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "VA"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "Qual é a primeira sílaba de BOLA?",
+          "hint": "___ · LA",
           "choices": [
             "LA",
             "BO",
@@ -659,8 +667,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "BO"
         },
         {
-          "emoji": "🐕",
+          "emoji": "🏠",
           "prompt": "Qual é a primeira sílaba de CASA?",
+          "hint": "___ · SA",
           "choices": [
             "SA",
             "CA",
@@ -672,6 +681,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🍌",
           "prompt": "Qual é a primeira sílaba de BANANA?",
+          "hint": "___ · NA · NA",
           "choices": [
             "NA",
             "BA",
@@ -691,6 +701,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🐈",
           "prompt": "Qual é a última sílaba de GATO?",
+          "hint": "GA · ___",
           "choices": [
             "GA",
             "TO",
@@ -702,6 +713,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🐄",
           "prompt": "Qual é a última sílaba de VACA?",
+          "hint": "VA · ___",
           "choices": [
             "CA",
             "VA",
@@ -713,6 +725,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🍌",
           "prompt": "Qual é a última sílaba de BANANA?",
+          "hint": "BA · NA · ___",
           "choices": [
             "NA",
             "BA",
@@ -722,8 +735,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "NA"
         },
         {
-          "emoji": "🐕",
+          "emoji": "🏠",
           "prompt": "Qual é a última sílaba de CASA?",
+          "hint": "CA · ___",
           "choices": [
             "SA",
             "CA",
@@ -735,6 +749,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🦆",
           "prompt": "Qual é a última sílaba de PATO?",
+          "hint": "PA · ___",
           "choices": [
             "PA",
             "TO",
@@ -753,7 +768,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "GA _ O (gato). Qual sílaba falta?",
+          "prompt": "Qual pedacinho completa a palavra GATO?",
+          "hint": "GA + ___ = GATO",
           "choices": [
             "TO",
             "BO",
@@ -764,7 +780,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🐄",
-          "prompt": "VA _ A (vaca). Qual sílaba falta?",
+          "prompt": "Qual pedacinho completa a palavra VACA?",
+          "hint": "VA + ___ = VACA",
           "choices": [
             "CA",
             "LA",
@@ -775,7 +792,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🍌",
-          "prompt": "BA _ NA (banana). Qual sílaba falta?",
+          "prompt": "Qual pedacinho completa a palavra BANANA?",
+          "hint": "BA + ___ + NA = BANANA",
           "choices": [
             "NA",
             "LA",
@@ -785,8 +803,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "NA"
         },
         {
-          "emoji": "🦋",
-          "prompt": "BO _ A (bola). Qual sílaba falta?",
+          "emoji": "⚽",
+          "prompt": "Qual pedacinho completa a palavra BOLA?",
+          "hint": "BO + ___ = BOLA",
           "choices": [
             "LA",
             "CA",
@@ -797,7 +816,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🦁",
-          "prompt": "LE _ O (leão). Qual sílaba falta?",
+          "prompt": "Qual pedacinho completa a palavra LEÃO?",
+          "hint": "LE + ___ = LEÃO",
           "choices": [
             "ÃO",
             "AR",
@@ -837,7 +857,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "VACA"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "Junte BO + LA. Que palavra forma?",
           "choices": [
             "LOBA",
@@ -848,7 +868,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "BOLA"
         },
         {
-          "emoji": "🐕",
+          "emoji": "🏠",
           "prompt": "Junte CA + SA. Que palavra forma?",
           "choices": [
             "SACA",
@@ -922,7 +942,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "CO-RU-JA"
         },
         {
-          "emoji": "🐕",
+          "emoji": "🏠",
           "prompt": "Como separamos CASA?",
           "choices": [
             "CA-SA",
@@ -963,7 +983,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "VASO"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "Qual palavra começa igual a BOLA?",
           "choices": [
             "BONÉ",
@@ -985,7 +1005,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "BALÃO"
         },
         {
-          "emoji": "🐕",
+          "emoji": "🏠",
           "prompt": "Qual palavra começa igual a CASA?",
           "choices": [
             "CAMA",
@@ -1089,7 +1109,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "CASA"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "Qual está escrita corretamente?",
           "choices": [
             "BOLA",
@@ -1215,7 +1235,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "SOL"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "Organize as letras A-B-O-L:",
           "choices": [
             "BOLA",
@@ -1274,8 +1294,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "SOL"
         },
         {
-          "emoji": "🐜🦒",
-          "prompt": "Qual palavra é MAIOR?",
+          "emoji": "🐜🐂",
+          "prompt": "Qual palavra é MAIOR (tem mais letras)?",
           "choices": [
             "FORMIGA",
             "BOI"
@@ -1284,7 +1304,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🍇🍉",
-          "prompt": "Qual palavra é MENOR?",
+          "prompt": "Qual palavra é MENOR (tem menos letras)?",
           "choices": [
             "UVA",
             "MELANCIA"
@@ -1293,7 +1313,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🦋🐝",
-          "prompt": "Qual palavra é MAIOR?",
+          "prompt": "Qual palavra é MAIOR (tem mais letras)?",
           "choices": [
             "BORBOLETA",
             "ABELHA"
@@ -1405,7 +1425,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "LEOA"
         },
         {
-          "emoji": "👨",
+          "emoji": "👩",
           "prompt": "Qual é o masculino de MULHER?",
           "choices": [
             "HOMEM",
@@ -1446,7 +1466,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "PATO"
         },
         {
-          "emoji": "🐘",
+          "emoji": "✋",
           "prompt": "Qual palavra rima com MÃO?",
           "choices": [
             "PÃO",
@@ -1493,13 +1513,13 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "pt-som-inicial",
-      "title": "Mesmo som inicial",
+      "title": "Mesma letra inicial",
       "icon": "🔊",
       "type": "choice",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual começa com o mesmo som de CASA?",
+          "emoji": "🏠",
+          "prompt": "Qual começa com a mesma letra de CASA?",
           "choices": [
             "CAMA",
             "MESA",
@@ -1510,7 +1530,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🌞",
-          "prompt": "Qual começa com o mesmo som de SOL?",
+          "prompt": "Qual começa com a mesma letra de SOL?",
           "choices": [
             "SAPO",
             "LUA",
@@ -1520,8 +1540,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "SAPO"
         },
         {
-          "emoji": "🦋",
-          "prompt": "Qual começa com o mesmo som de BOLA?",
+          "emoji": "⚽",
+          "prompt": "Qual começa com a mesma letra de BOLA?",
           "choices": [
             "BONÉ",
             "MALA",
@@ -1531,8 +1551,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "BONÉ"
         },
         {
-          "emoji": "🦁",
-          "prompt": "Qual começa com o mesmo som de LUA?",
+          "emoji": "🌙",
+          "prompt": "Qual começa com a mesma letra de LUA?",
           "choices": [
             "LIVRO",
             "GATO",
@@ -1542,8 +1562,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "LIVRO"
         },
         {
-          "emoji": "🐕",
-          "prompt": "Qual começa com o mesmo som de PATO?",
+          "emoji": "🦆",
+          "prompt": "Qual começa com a mesma letra de PATO?",
           "choices": [
             "PENA",
             "GATO",
@@ -1556,13 +1576,13 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "pt-som-final",
-      "title": "Mesmo som final",
+      "title": "Encontre a rima",
       "icon": "🔈",
       "type": "choice",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Qual termina com o mesmo som de GATO?",
+          "prompt": "Qual palavra rima com GATO?",
           "choices": [
             "PATO",
             "BOLA",
@@ -1573,7 +1593,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🌸",
-          "prompt": "Qual termina com o mesmo som de FLOR?",
+          "prompt": "Qual palavra rima com FLOR?",
           "choices": [
             "AMOR",
             "MESA",
@@ -1583,8 +1603,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "AMOR"
         },
         {
-          "emoji": "🐘",
-          "prompt": "Qual termina com o mesmo som de PÃO?",
+          "emoji": "🍞",
+          "prompt": "Qual palavra rima com PÃO?",
           "choices": [
             "MÃO",
             "MESA",
@@ -1595,18 +1615,18 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🏠",
-          "prompt": "Qual termina com o mesmo som de CASA?",
+          "prompt": "Qual palavra rima com CASA?",
           "choices": [
-            "MESA",
+            "ASA",
             "GATO",
             "SOL",
             "PATO"
           ],
-          "answer": "MESA"
+          "answer": "ASA"
         },
         {
-          "emoji": "⭐",
-          "prompt": "Qual termina com o mesmo som de PANELA?",
+          "emoji": "🍳",
+          "prompt": "Qual palavra rima com PANELA?",
           "choices": [
             "JANELA",
             "GATO",
@@ -1786,7 +1806,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "Falso"
         },
         {
-          "emoji": "🦋",
+          "emoji": "⚽",
           "prompt": "BOLA e MOLA rimam. Isso é...",
           "choices": [
             "Verdadeiro",
@@ -1861,69 +1881,6 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     }
   ],
   "matematica": [
-    {
-      "id": "mt-numero",
-      "title": "Reconheça o número",
-      "icon": "🔢",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "3️⃣",
-          "prompt": "Qual é este número?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "7️⃣",
-          "prompt": "Qual é este número?",
-          "choices": [
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "answer": "7"
-        },
-        {
-          "emoji": "🔟",
-          "prompt": "Qual número aparece?",
-          "choices": [
-            "8",
-            "9",
-            "10",
-            "11"
-          ],
-          "answer": "10"
-        },
-        {
-          "emoji": "1️⃣2️⃣",
-          "prompt": "Qual número aparece?",
-          "choices": [
-            "10",
-            "11",
-            "12",
-            "13"
-          ],
-          "answer": "12"
-        },
-        {
-          "emoji": "1️⃣5️⃣",
-          "prompt": "Qual número aparece?",
-          "choices": [
-            "13",
-            "14",
-            "15",
-            "16"
-          ],
-          "answer": "15"
-        }
-      ]
-    },
     {
       "id": "mt-anterior",
       "title": "Número anterior",
@@ -2228,9 +2185,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "Qual número é maior?",
           "choices": [
             "3",
-            "5",
-            "8",
-            "9"
+            "8"
           ],
           "answer": "8"
         },
@@ -2238,9 +2193,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "emoji": "12   ou   7",
           "prompt": "Qual número é maior?",
           "choices": [
-            "5",
             "7",
-            "10",
             "12"
           ],
           "answer": "12"
@@ -2249,9 +2202,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "emoji": "4   ou   9",
           "prompt": "Qual número é menor?",
           "choices": [
-            "3",
             "4",
-            "8",
             "9"
           ],
           "answer": "4"
@@ -2260,9 +2211,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "emoji": "16   ou   20",
           "prompt": "Qual número é menor?",
           "choices": [
-            "15",
             "16",
-            "19",
             "20"
           ],
           "answer": "16"
@@ -2272,8 +2221,6 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "Qual número é maior?",
           "choices": [
             "18",
-            "20",
-            "24",
             "25"
           ],
           "answer": "25"
@@ -4146,8 +4093,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🐜",
             "🐕",
-            "🐘",
-            "🐎"
+            "🐘"
           ],
           "answer": "🐜"
         },
@@ -4157,8 +4103,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍒",
             "🍎",
-            "🍉",
-            "🍇"
+            "🍉"
           ],
           "answer": "🍉"
         },
@@ -4168,8 +4113,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚲",
             "🚗",
-            "🚌",
-            "🛴"
+            "🚌"
           ],
           "answer": "🚌"
         },
@@ -4179,8 +4123,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🌱",
             "🌿",
-            "🌳",
-            "🌴"
+            "🌳"
           ],
           "answer": "🌱"
         },
@@ -4190,8 +4133,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🥄",
             "🍽️",
-            "🛋️",
-            "✏️"
+            "🛋️"
           ],
           "answer": "🛋️"
         }
@@ -4502,8 +4444,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍎",
             "🐶",
-            "🚗",
-            "⭐"
+            "🚗"
           ],
           "answer": "🍎"
         },
@@ -4513,8 +4454,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "⭐",
             "🌙",
-            "☀️",
-            "☁️"
+            "☀️"
           ],
           "answer": "⭐"
         },
@@ -4524,8 +4464,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🟦",
             "⚪",
-            "🔺",
-            "🔷"
+            "🔺"
           ],
           "answer": "🟦"
         },
@@ -4535,8 +4474,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍇",
             "🍌",
-            "🍓",
-            "🍎"
+            "🍓"
           ],
           "answer": "🍇"
         },
@@ -4546,8 +4484,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚲",
             "🚌",
-            "🚗",
-            "🚂"
+            "🚗"
           ],
           "answer": "🚲"
         }
@@ -4565,8 +4502,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🐱",
             "🐶",
-            "🐰",
-            "🐭"
+            "🐰"
           ],
           "answer": "🐱"
         },
@@ -4576,8 +4512,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍇",
             "🍌",
-            "🍎",
-            "🍓"
+            "🍎"
           ],
           "answer": "🍇"
         },
@@ -4587,8 +4522,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚌",
             "🚗",
-            "🚲",
-            "🚂"
+            "🚲"
           ],
           "answer": "🚌"
         },
@@ -4598,8 +4532,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "☀️",
             "🌙",
-            "⭐",
-            "☁️"
+            "⭐"
           ],
           "answer": "☀️"
         },
@@ -4609,8 +4542,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🔺",
             "⚪",
-            "🟦",
-            "🔷"
+            "🟦"
           ],
           "answer": "🔺"
         }
@@ -4628,8 +4560,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🐶",
             "🐱",
-            "🐰",
-            "🐭"
+            "🐰"
           ],
           "answer": "🐶"
         },
@@ -4639,8 +4570,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍎",
             "🍌",
-            "🍇",
-            "🍓"
+            "🍇"
           ],
           "answer": "🍎"
         },
@@ -4943,8 +4873,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚲",
             "🚗",
-            "🚌",
-            "🚂"
+            "🚌"
           ],
           "answer": "🚲"
         },
@@ -5363,8 +5292,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🐶",
             "🐱",
-            "🐰",
-            "🐭"
+            "🐰"
           ],
           "answer": "🐶"
         },
@@ -5374,8 +5302,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍎",
             "🍌",
-            "🍇",
-            "🍓"
+            "🍇"
           ],
           "answer": "🍎"
         },
@@ -5385,8 +5312,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚲",
             "🚗",
-            "🚌",
-            "🚂"
+            "🚌"
           ],
           "answer": "🚲"
         },
@@ -5395,9 +5321,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "O que está em cima?",
           "choices": [
             "⭐",
-            "🌙",
-            "☀️",
-            "☁️"
+            "🌙"
           ],
           "answer": "⭐"
         },
@@ -5406,9 +5330,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "O que está embaixo?",
           "choices": [
             "🐟",
-            "⛵",
-            "🌊",
-            "⭐"
+            "⛵"
           ],
           "answer": "🐟"
         }
