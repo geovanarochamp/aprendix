@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.tsbuildinfo
+aprendix-*.png
+.playwright-mcp
+public/__seed.html

@@ -1,0 +1,19 @@
+{
+  "name": "Aprendix",
+  "short_name": "Aprendix",
+  "description": "Aventura multidisciplinar para crianças do primeiro ano.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#7ed7ff",
+  "theme_color": "#ffd84d",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
