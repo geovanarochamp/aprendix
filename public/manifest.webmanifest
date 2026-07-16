@@ -4,8 +4,8 @@
   "description": "Aventura multidisciplinar para crianças do primeiro ano.",
   "start_url": "./",
   "scope": "./",
-  "display": "fullscreen",
-  "orientation": "landscape",
+  "display": "standalone",
+  "orientation": "any",
   "background_color": "#7ed7ff",
   "theme_color": "#ffd84d",
   "icons": [

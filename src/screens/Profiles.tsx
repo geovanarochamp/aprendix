@@ -95,7 +95,7 @@ export function Profiles({ onBack, onPlay }: ProfilesProps) {
       className="relative min-h-screen w-full overflow-x-hidden overflow-y-auto bg-blue bg-cover bg-center font-sans text-navy"
       style={{ backgroundImage: `url('${assetUrl("background.png")}')` }}
     >
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center px-4 py-4 sm:px-8 sm:py-10">
+      <div className="profiles-content relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center px-4 py-4 sm:px-8 sm:py-10">
         <div className="flex w-full items-center">
           <button
             type="button"
@@ -108,7 +108,7 @@ export function Profiles({ onBack, onPlay }: ProfilesProps) {
         </div>
 
         <div className="mt-2 text-center sm:mt-0">
-          <h1 className="text-3xl font-black text-navy drop-shadow-[0_3px_0_rgba(255,255,255,0.7)] sm:text-6xl">
+          <h1 className="profiles-title text-3xl font-black text-navy drop-shadow-[0_3px_0_rgba(255,255,255,0.7)] sm:text-6xl">
             Quem vai jogar?
           </h1>
           <p className="mt-1 text-base font-extrabold text-navy/75 sm:mt-2 sm:text-xl">
@@ -116,7 +116,7 @@ export function Profiles({ onBack, onPlay }: ProfilesProps) {
           </p>
         </div>
 
-        <div className="mt-5 grid w-full max-w-3xl grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-5">
+        <div className="profiles-grid mt-5 grid w-full max-w-3xl grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-5">
           {profiles.map((profile, index) => (
             <motion.div
               key={profile.id}
@@ -128,10 +128,10 @@ export function Profiles({ onBack, onPlay }: ProfilesProps) {
               <button
                 type="button"
                 onClick={() => chooseProfile(profile.id)}
-                className="group flex min-h-24 w-full flex-row items-center justify-start gap-3 rounded-2xl border-[3px] border-white/80 bg-white/90 px-3 py-3 pr-14 text-left shadow-[0_6px_0_rgba(30,31,63,0.18)] transition-transform hover:-translate-y-1 active:translate-y-2 active:shadow-none sm:min-h-52 sm:flex-col sm:justify-center sm:gap-0 sm:rounded-[2rem] sm:border-4 sm:px-5 sm:py-6 sm:pr-5 sm:text-center sm:shadow-[0_9px_0_rgba(30,31,63,0.18)]"
+                className="profile-card group flex min-h-24 w-full flex-row items-center justify-start gap-3 rounded-2xl border-[3px] border-white/80 bg-white/90 px-3 py-3 pr-14 text-left shadow-[0_6px_0_rgba(30,31,63,0.18)] transition-transform hover:-translate-y-1 active:translate-y-2 active:shadow-none sm:min-h-52 sm:flex-col sm:justify-center sm:gap-0 sm:rounded-[2rem] sm:border-4 sm:px-5 sm:py-6 sm:pr-5 sm:text-center sm:shadow-[0_9px_0_rgba(30,31,63,0.18)]"
               >
                 <span
-                  className="grid h-16 w-16 shrink-0 place-items-center rounded-full text-4xl ring-4 ring-white shadow-[0_4px_0_rgba(30,31,63,0.16)] transition-transform group-hover:scale-105 sm:h-24 sm:w-24 sm:text-6xl sm:shadow-[0_6px_0_rgba(30,31,63,0.16)]"
+                  className="profile-avatar grid h-16 w-16 shrink-0 place-items-center rounded-full text-4xl ring-4 ring-white shadow-[0_4px_0_rgba(30,31,63,0.16)] transition-transform group-hover:scale-105 sm:h-24 sm:w-24 sm:text-6xl sm:shadow-[0_6px_0_rgba(30,31,63,0.16)]"
                   style={{ backgroundColor: profile.color }}
                   aria-hidden="true"
                 >
@@ -161,11 +161,11 @@ export function Profiles({ onBack, onPlay }: ProfilesProps) {
             <motion.button
               type="button"
               onClick={openNew}
-              className="flex min-h-24 w-full flex-row items-center justify-start gap-3 rounded-2xl border-[3px] border-dashed border-white/80 bg-white/45 px-3 py-3 text-left text-navy shadow-[0_6px_0_rgba(30,31,63,0.12)] transition-colors hover:bg-white/65 sm:min-h-52 sm:flex-col sm:justify-center sm:gap-0 sm:rounded-[2rem] sm:border-4 sm:px-5 sm:py-6 sm:text-center sm:shadow-[0_7px_0_rgba(30,31,63,0.12)]"
+              className="profile-card flex min-h-24 w-full flex-row items-center justify-start gap-3 rounded-2xl border-[3px] border-dashed border-white/80 bg-white/45 px-3 py-3 text-left text-navy shadow-[0_6px_0_rgba(30,31,63,0.12)] transition-colors hover:bg-white/65 sm:min-h-52 sm:flex-col sm:justify-center sm:gap-0 sm:rounded-[2rem] sm:border-4 sm:px-5 sm:py-6 sm:text-center sm:shadow-[0_7px_0_rgba(30,31,63,0.12)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white/75 text-4xl font-light sm:h-24 sm:w-24 sm:text-6xl">
+              <span className="profile-avatar grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white/75 text-4xl font-light sm:h-24 sm:w-24 sm:text-6xl">
                 +
               </span>
               <span>

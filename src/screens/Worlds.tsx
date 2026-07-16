@@ -154,11 +154,15 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
       </div>
 
       {/* arquipélago em telas grandes */}
-      <div className="absolute inset-0 z-0 hidden lg:block">
+      <div className="worlds-desktop absolute inset-0 z-0 hidden lg:block">
         {worlds.map((world) => (
           // wrapper comum cuida do posicionamento/centralização (transform via CSS);
           // o motion.div interno cuida das animações (que também usam transform)
-          <div key={world.id} className={`absolute z-0 translate-y-[10px] transition-[z-index] hover:z-20 ${world.spot} ${world.size}`}>
+          <div
+            key={world.id}
+            data-world-id={world.id}
+            className={`world-island-slot absolute z-0 translate-y-[10px] transition-[z-index] hover:z-20 ${world.spot} ${world.size}`}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.85, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -176,7 +180,7 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
       </div>
 
       {/* carrossel em telas pequenas — uma ilha por vez */}
-      <div className="relative z-10 flex min-h-[calc(100vh-5rem)] items-center justify-center px-2 pb-6 lg:hidden">
+      <div className="worlds-mobile relative z-10 flex min-h-[calc(100dvh-5rem)] items-center justify-center px-2 pb-6 lg:hidden">
         <div className="relative flex h-[96vw] max-h-[520px] w-full max-w-md items-center justify-center overflow-hidden">
           <AnimatePresence initial={false} custom={dir} mode="popLayout">
             <motion.div
