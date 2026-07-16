@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { UpdatePrompt } from "./components/UpdatePrompt";
 import { Home } from "./screens/Home";
 import { Profiles } from "./screens/Profiles";
 import { Worlds } from "./screens/Worlds";
@@ -52,38 +53,41 @@ function App() {
         : route.screen;
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={key}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-      >
-        {route.screen === "home" && <Home onPlay={goProfiles} />}
-        {route.screen === "profiles" && (
-          <Profiles onBack={goHome} onPlay={goWorlds} />
-        )}
-        {route.screen === "worlds" && (
-          <Worlds
-            onBack={goHome}
-            onSwitchProfile={goProfiles}
-            onSelect={goLessons}
-          />
-        )}
-        {route.screen === "lessons" && (
-          <Lessons worldId={route.worldId} onBack={goWorlds} onOpenLesson={goActivity} />
-        )}
-        {route.screen === "activity" && (
-          <Activity
-            worldId={route.worldId}
-            lessonId={route.lessonId}
-            onBack={() => goLessons(route.worldId)}
-            onOpenLesson={goActivity}
-          />
-        )}
-      </motion.div>
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={key}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          {route.screen === "home" && <Home onPlay={goProfiles} />}
+          {route.screen === "profiles" && (
+            <Profiles onBack={goHome} onPlay={goWorlds} />
+          )}
+          {route.screen === "worlds" && (
+            <Worlds
+              onBack={goHome}
+              onSwitchProfile={goProfiles}
+              onSelect={goLessons}
+            />
+          )}
+          {route.screen === "lessons" && (
+            <Lessons worldId={route.worldId} onBack={goWorlds} onOpenLesson={goActivity} />
+          )}
+          {route.screen === "activity" && (
+            <Activity
+              worldId={route.worldId}
+              lessonId={route.lessonId}
+              onBack={() => goLessons(route.worldId)}
+              onOpenLesson={goActivity}
+            />
+          )}
+        </motion.div>
+      </AnimatePresence>
+      <UpdatePrompt />
+    </>
   );
 }
 

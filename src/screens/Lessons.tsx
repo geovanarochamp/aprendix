@@ -192,10 +192,10 @@ export function Lessons({ worldId, onBack, onOpenLesson }: LessonsProps) {
           </span>
           <div className="leading-tight">
             <p className="text-base font-black text-navy sm:text-xl">
-              {world?.subject}
+              {world?.title}
             </p>
             <p className="text-[10px] font-bold text-navy/60 sm:text-xs">
-              {world?.title}
+              {world?.subject}
             </p>
           </div>
         </div>
