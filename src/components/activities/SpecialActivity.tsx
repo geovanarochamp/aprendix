@@ -261,7 +261,8 @@ function UnscrambleChallenge({
   onSolved,
   onMistake,
 }: ChallengeCallbacks & { item: UnscrambleItem }) {
-  const answer = cleanWord(item.answer);
+  const answer = item.answer.normalize("NFC").replace(/\s/g, "").toUpperCase();
+  const comparableAnswer = cleanWord(answer);
   const tiles = useMemo(() => {
     const shuffled = shuffle([...answer].map((letter, id) => ({ id, letter })));
     return shuffled.map((tile) => tile.letter).join("") === answer && answer.length > 2
@@ -273,7 +274,7 @@ function UnscrambleChallenge({
   const built = chosen.map((id) => tiles.find((tile) => tile.id === id)?.letter).join("");
 
   const check = () => {
-    if (built === answer) onSolved();
+    if (cleanWord(built) === comparableAnswer) onSolved();
     else {
       onMistake();
       setMessage("A palavra ainda não está certa. Apague e tente outra ordem.");

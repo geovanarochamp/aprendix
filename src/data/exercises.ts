@@ -7476,7 +7476,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "UVA",
             "PERA",
             "MANGA",
-            "MELAO",
+            "MELÃO",
             "BANANA"
           ]
         }
@@ -7492,8 +7492,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "emoji": "🧍",
           "prompt": "Encontre as palavras de partes do corpo.",
           "words": [
-            "MAO",
-            "PE",
+            "MÃO",
+            "PÉ",
             "BOCA",
             "NARIZ",
             "OLHO"
@@ -7530,7 +7530,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "emoji": "🎒",
           "prompt": "Encontre as palavras de escola.",
           "words": [
-            "LAPIS",
+            "LÁPIS",
             "PAPEL",
             "LIVRO",
             "COLA",
@@ -7553,7 +7553,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "LUA",
             "RIO",
             "FLOR",
-            "ARVORE"
+            "ÁRVORE"
           ]
         }
       ]
@@ -7660,10 +7660,10 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
               "dir": "h"
             },
             {
-              "answer": "OMBRO",
-              "clue": "💪",
+              "answer": "BRAÇO",
+              "clue": "💪 Parte do corpo entre o ombro e a mão",
               "row": 0,
-              "col": 0,
+              "col": 3,
               "dir": "v"
             }
           ]
@@ -7709,7 +7709,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "Complete as palavras usando as pistas.",
           "entries": [
             {
-              "answer": "LAPIS",
+              "answer": "LÁPIS",
               "clue": "✏️",
               "row": 2,
               "col": 0,
@@ -7788,7 +7788,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🍈",
           "prompt": "Organize as letras para formar a palavra.",
-          "answer": "MELAO"
+          "answer": "MELÃO"
         }
       ]
     },
@@ -7834,7 +7834,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "✏️",
           "prompt": "Organize as letras para formar a palavra.",
-          "answer": "LAPIS"
+          "answer": "LÁPIS"
         },
         {
           "emoji": "📖",
@@ -7882,12 +7882,12 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🖐️",
           "prompt": "Organize as letras para formar a palavra.",
-          "answer": "MAO"
+          "answer": "MÃO"
         },
         {
           "emoji": "🦶",
           "prompt": "Organize as letras para formar a palavra.",
-          "answer": "PE"
+          "answer": "PÉ"
         }
       ]
     },
@@ -7920,7 +7920,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         {
           "emoji": "🌳",
           "prompt": "Organize as letras para formar a palavra.",
-          "answer": "ARVORE"
+          "answer": "ÁRVORE"
         }
       ]
     },
