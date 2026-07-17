@@ -231,7 +231,7 @@ function MemoryChallenge({
   };
 
   return (
-    <div className="grid w-full grid-cols-4 gap-2 sm:gap-3">
+    <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
       {cards.map((card) => {
         const visible = open.includes(card.id) || matched.has(card.key);
         return (
@@ -239,7 +239,7 @@ function MemoryChallenge({
             key={card.id}
             type="button"
             onClick={() => flip(card)}
-            className={`min-h-16 rounded-2xl border-4 px-1 text-lg font-black transition sm:min-h-20 sm:text-xl ${
+            className={`min-h-20 break-words rounded-2xl border-4 px-2 py-2 text-base font-black leading-tight transition sm:min-h-20 sm:text-xl ${
               matched.has(card.key)
                 ? "border-green bg-green/25"
                 : visible
@@ -418,7 +418,7 @@ function makeWordGrid(words: string[], size = 9) {
   const grid = Array.from({ length: size }, () => Array<string>(size).fill(""));
   const placements: WordPlacement[] = [];
   for (const raw of words) {
-    const word = cleanWord(raw);
+    const word = raw.normalize("NFC").replace(/\s/g, "").toUpperCase();
     let placed = false;
     for (let tries = 0; tries < 160 && !placed; tries++) {
       const vertical = Math.random() < 0.5;
@@ -462,7 +462,6 @@ function WordSearchChallenge({ item, onSolved }: ChallengeCallbacks & { item: Wo
 
   const select = (row: number, column: number) => {
     const id = `${row}-${column}`;
-    if (foundCells.has(id)) return;
     let nextPath = [...path];
     let nextDirection = direction;
     if (nextPath.length) {
@@ -504,7 +503,7 @@ function WordSearchChallenge({ item, onSolved }: ChallengeCallbacks & { item: Wo
           </span>
         ))}
       </div>
-      <div className="mx-auto grid w-fit grid-cols-9 gap-0.5 rounded-2xl bg-white p-2 shadow-sm">
+      <div className="mx-auto grid w-fit grid-cols-9 gap-px rounded-2xl bg-white p-1.5 shadow-sm">
         {data.grid.flatMap((row, rowIndex) => row.map((letter, columnIndex) => {
           const id = `${rowIndex}-${columnIndex}`;
           return (
@@ -512,8 +511,8 @@ function WordSearchChallenge({ item, onSolved }: ChallengeCallbacks & { item: Wo
               key={id}
               type="button"
               onClick={() => select(rowIndex, columnIndex)}
-              className={`grid h-8 w-8 place-items-center rounded-md text-sm font-black sm:h-9 sm:w-9 ${
-                foundCells.has(id) ? "bg-green" : path.includes(id) ? "bg-yellow" : "bg-navy/5"
+              className={`grid h-[34px] w-[34px] place-items-center rounded-md text-base font-black sm:h-10 sm:w-10 ${
+                path.includes(id) ? "bg-yellow" : foundCells.has(id) ? "bg-green" : "bg-navy/5"
               }`}
             >
               {letter}
@@ -571,9 +570,9 @@ function MazeChallenge({ item, onSolved }: ChallengeCallbacks & { item: MazeItem
           return (
             <span key={`${row}-${column}`} className={`grid h-9 w-9 place-items-center rounded-md text-lg ${cell === "#" ? "bg-navy/70" : isGoal ? "bg-yellow/50" : "bg-green/15"}`}>
               {isPlayer ? (
-                item.prompt.toLowerCase().includes("casa até") ? "🏠" : (
+                item.playerEmoji ?? (item.prompt.toLowerCase().includes("casa até") ? "🏠" : (
                   <img src={assetUrl("characters/dixi.png")} alt="Dixi" className="h-8 w-8 object-contain" />
-                )
+                ))
               ) : isGoal ? (goalIcon[item.goalLabel ?? ""] ?? "⭐") : ""}
             </span>
           );

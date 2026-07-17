@@ -78,7 +78,13 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
   // contagem, contas de matemática) em vez de um único emoji. Nesses casos
   // mostramos os tokens em uma faixa horizontal que quebra linha, em vez de
   // espremer tudo dentro do círculo (que estourava o layout).
-  const visualTokens = (item.emoji ?? "").trim().split(/\s+/).filter(Boolean);
+  const visualRows = (item.emoji ?? "")
+    .trim()
+    .split(/\s*\|\s*/)
+    .map((row) => row.split(/\s+/).filter(Boolean))
+    .filter((row) => row.length > 0);
+  const visualTokens = visualRows.flat();
+  const hasVisualRows = visualRows.length > 1;
   const isSequence = visualTokens.length > 1;
 
   const pick = (value: string | number) => {
@@ -210,24 +216,31 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             transition={{ duration: 0.22 }}
           >
             {isStandard && !exercise.context && isSequence ? (
-              <div className="my-4 flex w-full max-w-lg flex-wrap items-center justify-center gap-2 rounded-[2.25rem] bg-gradient-to-br from-yellow to-orange/70 px-4 py-6 shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)] sm:gap-3 sm:px-6">
-                {visualTokens.map((token, i) => {
-                  const blank = token === "__";
-                  return (
-                    <span
-                      key={i}
-                      className={[
-                        "grid h-14 min-w-[3.25rem] place-items-center rounded-2xl px-2 font-black leading-none sm:h-16 sm:min-w-[3.75rem]",
-                        visualTokens.length > 6 ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl",
-                        blank
-                          ? "border-4 border-dashed border-navy/30 bg-white/40 text-navy/50"
-                          : "bg-white/85 text-navy shadow-[0_3px_0_rgba(30,31,63,0.1)]",
-                      ].join(" ")}
-                    >
-                      {blank ? "?" : token}
-                    </span>
-                  );
-                })}
+              <div className={`my-4 flex w-full max-w-lg items-center justify-center gap-2 rounded-[2.25rem] bg-gradient-to-br from-yellow to-orange/70 px-4 py-6 shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)] sm:gap-3 sm:px-6 ${hasVisualRows ? "flex-col" : "flex-wrap"}`}>
+                {visualRows.map((row, rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className={hasVisualRows ? "flex w-full items-center justify-center gap-2 sm:gap-3" : "contents"}
+                  >
+                    {row.map((token, tokenIndex) => {
+                      const blank = token === "__";
+                      return (
+                        <span
+                          key={`${rowIndex}-${tokenIndex}`}
+                          className={[
+                            "grid h-14 min-w-[3.25rem] place-items-center rounded-2xl px-2 font-black leading-none sm:h-16 sm:min-w-[3.75rem]",
+                            visualTokens.length > 6 ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl",
+                            blank
+                              ? "border-4 border-dashed border-navy/30 bg-white/40 text-navy/50"
+                              : "bg-white/85 text-navy shadow-[0_3px_0_rgba(30,31,63,0.1)]",
+                          ].join(" ")}
+                        >
+                          {blank ? "?" : token}
+                        </span>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             ) : isStandard && !exercise.context ? (
               <div className="my-4 grid h-48 w-48 place-items-center rounded-full bg-gradient-to-br from-yellow to-orange/70 text-8xl shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)]">

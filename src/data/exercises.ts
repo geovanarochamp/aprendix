@@ -9,7 +9,7 @@ export type CrosswordItem = { emoji: string; prompt: string; entries: { answer: 
 export type MemoryItem = { emoji: string; prompt: string; pairs: { key: string; value?: string; a?: string; b?: string }[] };
 export type SequenceItem = { emoji: string; prompt: string; steps: string[] };
 export type WordSearchItem = { emoji: string; prompt: string; words: string[] };
-export type MazeItem = { emoji: string; prompt: string; grid: string[]; goalLabel?: string };
+export type MazeItem = { emoji: string; prompt: string; grid: string[]; goalLabel?: string; playerEmoji?: string };
 
 type ExerciseMeta = { id: string; title: string; icon: string; context?: string };
 export type Exercise = ExerciseMeta & (
@@ -4622,7 +4622,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "1 2 3 | 2 3 1 | 3 1 __",
-          "prompt": "Qual número completa?",
+          "prompt": "Qual número completa a última linha?",
           "choices": [
             "2",
             "1",
@@ -4633,7 +4633,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🔴 🔵 🟢 | 🔵 🟢 🔴 | 🟢 🔴 __",
-          "prompt": "Qual cor completa?",
+          "prompt": "Qual cor completa a última linha?",
           "choices": [
             "🔵",
             "🔴",
@@ -4644,7 +4644,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "▲ ■ ● | ■ ● ▲ | ● ▲ __",
-          "prompt": "Qual forma completa?",
+          "prompt": "Qual forma completa a última linha?",
           "choices": [
             "■",
             "▲",
@@ -4655,7 +4655,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🐶 🐱 🐰 | 🐱 🐰 🐶 | 🐰 🐶 __",
-          "prompt": "Qual animal completa?",
+          "prompt": "Qual animal completa a última linha?",
           "choices": [
             "🐱",
             "🐶",
@@ -4666,7 +4666,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "A B C | B C A | C A __",
-          "prompt": "Qual letra completa?",
+          "prompt": "Qual letra completa a última linha?",
           "choices": [
             "B",
             "A",
@@ -5457,255 +5457,160 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "geo-em-cima",
-      "title": "Em cima",
-      "icon": "⬆️",
-      "type": "dragdrop",
+      "title": "Em cima ou embaixo?",
+      "icon": "↕️",
+      "type": "choice",
       "items": [
         {
-          "emoji": "⬆️",
-          "prompt": "Leve cada objeto para EM CIMA.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🐈\n📦 Onde está o gato em relação à caixa?",
-              "target": "Em cima"
-            },
-            {
-              "id": "c1",
-              "label": "📚\n🪑 Onde estão os livros em relação à cadeira?",
-              "target": "Em cima"
-            },
-            {
-              "id": "c2",
-              "label": "☁️\n🏠 Onde está a nuvem em relação à casa?",
-              "target": "Em cima"
-            },
-            {
-              "id": "c3",
-              "label": "🕊️\n🌳 Onde está o pássaro em relação à árvore?",
-              "target": "Em cima"
-            },
-            {
-              "id": "c4",
-              "label": "🧸\n🛏️ Onde está o urso em relação à cama?",
-              "target": "Em cima"
-            }
-          ],
-          "targets": [
-            "Em cima"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "geo-embaixo",
-      "title": "Embaixo",
-      "icon": "⬇️",
-      "type": "dragdrop",
-      "items": [
-        {
-          "emoji": "⬇️",
-          "prompt": "Leve cada objeto para EMBAIXO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🪑\n🐈 Onde está o gato em relação à cadeira?",
-              "target": "Embaixo"
-            },
-            {
-              "id": "c1",
-              "label": "☂️\n👦 Onde está o menino em relação ao guarda-chuva?",
-              "target": "Embaixo"
-            },
-            {
-              "id": "c2",
-              "label": "🌳\n🍄 Onde está o cogumelo em relação à árvore?",
-              "target": "Embaixo"
-            },
-            {
-              "id": "c3",
-              "label": "🛏️\n⚽ Onde está a bola em relação à cama?",
-              "target": "Embaixo"
-            },
-            {
-              "id": "c4",
-              "label": "☁️\n🏠 Onde está a casa em relação à nuvem?",
-              "target": "Embaixo"
-            }
-          ],
-          "targets": [
+          "emoji": "🐈 | 📦",
+          "prompt": "Onde está o gato em relação à caixa?",
+          "choices": [
+            "Em cima",
             "Embaixo"
-          ]
+          ],
+          "answer": "Em cima"
+        },
+        {
+          "emoji": "🪑 | ⚽",
+          "prompt": "Onde está a bola em relação à cadeira?",
+          "choices": [
+            "Em cima",
+            "Embaixo"
+          ],
+          "answer": "Embaixo"
+        },
+        {
+          "emoji": "☁️ | 🏠",
+          "prompt": "Onde está a nuvem em relação à casa?",
+          "choices": [
+            "Em cima",
+            "Embaixo"
+          ],
+          "answer": "Em cima"
+        },
+        {
+          "emoji": "☂️ | 👦",
+          "prompt": "Onde está o menino em relação ao guarda-chuva?",
+          "choices": [
+            "Em cima",
+            "Embaixo"
+          ],
+          "answer": "Embaixo"
+        },
+        {
+          "emoji": "🕊️ | 🌳",
+          "prompt": "Onde está o pássaro em relação à árvore?",
+          "choices": [
+            "Em cima",
+            "Embaixo"
+          ],
+          "answer": "Em cima"
         }
       ]
     },
     {
       "id": "geo-perto",
-      "title": "Perto",
-      "icon": "📍",
-      "type": "matching",
+      "title": "Perto ou longe?",
+      "icon": "↔️",
+      "type": "choice",
       "items": [
         {
-          "emoji": "📍",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🏠 🏫 A escola ao lado da casa está...",
-              "right": "Perto"
-            },
-            {
-              "key": "p1",
-              "left": "👧 🐕 O cachorro ao lado da menina está...",
-              "right": "Perto"
-            },
-            {
-              "key": "p2",
-              "left": "🪑 📚 Os livros sobre a cadeira estão...",
-              "right": "Perto"
-            },
-            {
-              "key": "p3",
-              "left": "🚗 ⛽ O carro ao lado do posto está...",
-              "right": "Perto"
-            },
-            {
-              "key": "p4",
-              "left": "🌳 🐦 O pássaro no galho está...",
-              "right": "Perto da árvore"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "geo-longe",
-      "title": "Longe",
-      "icon": "🔭",
-      "type": "matching",
-      "items": [
+          "emoji": "🏠 🏫",
+          "prompt": "A escola fica ao lado da casa. Ela está perto ou longe?",
+          "choices": [
+            "Perto",
+            "Longe"
+          ],
+          "answer": "Perto"
+        },
         {
-          "emoji": "🔭",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🏠                         🏫 A escola muito distante da casa está...",
-              "right": "Longe"
-            },
-            {
-              "key": "p1",
-              "left": "👧                         🐕 O cachorro distante da menina está...",
-              "right": "Longe"
-            },
-            {
-              "key": "p2",
-              "left": "🌳                         🚗 O carro distante da árvore está...",
-              "right": "Longe"
-            },
-            {
-              "key": "p3",
-              "left": "🏥                         🏡 O hospital distante da casa está...",
-              "right": "Longe"
-            },
-            {
-              "key": "p4",
-              "left": "⛰️                         🏙️ A montanha distante da cidade está...",
-              "right": "Longe"
-            }
-          ]
+          "emoji": "🏠 🏔️",
+          "prompt": "A montanha fica a muitas horas da casa. Ela está perto ou longe?",
+          "choices": [
+            "Perto",
+            "Longe"
+          ],
+          "answer": "Longe"
+        },
+        {
+          "emoji": "👧 🐕",
+          "prompt": "O cachorro está ao lado da menina. Ele está perto ou longe?",
+          "choices": [
+            "Perto",
+            "Longe"
+          ],
+          "answer": "Perto"
+        },
+        {
+          "emoji": "🏠 🏖️",
+          "prompt": "A viagem da casa até a praia demora muitas horas. A praia está perto ou longe?",
+          "choices": [
+            "Perto",
+            "Longe"
+          ],
+          "answer": "Longe"
+        },
+        {
+          "emoji": "🚗 ⛽",
+          "prompt": "O carro está ao lado do posto. Ele está perto ou longe?",
+          "choices": [
+            "Perto",
+            "Longe"
+          ],
+          "answer": "Perto"
         }
       ]
     },
     {
       "id": "geo-dentro",
-      "title": "Dentro",
-      "icon": "📦",
-      "type": "dragdrop",
+      "title": "Dentro ou fora?",
+      "icon": "📥",
+      "type": "choice",
       "items": [
         {
-          "emoji": "📦",
-          "prompt": "Leve cada objeto para DENTRO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "📦🐈 Onde está o gato?",
-              "target": "Dentro da caixa"
-            },
-            {
-              "id": "c1",
-              "label": "🏠👧 Onde está a menina?",
-              "target": "Dentro da casa"
-            },
-            {
-              "id": "c2",
-              "label": "👜✏️ Onde está o lápis?",
-              "target": "Dentro da bolsa"
-            },
-            {
-              "id": "c3",
-              "label": "🚗👨 Onde está o motorista?",
-              "target": "Dentro do carro"
-            },
-            {
-              "id": "c4",
-              "label": "🪹🥚 Onde está o ovo?",
-              "target": "Dentro do ninho"
-            }
+          "emoji": "🐈 📦",
+          "prompt": "O gato entrou na caixa. Ele está dentro ou fora?",
+          "choices": [
+            "Dentro",
+            "Fora"
           ],
-          "targets": [
-            "Dentro da caixa",
-            "Dentro da casa",
-            "Dentro da bolsa",
-            "Dentro do carro",
-            "Dentro do ninho"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "geo-fora",
-      "title": "Fora",
-      "icon": "📤",
-      "type": "dragdrop",
-      "items": [
+          "answer": "Dentro"
+        },
         {
-          "emoji": "📤",
-          "prompt": "Leve cada objeto para FORA.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "📦   🐈 Onde está o gato?",
-              "target": "Fora da caixa"
-            },
-            {
-              "id": "c1",
-              "label": "🏠   👧 Onde está a menina?",
-              "target": "Fora da casa"
-            },
-            {
-              "id": "c2",
-              "label": "👜   ✏️ Onde está o lápis?",
-              "target": "Fora da bolsa"
-            },
-            {
-              "id": "c3",
-              "label": "🚗   👨 Onde está o motorista?",
-              "target": "Fora do carro"
-            },
-            {
-              "id": "c4",
-              "label": "🪹   🥚 Onde está o ovo?",
-              "target": "Fora do ninho"
-            }
+          "emoji": "✏️ 👜",
+          "prompt": "O lápis está sobre a mesa, ao lado da bolsa. Ele está dentro ou fora?",
+          "choices": [
+            "Dentro",
+            "Fora"
           ],
-          "targets": [
-            "Fora da caixa",
-            "Fora da casa",
-            "Fora da bolsa",
-            "Fora do carro",
-            "Fora do ninho"
-          ]
+          "answer": "Fora"
+        },
+        {
+          "emoji": "👧 🏠",
+          "prompt": "A menina entrou em casa. Ela está dentro ou fora?",
+          "choices": [
+            "Dentro",
+            "Fora"
+          ],
+          "answer": "Dentro"
+        },
+        {
+          "emoji": "⚽ 🏠",
+          "prompt": "A bola ficou no quintal, do lado de fora da casa. Ela está dentro ou fora?",
+          "choices": [
+            "Dentro",
+            "Fora"
+          ],
+          "answer": "Fora"
+        },
+        {
+          "emoji": "🥚 🪹",
+          "prompt": "O ovo está no ninho. Ele está dentro ou fora?",
+          "choices": [
+            "Dentro",
+            "Fora"
+          ],
+          "answer": "Dentro"
         }
       ]
     },
@@ -5717,7 +5622,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🗺️",
-          "prompt": "Siga o caminho da casa até a escola.",
+          "prompt": "Chegue até a escola.",
+          "playerEmoji": "🚗",
           "grid": [
             "S..#...",
             "##.#.#.",
@@ -5796,42 +5702,52 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "geo-campo-cidade",
       "title": "Campo ou cidade?",
       "icon": "🌾",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🌾",
-          "prompt": "Leve cada imagem para CAMPO ou CIDADE.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🏙️ Prédios altos, muitas ruas e carros são comun…",
-              "target": "Cidade"
-            },
-            {
-              "id": "c1",
-              "label": "🚜 Tratores, plantações e criação de animais são…",
-              "target": "Campo"
-            },
-            {
-              "id": "c2",
-              "label": "🌾 Grandes plantações são mais comuns no...",
-              "target": "Campo"
-            },
-            {
-              "id": "c3",
-              "label": "🏢 Muitos prédios e lojas são mais comuns na...",
-              "target": "Cidade"
-            },
-            {
-              "id": "c4",
-              "label": "🐄 Criação de gado é mais comum no...",
-              "target": "Campo"
-            }
+          "emoji": "🏙️ 🚗",
+          "prompt": "Há muitos prédios, ruas e carros. Essa paisagem é do campo ou da cidade?",
+          "choices": [
+            "Campo",
+            "Cidade"
           ],
-          "targets": [
-            "Cidade",
-            "Campo"
-          ]
+          "answer": "Cidade"
+        },
+        {
+          "emoji": "🚜 🌾",
+          "prompt": "Há tratores e grandes plantações. Essa paisagem é do campo ou da cidade?",
+          "choices": [
+            "Campo",
+            "Cidade"
+          ],
+          "answer": "Campo"
+        },
+        {
+          "emoji": "🏢 🛍️",
+          "prompt": "Há muitos prédios e lojas. Essa paisagem é do campo ou da cidade?",
+          "choices": [
+            "Campo",
+            "Cidade"
+          ],
+          "answer": "Cidade"
+        },
+        {
+          "emoji": "🐄 🌱",
+          "prompt": "Há criação de gado e plantações. Essa paisagem é do campo ou da cidade?",
+          "choices": [
+            "Campo",
+            "Cidade"
+          ],
+          "answer": "Campo"
+        },
+        {
+          "emoji": "🚦 🚌",
+          "prompt": "Há semáforos e muitos ônibus. Essa paisagem é do campo ou da cidade?",
+          "choices": [
+            "Campo",
+            "Cidade"
+          ],
+          "answer": "Cidade"
         }
       ]
     },
@@ -5847,9 +5763,9 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "words": [
             "RUA",
             "LOJA",
-            "PREDIO",
-            "ONIBUS",
-            "PRACA"
+            "PRÉDIO",
+            "ÔNIBUS",
+            "PRAÇA"
           ]
         }
       ]
