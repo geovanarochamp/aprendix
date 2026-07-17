@@ -477,8 +477,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "type": "choice",
       "items": [
         {
-          "emoji": "A B C",
-          "prompt": "Qual grupo está em ordem alfabética?",
+          "emoji": "🧩",
+          "prompt": "As letras estão misturadas. Qual grupo está em ordem alfabética?",
           "choices": [
             "A, B, C",
             "C, B, A",
@@ -488,8 +488,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "A, B, C"
         },
         {
-          "emoji": "D E F",
-          "prompt": "Qual grupo está em ordem alfabética?",
+          "emoji": "🧩",
+          "prompt": "As letras estão misturadas. Qual grupo está em ordem alfabética?",
           "choices": [
             "D, E, F",
             "F, E, D",
@@ -499,8 +499,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "D, E, F"
         },
         {
-          "emoji": "G H I",
-          "prompt": "Qual grupo está em ordem alfabética?",
+          "emoji": "🧩",
+          "prompt": "As letras estão misturadas. Qual grupo está em ordem alfabética?",
           "choices": [
             "G, H, I",
             "I, H, G",
@@ -510,8 +510,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "G, H, I"
         },
         {
-          "emoji": "M N O",
-          "prompt": "Qual grupo está em ordem alfabética?",
+          "emoji": "🧩",
+          "prompt": "As letras estão misturadas. Qual grupo está em ordem alfabética?",
           "choices": [
             "M, N, O",
             "O, N, M",
@@ -521,8 +521,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "M, N, O"
         },
         {
-          "emoji": "X Y Z",
-          "prompt": "Qual grupo está em ordem alfabética?",
+          "emoji": "🧩",
+          "prompt": "As letras estão misturadas. Qual grupo está em ordem alfabética?",
           "choices": [
             "X, Y, Z",
             "Z, Y, X",
