@@ -4,6 +4,7 @@ import { Dixi } from "../components/Dixi";
 import { SpecialActivity } from "../components/activities/SpecialActivity";
 import { getExercise } from "../data/exercises";
 import { getWorld, lessonsForWorld, worldCategory, type WorldColor } from "../data/worlds";
+import { playSound } from "../lib/sounds";
 import { useGameStore } from "../store/useGameStore";
 
 type ActivityProps = {
@@ -35,6 +36,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
   const category = worldCategory[worldId];
   const exercise = category ? getExercise(category, lessonId) : undefined;
   const completeLesson = useGameStore((s) => s.completeLesson);
+  const sound = useGameStore((s) => s.sound);
 
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string | number | null>(null);
@@ -81,6 +83,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
 
   const pick = (value: string | number) => {
     if (checked) return;
+    playSound("tap", sound);
     setSelected(value);
     setWrong(false);
   };
@@ -89,11 +92,13 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
     if (checked) {
       // avançar
       if (index < total - 1) {
+        playSound("tap", sound);
         setIndex((i) => i + 1);
         setSelected(null);
         setChecked(false);
         setWrong(false);
       } else {
+        playSound("complete", sound);
         const earned = ratingFor(wrongCount);
         completeLesson(exercise.id, earned);
         setEarnedStars(earned);
@@ -103,9 +108,11 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
     }
     // conferir
     if (selected === answer) {
+      playSound("correct", sound);
       setChecked(true);
       setWrong(false);
     } else {
+      playSound("wrong", sound);
       setWrong(true);
       setWrongCount((c) => c + 1);
     }
@@ -299,10 +306,12 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
                   exercise={exercise}
                   itemIndex={index}
                   onSolved={() => {
+                    playSound("correct", sound);
                     setChecked(true);
                     setWrong(false);
                   }}
                   onMistake={() => {
+                    playSound("wrong", sound);
                     setWrong(true);
                     setWrongCount((count) => count + 1);
                   }}

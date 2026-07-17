@@ -288,7 +288,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "type": "choice",
       "items": [
         {
-          "emoji": "A a",
+          "emoji": "A",
           "prompt": "Qual é a letra minúscula de A?",
           "choices": [
             "a",
@@ -299,7 +299,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "a"
         },
         {
-          "emoji": "B b",
+          "emoji": "b",
           "prompt": "Qual é a letra maiúscula de b?",
           "choices": [
             "B",
@@ -310,7 +310,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "B"
         },
         {
-          "emoji": "M m",
+          "emoji": "M",
           "prompt": "Qual é a letra minúscula de M?",
           "choices": [
             "n",
@@ -321,7 +321,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "m"
         },
         {
-          "emoji": "G g",
+          "emoji": "g",
           "prompt": "Qual é a letra maiúscula de g?",
           "choices": [
             "C",
@@ -332,7 +332,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "G"
         },
         {
-          "emoji": "T t",
+          "emoji": "T",
           "prompt": "Qual é a letra minúscula de T?",
           "choices": [
             "f",
@@ -1797,59 +1797,59 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "mt-sinais",
-      "title": "Igual, maior ou menor",
+      "title": "Maior, menor ou igual",
       "icon": "⚖️",
       "type": "choice",
       "items": [
         {
-          "emoji": "5  ?  3",
-          "prompt": "Qual sinal completa?",
+          "emoji": "5   e   3",
+          "prompt": "Qual frase está correta?",
           "choices": [
-            ">",
-            "<",
-            "="
+            "5 é maior que 3",
+            "5 é menor que 3",
+            "5 é igual a 3"
           ],
-          "answer": ">"
+          "answer": "5 é maior que 3"
         },
         {
-          "emoji": "2  ?  7",
-          "prompt": "Qual sinal completa?",
+          "emoji": "2   e   7",
+          "prompt": "Qual frase está correta?",
           "choices": [
-            ">",
-            "<",
-            "="
+            "2 é maior que 7",
+            "2 é menor que 7",
+            "2 é igual a 7"
           ],
-          "answer": "<"
+          "answer": "2 é menor que 7"
         },
         {
-          "emoji": "6  ?  6",
-          "prompt": "Qual sinal completa?",
+          "emoji": "6   e   6",
+          "prompt": "Qual frase está correta?",
           "choices": [
-            ">",
-            "<",
-            "="
+            "6 é maior que 6",
+            "6 é menor que 6",
+            "6 é igual a 6"
           ],
-          "answer": "="
+          "answer": "6 é igual a 6"
         },
         {
-          "emoji": "10  ?  8",
-          "prompt": "Qual sinal completa?",
+          "emoji": "10   e   8",
+          "prompt": "Qual frase está correta?",
           "choices": [
-            ">",
-            "<",
-            "="
+            "10 é maior que 8",
+            "10 é menor que 8",
+            "10 é igual a 8"
           ],
-          "answer": ">"
+          "answer": "10 é maior que 8"
         },
         {
-          "emoji": "4  ?  9",
-          "prompt": "Qual sinal completa?",
+          "emoji": "4   e   9",
+          "prompt": "Qual frase está correta?",
           "choices": [
-            ">",
-            "<",
-            "="
+            "4 é maior que 9",
+            "4 é menor que 9",
+            "4 é igual a 9"
           ],
-          "answer": "<"
+          "answer": "4 é menor que 9"
         }
       ]
     },
@@ -1917,69 +1917,6 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       ]
     },
     {
-      "id": "mt-dezenas",
-      "title": "Dezenas e unidades",
-      "icon": "🧱",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "14",
-          "prompt": "Quantas dezenas há em 14?",
-          "choices": [
-            "0",
-            "1",
-            "2",
-            "4"
-          ],
-          "answer": "1"
-        },
-        {
-          "emoji": "23",
-          "prompt": "Quantas unidades há em 23?",
-          "choices": [
-            "2",
-            "3",
-            "20",
-            "23"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "36",
-          "prompt": "Quantas dezenas há em 36?",
-          "choices": [
-            "3",
-            "6",
-            "30",
-            "36"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "42",
-          "prompt": "Quantas unidades há em 42?",
-          "choices": [
-            "2",
-            "4",
-            "40",
-            "42"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "50",
-          "prompt": "Quantas dezenas há em 50?",
-          "choices": [
-            "0",
-            "5",
-            "10",
-            "50"
-          ],
-          "answer": "5"
-        }
-      ]
-    },
-    {
       "id": "mt-contar",
       "title": "Conte os objetos",
       "icon": "🍎",
@@ -1987,31 +1924,31 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🍎",
-          "prompt": "Leve cada grupo de objetos até a quantidade correta.",
+          "prompt": "Ligue cada grupo à quantidade correta.",
           "cards": [
             {
               "id": "c0",
-              "label": "🍎 🍎 🍎 Quantas maçãs aparecem?",
+              "label": "🍎 🍎 🍎",
               "target": "3"
             },
             {
               "id": "c1",
-              "label": "⭐ ⭐ ⭐ ⭐ Quantas estrelas aparecem?",
+              "label": "⭐ ⭐ ⭐ ⭐",
               "target": "4"
             },
             {
               "id": "c2",
-              "label": "🐟 🐟 🐟 🐟 🐟 Quantos peixes aparecem?",
+              "label": "🐟 🐟 🐟 🐟 🐟",
               "target": "5"
             },
             {
               "id": "c3",
-              "label": "⚽ ⚽ Quantas bolas aparecem?",
+              "label": "⚽ ⚽",
               "target": "2"
             },
             {
               "id": "c4",
-              "label": "🌼 🌼 🌼 🌼 🌼 🌼 Quantas flores aparecem?",
+              "label": "🌼 🌼 🌼 🌼 🌼 🌼",
               "target": "6"
             }
           ],
@@ -2081,7 +2018,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             },
             {
               "id": "c1",
-              "label": "⚽ Havia 7 bolas. Guardamos 3. Quantas ficaram f…",
+              "label": "⚽ Havia 7 bolas. Guardamos 3. Quantas ficaram fora?",
               "target": "4"
             },
             {

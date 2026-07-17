@@ -8,6 +8,7 @@ import {
   type WorldColor,
 } from "../data/worlds";
 import { useGameStore } from "../store/useGameStore";
+import { playSound } from "../lib/sounds";
 
 type LessonsProps = {
   worldId: string;
@@ -148,6 +149,7 @@ export function Lessons({ worldId, onBack, onOpenLesson }: LessonsProps) {
   const world = getWorld(worldId);
   const lessons = lessonsForWorld(worldId);
   const lessonStars = useGameStore((s) => s.lessonStars);
+  const sound = useGameStore((s) => s.sound);
   const color = world?.color ?? "green";
 
   const isDone = (id: string) => id in lessonStars;
@@ -242,7 +244,10 @@ export function Lessons({ worldId, onBack, onOpenLesson }: LessonsProps) {
                   onClick={
                     status === "locked"
                       ? undefined
-                      : () => onOpenLesson(worldId, lesson.id)
+                      : () => {
+                          playSound("open", sound);
+                          onOpenLesson(worldId, lesson.id);
+                        }
                   }
                 />
               );

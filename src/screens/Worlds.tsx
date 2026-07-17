@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { WorldIsland } from "../components/WorldIsland";
 import { assetUrl } from "../lib/assetUrl";
+import { playSound } from "../lib/sounds";
 import { useGameStore } from "../store/useGameStore";
 
 type World = {
@@ -96,6 +97,11 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
   const activeProfile = useGameStore((state) =>
     state.profiles.find((profile) => profile.id === state.activeProfileId),
   );
+  const sound = useGameStore((state) => state.sound);
+  const openWorld = (worldId: string) => {
+    playSound("open", sound);
+    onSelect?.(worldId);
+  };
   const current = worlds[index];
   const paginate = (d: number) =>
     setPage([(index + d + worlds.length) % worlds.length, d]);
@@ -171,7 +177,7 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
                 image={world.image}
                 delay={world.delay}
                 showLabel={world.id === "palavras"}
-                onClick={() => onSelect?.(world.id)}
+                onClick={() => openWorld(world.id)}
               />
             </motion.div>
           </div>
@@ -208,7 +214,7 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
                 image={current.image}
                 delay={0}
                 showLabel={current.id === "palavras"}
-                onClick={() => onSelect?.(current.id)}
+                onClick={() => openWorld(current.id)}
               />
             </motion.div>
           </AnimatePresence>

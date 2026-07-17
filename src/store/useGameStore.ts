@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const STORAGE_KEY = "aprendix-data-v2";
 const MAX_PROFILES = 3;
-const REMOVED_LESSON_IDS = new Set(["mt-numero"]);
+const REMOVED_LESSON_IDS = new Set(["mt-numero", "mt-dezenas"]);
 
 export type PlayerProfile = {
   id: string;
