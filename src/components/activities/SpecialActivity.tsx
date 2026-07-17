@@ -420,7 +420,7 @@ function makeWordGrid(words: string[], size = 9) {
   for (const raw of words) {
     const word = raw.normalize("NFC").replace(/\s/g, "").toUpperCase();
     let placed = false;
-    for (let tries = 0; tries < 160 && !placed; tries++) {
+    for (let tries = 0; tries < 500 && !placed; tries++) {
       const vertical = Math.random() < 0.5;
       const maxRow = vertical ? size - word.length : size - 1;
       const maxColumn = vertical ? size - 1 : size - word.length;
@@ -432,7 +432,10 @@ function makeWordGrid(words: string[], size = 9) {
       for (let index = 0; index < word.length; index++) {
         const currentRow = row + (vertical ? index : 0);
         const currentColumn = column + (vertical ? 0 : index);
-        if (grid[currentRow][currentColumn] && grid[currentRow][currentColumn] !== word[index]) valid = false;
+        // No jogo infantil, cada letra pertence a uma única palavra. Evitar
+        // cruzamentos elimina a necessidade pouco intuitiva de marcar a mesma
+        // casa duas vezes.
+        if (grid[currentRow][currentColumn]) valid = false;
         cells.push(`${currentRow}-${currentColumn}`);
       }
       if (!valid) continue;
