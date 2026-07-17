@@ -1966,38 +1966,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-faltam",
       "title": "Quantos faltam?",
       "icon": "🧺",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🧺",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🍎 🍎 🍎 Para ter 5 maçãs, quantas faltam?",
-              "right": "2"
-            },
-            {
-              "key": "p1",
-              "left": "⭐ ⭐ ⭐ ⭐ Para ter 6 estrelas, quantas faltam?",
-              "right": "2"
-            },
-            {
-              "key": "p2",
-              "left": "⚽ ⚽ Para ter 5 bolas, quantas faltam?",
-              "right": "3"
-            },
-            {
-              "key": "p3",
-              "left": "🐟 🐟 🐟 🐟 🐟 Para ter 8 peixes, quantos faltam?",
-              "right": "3"
-            },
-            {
-              "key": "p4",
-              "left": "🌼 🌼 🌼 Para ter 7 flores, quantas faltam?",
-              "right": "4"
-            }
-          ]
+          "emoji": "🍎 🍎 🍎",
+          "prompt": "Há 3 maçãs. Para ter 5, quantas faltam?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "2"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ ⭐",
+          "prompt": "Há 4 estrelas. Para ter 6, quantas faltam?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "2"
+        },
+        {
+          "emoji": "⚽ ⚽",
+          "prompt": "Há 2 bolas. Para ter 5, quantas faltam?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 🐟",
+          "prompt": "Há 5 peixes. Para ter 8, quantos faltam?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "🌼 🌼 🌼",
+          "prompt": "Há 3 flores. Para ter 7, quantas faltam?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "4"
         }
       ]
     },
@@ -2005,44 +2029,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-sobraram",
       "title": "Quantos sobraram?",
       "icon": "📦",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "📦",
-          "prompt": "Leve cada situação até a quantidade que sobrou.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🍎 Havia 5 maçãs. Comemos 2. Quantas sobraram?",
-              "target": "3"
-            },
-            {
-              "id": "c1",
-              "label": "⚽ Havia 7 bolas. Guardamos 3. Quantas ficaram fora?",
-              "target": "4"
-            },
-            {
-              "id": "c2",
-              "label": "⭐ Havia 9 estrelas. Tiramos 4. Quantas sobraram?",
-              "target": "5"
-            },
-            {
-              "id": "c3",
-              "label": "🐟 Havia 6 peixes. 1 saiu. Quantos ficaram?",
-              "target": "5"
-            },
-            {
-              "id": "c4",
-              "label": "🌼 Havia 10 flores. Colhemos 3. Quantas sobraram?",
-              "target": "7"
-            }
+          "emoji": "🍎 🍎 🍎 🍎 🍎",
+          "prompt": "Havia 5 maçãs. Comemos 2. Quantas sobraram?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
           ],
-          "targets": [
+          "answer": "3"
+        },
+        {
+          "emoji": "⚽ ⚽ ⚽ ⚽ ⚽ ⚽ ⚽",
+          "prompt": "Havia 7 bolas. Guardamos 3. Quantas ficaram fora?",
+          "choices": [
             "3",
             "4",
             "5",
+            "6"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐",
+          "prompt": "Havia 9 estrelas. Tiramos 4. Quantas sobraram?",
+          "choices": [
+            "4",
+            "5",
+            "6",
             "7"
-          ]
+          ],
+          "answer": "5"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 🐟 🐟",
+          "prompt": "Havia 6 peixes. Um saiu. Quantos ficaram?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "5"
+        },
+        {
+          "emoji": "🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼",
+          "prompt": "Havia 10 flores. Colhemos 3. Quantas sobraram?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": "7"
         }
       ]
     },
