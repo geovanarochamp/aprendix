@@ -2096,7 +2096,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "👯",
-          "prompt": "Organize a contagem de dois em dois.",
+          "prompt": "Organize a contagem de dois em dois em ordem crescente.",
           "steps": [
             "2",
             "4",
@@ -2115,7 +2115,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🖐️",
-          "prompt": "Organize a contagem de cinco em cinco.",
+          "prompt": "Organize a contagem de cinco em cinco em ordem crescente.",
           "steps": [
             "5",
             "10",
@@ -2134,7 +2134,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🔟",
-          "prompt": "Organize a contagem de dez em dez.",
+          "prompt": "Organize a contagem de dez em dez em ordem crescente.",
           "steps": [
             "10",
             "20",
@@ -2149,38 +2149,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-soma-fig",
       "title": "Soma com figuras",
       "icon": "🍎",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🍎",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🍎 🍎  +  🍎 Quantas maçãs ao todo?",
-              "right": "3"
-            },
-            {
-              "key": "p1",
-              "left": "⭐ ⭐ ⭐  +  ⭐ ⭐ Quantas estrelas ao todo?",
-              "right": "5"
-            },
-            {
-              "key": "p2",
-              "left": "⚽ ⚽  +  ⚽ ⚽ Quantas bolas ao todo?",
-              "right": "4"
-            },
-            {
-              "key": "p3",
-              "left": "🐟 🐟 🐟 🐟  +  🐟 Quantos peixes ao todo?",
-              "right": "5"
-            },
-            {
-              "key": "p4",
-              "left": "🌼 🌼 🌼  +  🌼 🌼 🌼 Quantas flores ao todo?",
-              "right": "6"
-            }
-          ]
+          "emoji": "🍎 🍎 + 🍎",
+          "prompt": "Quantas maçãs há ao todo?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ + ⭐ ⭐",
+          "prompt": "Quantas estrelas há ao todo?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "5"
+        },
+        {
+          "emoji": "⚽ ⚽ + ⚽ ⚽",
+          "prompt": "Quantas bolas há ao todo?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 + 🐟",
+          "prompt": "Quantos peixes há ao todo?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "5"
+        },
+        {
+          "emoji": "🌼 🌼 🌼 + 🌼 🌼 🌼",
+          "prompt": "Quantas flores há ao todo?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": "6"
         }
       ]
     },
@@ -2251,42 +2275,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-complete-soma",
       "title": "Complete a soma",
       "icon": "❓",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "❓",
-          "prompt": "Leve cada conta até o resultado correto.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "2 + __ = 5 Qual número falta?",
-              "target": "3"
-            },
-            {
-              "id": "c1",
-              "label": "__ + 4 = 7 Qual número falta?",
-              "target": "3"
-            },
-            {
-              "id": "c2",
-              "label": "5 + __ = 9 Qual número falta?",
-              "target": "4"
-            },
-            {
-              "id": "c3",
-              "label": "__ + 6 = 10 Qual número falta?",
-              "target": "4"
-            },
-            {
-              "id": "c4",
-              "label": "8 + __ = 12 Qual número falta?",
-              "target": "4"
-            }
-          ],
-          "targets": [
+          "emoji": "2 + ? = 5",
+          "prompt": "Qual número falta para completar a soma?",
+          "choices": [
+            "1",
+            "2",
             "3",
             "4"
-          ]
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "? + 4 = 7",
+          "prompt": "Qual número falta para completar a soma?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "5 + ? = 9",
+          "prompt": "Qual número falta para completar a soma?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "? + 6 = 10",
+          "prompt": "Qual número falta para completar a soma?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "8 + ? = 12",
+          "prompt": "Qual número falta para completar a soma?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "4"
         }
       ]
     },
@@ -2294,38 +2338,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-sub-fig",
       "title": "Subtração com figuras",
       "icon": "🍎",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🍎",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🍎 🍎 🍎  −  🍎 Quantas maçãs sobraram?",
-              "right": "2"
-            },
-            {
-              "key": "p1",
-              "left": "⭐ ⭐ ⭐ ⭐ ⭐  −  ⭐ ⭐ Quantas estrelas sobraram?",
-              "right": "3"
-            },
-            {
-              "key": "p2",
-              "left": "⚽ ⚽ ⚽ ⚽  −  ⚽ Quantas bolas sobraram?",
-              "right": "3"
-            },
-            {
-              "key": "p3",
-              "left": "🐟 🐟 🐟 🐟 🐟  −  🐟 🐟 Quantos peixes sobraram?",
-              "right": "3"
-            },
-            {
-              "key": "p4",
-              "left": "🌼 🌼 🌼 🌼 🌼 🌼  −  🌼 🌼 Quantas flores sobraram?",
-              "right": "4"
-            }
-          ]
+          "emoji": "🍎 🍎 🍎 − 🍎",
+          "prompt": "Quantas maçãs sobraram?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "2"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ ⭐ ⭐ − ⭐ ⭐",
+          "prompt": "Quantas estrelas sobraram?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "⚽ ⚽ ⚽ ⚽ − ⚽",
+          "prompt": "Quantas bolas sobraram?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 🐟 − 🐟 🐟",
+          "prompt": "Quantos peixes sobraram?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "🌼 🌼 🌼 🌼 🌼 🌼 − 🌼 🌼",
+          "prompt": "Quantas flores sobraram?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "4"
         }
       ]
     },
@@ -2396,130 +2464,188 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-complete-sub",
       "title": "Complete a subtração",
       "icon": "❓",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "❓",
-          "prompt": "Leve cada conta incompleta até o número que falta.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "5 − __ = 3 Qual número falta?",
-              "target": "2"
-            },
-            {
-              "id": "c1",
-              "label": "__ − 2 = 6 Qual número falta?",
-              "target": "8"
-            },
-            {
-              "id": "c2",
-              "label": "9 − __ = 5 Qual número falta?",
-              "target": "4"
-            },
-            {
-              "id": "c3",
-              "label": "__ − 4 = 6 Qual número falta?",
-              "target": "10"
-            },
-            {
-              "id": "c4",
-              "label": "12 − __ = 7 Qual número falta?",
-              "target": "5"
-            }
-          ],
-          "targets": [
+          "emoji": "5 − ? = 3",
+          "prompt": "Qual número falta para completar a subtração?",
+          "choices": [
+            "1",
             "2",
+            "3",
+            "4"
+          ],
+          "answer": "2"
+        },
+        {
+          "emoji": "? − 2 = 6",
+          "prompt": "Qual número falta para completar a subtração?",
+          "choices": [
+            "6",
+            "7",
             "8",
+            "9"
+          ],
+          "answer": "8"
+        },
+        {
+          "emoji": "9 − ? = 5",
+          "prompt": "Qual número falta para completar a subtração?",
+          "choices": [
+            "2",
+            "3",
             "4",
-            "10",
             "5"
-          ]
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "? − 4 = 6",
+          "prompt": "Qual número falta para completar a subtração?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": "10"
+        },
+        {
+          "emoji": "12 − ? = 7",
+          "prompt": "Qual número falta para completar a subtração?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "5"
         }
       ]
     },
     {
       "id": "mt-dobro",
-      "title": "Dobro",
-      "icon": "✌️",
-      "type": "matching",
+      "title": "Dois grupos iguais",
+      "icon": "👯",
+      "type": "choice",
       "items": [
         {
-          "emoji": "✌️",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "2 Qual é o dobro de 2?",
-              "right": "4"
-            },
-            {
-              "key": "p1",
-              "left": "3 Qual é o dobro de 3?",
-              "right": "6"
-            },
-            {
-              "key": "p2",
-              "left": "4 Qual é o dobro de 4?",
-              "right": "8"
-            },
-            {
-              "key": "p3",
-              "left": "5 Qual é o dobro de 5?",
-              "right": "10"
-            },
-            {
-              "key": "p4",
-              "left": "6 Qual é o dobro de 6?",
-              "right": "12"
-            }
-          ]
+          "emoji": "🍎 🍎 + 🍎 🍎",
+          "prompt": "Junte os dois grupos. Quantas maçãs há ao todo?",
+          "choices": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ + ⭐ ⭐ ⭐",
+          "prompt": "Junte os dois grupos. Quantas estrelas há ao todo?",
+          "choices": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": "6"
+        },
+        {
+          "emoji": "⚽ ⚽ + ⚽ ⚽",
+          "prompt": "Junte os dois grupos. Quantas bolas há ao todo?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 + 🐟 🐟 🐟 🐟",
+          "prompt": "Junte os dois grupos. Quantos peixes há ao todo?",
+          "choices": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "answer": "8"
+        },
+        {
+          "emoji": "🌼 🌼 🌼 🌼 🌼 + 🌼 🌼 🌼 🌼 🌼",
+          "prompt": "Junte os dois grupos. Quantas flores há ao todo?",
+          "choices": [
+            "8",
+            "9",
+            "10",
+            "11"
+          ],
+          "answer": "10"
         }
       ]
     },
     {
       "id": "mt-metade",
-      "title": "Metade",
-      "icon": "🍰",
-      "type": "dragdrop",
+      "title": "Reparta igualmente",
+      "icon": "🎁",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🍰",
-          "prompt": "Leve cada quantidade até a sua metade.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "4 Qual é a metade de 4?",
-              "target": "2"
-            },
-            {
-              "id": "c1",
-              "label": "6 Qual é a metade de 6?",
-              "target": "3"
-            },
-            {
-              "id": "c2",
-              "label": "8 Qual é a metade de 8?",
-              "target": "4"
-            },
-            {
-              "id": "c3",
-              "label": "10 Qual é a metade de 10?",
-              "target": "5"
-            },
-            {
-              "id": "c4",
-              "label": "12 Qual é a metade de 12?",
-              "target": "6"
-            }
-          ],
-          "targets": [
+          "emoji": "🍎 🍎",
+          "prompt": "Reparta 2 maçãs igualmente entre 2 crianças. Quantas cada uma recebe?",
+          "choices": [
+            "1",
             "2",
+            "3",
+            "4"
+          ],
+          "answer": "1"
+        },
+        {
+          "emoji": "⭐ ⭐ ⭐ ⭐",
+          "prompt": "Reparta 4 estrelas igualmente entre 2 crianças. Quantas cada uma recebe?",
+          "choices": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "2"
+        },
+        {
+          "emoji": "⚽ ⚽ ⚽ ⚽ ⚽ ⚽",
+          "prompt": "Reparta 6 bolas igualmente entre 2 crianças. Quantas cada uma recebe?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "3"
+        },
+        {
+          "emoji": "🐟 🐟 🐟 🐟 🐟 🐟 🐟 🐟",
+          "prompt": "Reparta 8 peixes igualmente entre 2 crianças. Quantos cada uma recebe?",
+          "choices": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "4"
+        },
+        {
+          "emoji": "🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼 🌼",
+          "prompt": "Reparta 10 flores igualmente entre 2 crianças. Quantas cada uma recebe?",
+          "choices": [
             "3",
             "4",
             "5",
             "6"
-          ]
+          ],
+          "answer": "5"
         }
       ]
     },
@@ -2610,45 +2736,64 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "mt-dinheiro",
-      "title": "Sistema monetário",
+      "title": "Dinheiro no dia a dia",
       "icon": "💰",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "💰",
-          "prompt": "Leve cada compra até o valor correto.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "R$ 2 + R$ 3 Quanto dinheiro há ao todo?",
-              "target": "R$ 5"
-            },
-            {
-              "id": "c1",
-              "label": "R$ 5 Uma bala custa R$ 2. Quanto sobra?",
-              "target": "R$ 3"
-            },
-            {
-              "id": "c2",
-              "label": "R$ 10 Um brinquedo custa R$ 7. Quanto sobra?",
-              "target": "R$ 3"
-            },
-            {
-              "id": "c3",
-              "label": "🪙 🪙 🪙 Três moedas de R$ 1 valem quanto?",
-              "target": "R$ 3"
-            },
-            {
-              "id": "c4",
-              "label": "R$ 5 + R$ 5 Quanto temos?",
-              "target": "R$ 10"
-            }
-          ],
-          "targets": [
-            "R$ 5",
+          "emoji": "🪙 🪙 🪙",
+          "prompt": "Cada moeda vale R$ 1. Quanto valem as 3 moedas juntas?",
+          "choices": [
+            "R$ 1",
+            "R$ 2",
             "R$ 3",
-            "R$ 10"
-          ]
+            "R$ 4"
+          ],
+          "answer": "R$ 3"
+        },
+        {
+          "emoji": "💵 💵",
+          "prompt": "Cada nota vale R$ 5. Quanto valem as 2 notas juntas?",
+          "choices": [
+            "R$ 5",
+            "R$ 7",
+            "R$ 10",
+            "R$ 12"
+          ],
+          "answer": "R$ 10"
+        },
+        {
+          "emoji": "R$ 2 + R$ 3",
+          "prompt": "Quanto dinheiro há ao todo?",
+          "choices": [
+            "R$ 3",
+            "R$ 4",
+            "R$ 5",
+            "R$ 6"
+          ],
+          "answer": "R$ 5"
+        },
+        {
+          "emoji": "🍌 R$ 2",
+          "prompt": "Você tem R$ 5 e compra a banana. Quanto sobra?",
+          "choices": [
+            "R$ 2",
+            "R$ 3",
+            "R$ 4",
+            "R$ 5"
+          ],
+          "answer": "R$ 3"
+        },
+        {
+          "emoji": "📒 R$ 7",
+          "prompt": "Você tem R$ 10 e compra o caderno. Quanto sobra?",
+          "choices": [
+            "R$ 2",
+            "R$ 3",
+            "R$ 4",
+            "R$ 5"
+          ],
+          "answer": "R$ 3"
         }
       ]
     },
@@ -2673,40 +2818,59 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     },
     {
       "id": "mt-horas",
-      "title": "Horas exatas",
-      "icon": "🕒",
-      "type": "matching",
+      "title": "Partes do dia",
+      "icon": "🌅",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🕒",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🕒 Que horas o relógio mostra?",
-              "right": "3 horas"
-            },
-            {
-              "key": "p1",
-              "left": "🕕 Que horas o relógio mostra?",
-              "right": "6 horas"
-            },
-            {
-              "key": "p2",
-              "left": "🕘 Que horas o relógio mostra?",
-              "right": "9 horas"
-            },
-            {
-              "key": "p3",
-              "left": "🕛 Que horas o relógio mostra?",
-              "right": "12 horas"
-            },
-            {
-              "key": "p4",
-              "left": "🕓 Que horas o relógio mostra?",
-              "right": "4 horas"
-            }
-          ]
+          "emoji": "🌅",
+          "prompt": "O sol está nascendo. Qual é a parte do dia?",
+          "choices": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ],
+          "answer": "Manhã"
+        },
+        {
+          "emoji": "🍽️",
+          "prompt": "Já almoçamos e ainda está claro. Qual é a parte do dia?",
+          "choices": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ],
+          "answer": "Tarde"
+        },
+        {
+          "emoji": "🌙",
+          "prompt": "Está escuro e a lua apareceu. Qual é a parte do dia?",
+          "choices": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ],
+          "answer": "Noite"
+        },
+        {
+          "emoji": "🥣",
+          "prompt": "É hora do café da manhã. Qual é a parte do dia?",
+          "choices": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ],
+          "answer": "Manhã"
+        },
+        {
+          "emoji": "🛏️",
+          "prompt": "Está escuro e é hora de dormir. Qual é a parte do dia?",
+          "choices": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ],
+          "answer": "Noite"
         }
       ]
     },

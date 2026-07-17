@@ -183,7 +183,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             <path d="M15 6l-6 6 6 6" />
           </svg>
         </button>
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
           <div className="mb-1 flex min-w-0 items-center justify-between text-sm font-black text-navy/60">
             <span className="min-w-0 truncate pr-2">{world?.subject} · {exercise.title}</span>
             <span className="shrink-0 whitespace-nowrap">{index + 1} de {total}</span>
