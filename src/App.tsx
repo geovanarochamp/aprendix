@@ -56,9 +56,7 @@ function App() {
   const soundTogglePosition =
     route.screen === "worlds"
       ? "right-3 top-20 sm:right-6 sm:top-24"
-      : route.screen === "activity"
-        ? "right-3 top-[4.5rem] sm:right-6 sm:top-20"
-        : route.screen === "lessons"
+      : route.screen === "lessons"
           ? "right-3 top-3 sm:right-6 sm:top-4"
           : "right-4 top-4 sm:right-6 sm:top-6";
 
@@ -96,7 +94,9 @@ function App() {
           )}
         </motion.div>
       </AnimatePresence>
-      <SoundToggle className={soundTogglePosition} />
+      {route.screen !== "activity" && (
+        <SoundToggle className={soundTogglePosition} />
+      )}
       <UpdatePrompt />
     </>
   );
