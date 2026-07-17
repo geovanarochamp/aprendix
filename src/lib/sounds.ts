@@ -1,4 +1,4 @@
-export type SoundEffect = "tap" | "open" | "correct" | "wrong" | "complete";
+export type SoundEffect = "tap" | "scroll" | "open" | "correct" | "wrong" | "complete";
 
 let audioContext: AudioContext | null = null;
 
@@ -47,6 +47,9 @@ function schedule(context: AudioContext, effect: SoundEffect) {
   const now = context.currentTime + 0.01;
   if (effect === "tap") {
     tone(context, 520, now, 0.07, { endFrequency: 650, volume: 0.045 });
+  } else if (effect === "scroll") {
+    tone(context, 360, now, 0.07, { endFrequency: 460, type: "triangle", volume: 0.04 });
+    tone(context, 520, now + 0.04, 0.08, { endFrequency: 620, type: "triangle", volume: 0.035 });
   } else if (effect === "open") {
     tone(context, 330, now, 0.1, { endFrequency: 440, type: "triangle", volume: 0.06 });
     tone(context, 520, now + 0.08, 0.12, { endFrequency: 660, type: "triangle", volume: 0.05 });

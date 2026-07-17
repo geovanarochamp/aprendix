@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { UpdatePrompt } from "./components/UpdatePrompt";
+import { SoundToggle } from "./components/SoundToggle";
 import { Home } from "./screens/Home";
 import { Profiles } from "./screens/Profiles";
 import { Worlds } from "./screens/Worlds";
@@ -52,6 +53,15 @@ function App() {
         ? `activity-${route.worldId}-${route.lessonId}`
         : route.screen;
 
+  const soundTogglePosition =
+    route.screen === "worlds"
+      ? "right-3 top-20 sm:right-6 sm:top-24"
+      : route.screen === "activity"
+        ? "right-3 top-[4.5rem] sm:right-6 sm:top-20"
+        : route.screen === "lessons"
+          ? "right-3 top-3 sm:right-6 sm:top-4"
+          : "right-4 top-4 sm:right-6 sm:top-6";
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -86,6 +96,7 @@ function App() {
           )}
         </motion.div>
       </AnimatePresence>
+      <SoundToggle className={soundTogglePosition} />
       <UpdatePrompt />
     </>
   );

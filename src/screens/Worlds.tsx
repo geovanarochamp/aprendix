@@ -103,8 +103,10 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
     onSelect?.(worldId);
   };
   const current = worlds[index];
-  const paginate = (d: number) =>
+  const paginate = (d: number) => {
+    playSound("scroll", sound);
     setPage([(index + d + worlds.length) % worlds.length, d]);
+  };
 
   return (
     <main

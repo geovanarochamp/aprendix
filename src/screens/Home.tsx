@@ -10,25 +10,12 @@ type HomeProps = {
 
 export function Home({ onPlay }: HomeProps) {
   const sound = useGameStore((state) => state.sound);
-  const toggleSound = useGameStore((state) => state.toggleSound);
 
   return (
     <main
       className="relative min-h-screen w-full overflow-hidden bg-blue bg-cover bg-center bg-no-repeat font-sans text-navy"
       style={{ backgroundImage: `url('${assetUrl("background.png")}')` }}
     >
-      <button
-        type="button"
-        onClick={() => {
-          toggleSound();
-          if (!sound) playSound("tap", true);
-        }}
-        aria-label={sound ? "Desativar sons" : "Ativar sons"}
-        aria-pressed={sound}
-        className="absolute right-4 top-4 z-20 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-2xl shadow-[0_4px_0_rgba(30,31,63,0.18)] backdrop-blur-sm transition-transform active:translate-y-[4px] active:shadow-none sm:right-6 sm:top-6"
-      >
-        {sound ? "🔊" : "🔇"}
-      </button>
       <div className="home-content relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-10">
         <Dixi
           pose="wave"

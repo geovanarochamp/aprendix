@@ -68,7 +68,7 @@ select {
 .trail-bg-tile {
   width: 100%;
   aspect-ratio: 941 / 1672;
-  background-image: url("/bg-lessons-desktop-teste.png?v=4");
+  background-image: url("/lessons-background.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

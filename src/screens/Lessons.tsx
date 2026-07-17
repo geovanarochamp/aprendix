@@ -31,11 +31,11 @@ const nodeColor: Record<WorldColor, string> = {
 const MOBILE_STEP = 128;
 const MOBILE_TOP_PAD = 128;
 const MOBILE_BOTTOM_PAD = 130;
-const MOBILE_X_OFFSETS = [0, -6, 0, 6];
+const MOBILE_X_OFFSETS = [8, -9, 11, -8, 8];
 const DESKTOP_STEP = 150;
 const DESKTOP_TOP_PAD = 130;
 const DESKTOP_BOTTOM_PAD = 160;
-const DESKTOP_X_OFFSETS = [7, -1, -4, 5, 6, 1, -4, 1, 5];
+const DESKTOP_X_OFFSETS = [4, -10, 11, -13, 10];
 
 function Stars({ earned }: { earned: number }) {
   return (
