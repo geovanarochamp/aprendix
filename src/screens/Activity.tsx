@@ -202,7 +202,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.22 }}
           >
-            {isStandard && isSequence ? (
+            {isStandard && !exercise.context && isSequence ? (
               <div className="my-4 flex w-full max-w-lg flex-wrap items-center justify-center gap-2 rounded-[2.25rem] bg-gradient-to-br from-yellow to-orange/70 px-4 py-6 shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)] sm:gap-3 sm:px-6">
                 {visualTokens.map((token, i) => {
                   const blank = token === "__";
@@ -222,9 +222,16 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
                   );
                 })}
               </div>
-            ) : isStandard ? (
+            ) : isStandard && !exercise.context ? (
               <div className="my-4 grid h-48 w-48 place-items-center rounded-full bg-gradient-to-br from-yellow to-orange/70 text-8xl shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)]">
                 {item.emoji}
+              </div>
+            ) : null}
+
+            {exercise.context ? (
+              <div className="mb-4 mt-3 w-full max-w-lg rounded-3xl border-4 border-purple/15 bg-white px-5 py-4 text-left shadow-[0_5px_0_rgba(30,31,63,0.1)]">
+                <p className="text-center text-sm font-black uppercase tracking-wide text-purple">📖 Leia o texto</p>
+                <p className="mt-2 text-base font-bold leading-relaxed text-navy sm:text-lg">{exercise.context}</p>
               </div>
             ) : null}
 
@@ -233,7 +240,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             {"hint" in item && item.hint ? (
               <div className="mb-5 rounded-2xl border-4 border-dashed border-purple/30 bg-white px-5 py-3 text-center text-2xl font-black tracking-wide text-navy shadow-[0_4px_0_rgba(30,31,63,0.1)] sm:text-3xl">
                 {checked
-                  ? item.hint.replace("___", String(answer))
+                  ? item.hint.replace(/_{2,}/, String(answer))
                   : item.hint}
               </div>
             ) : null}

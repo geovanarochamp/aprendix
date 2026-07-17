@@ -42,11 +42,11 @@ function MatchingChallenge({
   const [selected, setSelected] = useState<string | null>(null);
   const [matchedLeft, setMatchedLeft] = useState(() => new Set<string>());
   const [matchedRight, setMatchedRight] = useState(() => new Set<string>());
-  const [message, setMessage] = useState("Toque em uma pista e depois na resposta.");
+  const [message, setMessage] = useState("Toque em um card da esquerda e depois no par correto.");
 
   const pickAnswer = (rightKey: string) => {
     if (!selected) {
-      setMessage("Primeiro escolha uma pista do lado esquerdo.");
+      setMessage("Primeiro escolha um card do lado esquerdo.");
       return;
     }
     const leftPair = item.pairs.find((pair) => pair.key === selected)!;

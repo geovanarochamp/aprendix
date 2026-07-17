@@ -11,17 +11,19 @@ export type SequenceItem = { emoji: string; prompt: string; steps: string[] };
 export type WordSearchItem = { emoji: string; prompt: string; words: string[] };
 export type MazeItem = { emoji: string; prompt: string; grid: string[]; goalLabel?: string };
 
-export type Exercise =
-  | { id: string; title: string; icon: string; type: "choice"; items: ChoiceItem[] }
-  | { id: string; title: string; icon: string; type: "count"; items: CountItem[] }
-  | { id: string; title: string; icon: string; type: "matching"; items: MatchingItem[] }
-  | { id: string; title: string; icon: string; type: "unscramble"; items: UnscrambleItem[] }
-  | { id: string; title: string; icon: string; type: "dragdrop"; items: DragDropItem[] }
-  | { id: string; title: string; icon: string; type: "crossword"; items: CrosswordItem[] }
-  | { id: string; title: string; icon: string; type: "memory"; items: MemoryItem[] }
-  | { id: string; title: string; icon: string; type: "sequence"; items: SequenceItem[] }
-  | { id: string; title: string; icon: string; type: "wordsearch"; items: WordSearchItem[] }
-  | { id: string; title: string; icon: string; type: "maze"; items: MazeItem[] };
+type ExerciseMeta = { id: string; title: string; icon: string; context?: string };
+export type Exercise = ExerciseMeta & (
+  | { type: "choice"; items: ChoiceItem[] }
+  | { type: "count"; items: CountItem[] }
+  | { type: "matching"; items: MatchingItem[] }
+  | { type: "unscramble"; items: UnscrambleItem[] }
+  | { type: "dragdrop"; items: DragDropItem[] }
+  | { type: "crossword"; items: CrosswordItem[] }
+  | { type: "memory"; items: MemoryItem[] }
+  | { type: "sequence"; items: SequenceItem[] }
+  | { type: "wordsearch"; items: WordSearchItem[] }
+  | { type: "maze"; items: MazeItem[] }
+);
 
 export type ExerciseCategory = "portugues" | "matematica" | "logica" | "geografia" | "ciencias" | "palavras";
 
@@ -260,20 +262,20 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "prompt": "Com qual consoante começa BANANA?",
           "choices": [
             "A",
+            "B",
             "N",
-            "E",
-            "I"
+            "P"
           ],
-          "answer": "N"
+          "answer": "B"
         },
         {
-          "emoji": "🐘",
-          "prompt": "Com qual consoante começa ELEFANTE?",
+          "emoji": "🔪",
+          "prompt": "Com qual consoante começa FACA?",
           "choices": [
-            "E",
             "A",
             "F",
-            "O"
+            "V",
+            "P"
           ],
           "answer": "F"
         }
@@ -640,31 +642,31 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🔚",
-          "prompt": "Ligue cada pista à resposta correta.",
+          "prompt": "Ligue cada palavra à sua última sílaba.",
           "pairs": [
             {
               "key": "p0",
-              "left": "🐈 Qual é a última sílaba de GATO?",
+              "left": "🐈 GATO",
               "right": "TO"
             },
             {
               "key": "p1",
-              "left": "🐄 Qual é a última sílaba de VACA?",
+              "left": "🐄 VACA",
               "right": "CA"
             },
             {
               "key": "p2",
-              "left": "🦋 Qual é a última sílaba de BORBOLETA?",
+              "left": "🦋 BORBOLETA",
               "right": "TA"
             },
             {
               "key": "p3",
-              "left": "🐸 Qual é a última sílaba de SAPO?",
+              "left": "🐸 SAPO",
               "right": "PO"
             },
             {
               "key": "p4",
-              "left": "🍌 Qual é a última sílaba de BANANA?",
+              "left": "🍌 BANANA",
               "right": "NA"
             }
           ]
@@ -687,7 +689,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "TA"
           ],
           "answer": "GA",
-          "hint": "___ + TO = GATO"
+          "hint": "__ + TO = GATO"
         },
         {
           "emoji": "🐄",
@@ -699,7 +701,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "TA"
           ],
           "answer": "CA",
-          "hint": "VA + ___ = VACA"
+          "hint": "VA + __ = VACA"
         },
         {
           "emoji": "🐸",
@@ -711,7 +713,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "TA"
           ],
           "answer": "SA",
-          "hint": "___ + PO = SAPO"
+          "hint": "__ + PO = SAPO"
         },
         {
           "emoji": "🍌",
@@ -723,7 +725,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "NU"
           ],
           "answer": "NA",
-          "hint": "BA + ___ + NA = BANANA"
+          "hint": "BA + __ + NA = BANANA"
         },
         {
           "emoji": "🦋",
@@ -735,7 +737,7 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "TO"
           ],
           "answer": "TA",
-          "hint": "BOR + BO + LE + ___ = BORBOLETA"
+          "hint": "BOR + BO + LE + __ = BORBOLETA"
         }
       ]
     },
@@ -776,84 +778,95 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-separe",
       "title": "Separe as sílabas",
       "icon": "✂️",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "✂️",
-          "prompt": "Leve cada palavra para a separação silábica correta.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🐈 Como separamos GATO?",
-              "target": "GA · TO"
-            },
-            {
-              "id": "c1",
-              "label": "🐄 Como separamos VACA?",
-              "target": "VA · CA"
-            },
-            {
-              "id": "c2",
-              "label": "🐸 Como separamos SAPO?",
-              "target": "SA · PO"
-            },
-            {
-              "id": "c3",
-              "label": "🦉 Como separamos CORUJA?",
-              "target": "CO · RU · JA"
-            },
-            {
-              "id": "c4",
-              "label": "🍌 Como separamos BANANA?",
-              "target": "BA · NA · NA"
-            }
-          ],
-          "targets": [
+          "emoji": "🐈",
+          "prompt": "Como separamos GATO em sílabas?",
+          "choices": [
             "GA · TO",
+            "GAT · O",
+            "G · A · TO"
+          ],
+          "answer": "GA · TO"
+        },
+        {
+          "emoji": "🐄",
+          "prompt": "Como separamos VACA em sílabas?",
+          "choices": [
             "VA · CA",
+            "VAC · A",
+            "V · A · CA"
+          ],
+          "answer": "VA · CA"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Como separamos SAPO em sílabas?",
+          "choices": [
             "SA · PO",
+            "SAP · O",
+            "S · A · PO"
+          ],
+          "answer": "SA · PO"
+        },
+        {
+          "emoji": "🦉",
+          "prompt": "Como separamos CORUJA em sílabas?",
+          "choices": [
             "CO · RU · JA",
-            "BA · NA · NA"
-          ]
+            "COR · U · JA",
+            "CO · RUJ · A"
+          ],
+          "answer": "CO · RU · JA"
+        },
+        {
+          "emoji": "🍌",
+          "prompt": "Como separamos BANANA em sílabas?",
+          "choices": [
+            "BA · NA · NA",
+            "BAN · A · NA",
+            "BA · NAN · A"
+          ],
+          "answer": "BA · NA · NA"
         }
       ]
     },
     {
       "id": "pt-mesma-silaba",
-      "title": "Mesma sílaba",
+      "title": "Mesma sílaba inicial",
       "icon": "🔗",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🔗",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🐄 Qual palavra começa como VACA?",
-              "right": "VASSOURA"
-            },
-            {
-              "key": "p1",
-              "left": "🐈 Qual palavra começa como GATO?",
-              "right": "GALINHA"
-            },
-            {
-              "key": "p2",
-              "left": "🐸 Qual palavra começa como SAPO?",
-              "right": "SABÃO"
-            },
-            {
-              "key": "p3",
-              "left": "🍌 Qual palavra começa como BANANA?",
-              "right": "BALA"
-            },
-            {
-              "key": "p4",
-              "left": "🦉 Qual palavra começa como CORUJA?",
-              "right": "COPO"
-            }
-          ]
+          "emoji": "🐄",
+          "prompt": "Qual palavra começa com a mesma sílaba de VACA?",
+          "choices": ["VASSOURA", "GATO", "SAPO", "BOLA"],
+          "answer": "VASSOURA"
+        },
+        {
+          "emoji": "🐈",
+          "prompt": "Qual palavra começa com a mesma sílaba de GATO?",
+          "choices": ["GALINHA", "VACA", "SAPO", "PATO"],
+          "answer": "GALINHA"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Qual palavra começa com a mesma sílaba de SAPO?",
+          "choices": ["SABÃO", "GATO", "BOLA", "PATO"],
+          "answer": "SABÃO"
+        },
+        {
+          "emoji": "🍌",
+          "prompt": "Qual palavra começa com a mesma sílaba de BANANA?",
+          "choices": ["BALA", "VACA", "GATO", "MALA"],
+          "answer": "BALA"
+        },
+        {
+          "emoji": "🦉",
+          "prompt": "Qual palavra começa com a mesma sílaba de CORUJA?",
+          "choices": ["COPO", "SAPO", "BOLA", "PATO"],
+          "answer": "COPO"
         }
       ]
     },
@@ -998,45 +1011,37 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-intrusa",
       "title": "Palavra intrusa",
       "icon": "🚫",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🚫",
-          "prompt": "Leve cada palavra para o grupo a que pertence.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🐾 Qual palavra não é animal?",
-              "target": "CASA"
-            },
-            {
-              "id": "c1",
-              "label": "🍎 Qual palavra não é fruta?",
-              "target": "PATO"
-            },
-            {
-              "id": "c2",
-              "label": "🚗 Qual palavra não é transporte?",
-              "target": "BOLA"
-            },
-            {
-              "id": "c3",
-              "label": "🎨 Qual palavra não é cor?",
-              "target": "GATO"
-            },
-            {
-              "id": "c4",
-              "label": "🏫 Qual palavra não é material escolar?",
-              "target": "BANANA"
-            }
-          ],
-          "targets": [
-            "CASA",
-            "PATO",
-            "BOLA",
-            "GATO",
-            "BANANA"
-          ]
+          "emoji": "🐾",
+          "prompt": "Qual palavra não pertence ao grupo dos animais?",
+          "choices": ["GATO", "SAPO", "PATO", "CASA"],
+          "answer": "CASA"
+        },
+        {
+          "emoji": "🍎",
+          "prompt": "Qual palavra não pertence ao grupo das frutas?",
+          "choices": ["MAÇÃ", "BANANA", "UVA", "PATO"],
+          "answer": "PATO"
+        },
+        {
+          "emoji": "🚗",
+          "prompt": "Qual palavra não pertence ao grupo dos transportes?",
+          "choices": ["CARRO", "ÔNIBUS", "BICICLETA", "BOLA"],
+          "answer": "BOLA"
+        },
+        {
+          "emoji": "🎨",
+          "prompt": "Qual palavra não pertence ao grupo das cores?",
+          "choices": ["AZUL", "VERDE", "AMARELO", "GATO"],
+          "answer": "GATO"
+        },
+        {
+          "emoji": "🎒",
+          "prompt": "Qual palavra não pertence ao grupo dos materiais escolares?",
+          "choices": ["LÁPIS", "LIVRO", "BORRACHA", "BANANA"],
+          "answer": "BANANA"
         }
       ]
     },
@@ -1095,38 +1100,37 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-plural",
       "title": "Singular e plural",
       "icon": "👥",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
-          "emoji": "👥",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🐈 🐈 Qual é o plural de GATO?",
-              "right": "GATOS"
-            },
-            {
-              "key": "p1",
-              "left": "🏠 🏠 Qual é o plural de CASA?",
-              "right": "CASAS"
-            },
-            {
-              "key": "p2",
-              "left": "⚽ ⚽ Qual é o plural de BOLA?",
-              "right": "BOLAS"
-            },
-            {
-              "key": "p3",
-              "left": "🐸 🐸 Qual é o plural de SAPO?",
-              "right": "SAPOS"
-            },
-            {
-              "key": "p4",
-              "left": "📚 Qual é o singular de LIVROS?",
-              "right": "LIVRO"
-            }
-          ]
+          "emoji": "🐈 🐈",
+          "prompt": "Qual é o plural de GATO?",
+          "choices": ["GATOS", "GATO", "GATAS", "GATÃO"],
+          "answer": "GATOS"
+        },
+        {
+          "emoji": "🏠 🏠",
+          "prompt": "Qual é o plural de CASA?",
+          "choices": ["CASAS", "CASA", "CASOS", "CASÃO"],
+          "answer": "CASAS"
+        },
+        {
+          "emoji": "⚽ ⚽",
+          "prompt": "Qual é o plural de BOLA?",
+          "choices": ["BOLAS", "BOLA", "BOLOS", "BOLÃO"],
+          "answer": "BOLAS"
+        },
+        {
+          "emoji": "🐸 🐸",
+          "prompt": "Qual é o plural de SAPO?",
+          "choices": ["SAPOS", "SAPO", "SAPAS", "SAPÃO"],
+          "answer": "SAPOS"
+        },
+        {
+          "emoji": "📚",
+          "prompt": "Qual é o singular de LIVROS?",
+          "choices": ["LIVRO", "LIVROS", "LIVRÃO", "LIVRES"],
+          "answer": "LIVRO"
         }
       ]
     },
@@ -1134,45 +1138,37 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-genero",
       "title": "Masculino e feminino",
       "icon": "👧👦",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "👧👦",
-          "prompt": "Leve cada palavra para MASCULINO ou FEMININO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🐈 Qual é o feminino de GATO?",
-              "target": "GATA"
-            },
-            {
-              "id": "c1",
-              "label": "🐕 Qual é o feminino de CACHORRO?",
-              "target": "CACHORRA"
-            },
-            {
-              "id": "c2",
-              "label": "👦 Qual é o feminino de MENINO?",
-              "target": "MENINA"
-            },
-            {
-              "id": "c3",
-              "label": "👨 Qual é o feminino de HOMEM?",
-              "target": "MULHER"
-            },
-            {
-              "id": "c4",
-              "label": "🦁 Qual é o feminino de LEÃO?",
-              "target": "LEOA"
-            }
-          ],
-          "targets": [
-            "GATA",
-            "CACHORRA",
-            "MENINA",
-            "MULHER",
-            "LEOA"
-          ]
+          "emoji": "🐈",
+          "prompt": "Qual é o feminino de GATO?",
+          "choices": ["GATA", "GATOS", "VACA", "GALO"],
+          "answer": "GATA"
+        },
+        {
+          "emoji": "🐕",
+          "prompt": "Qual é o feminino de CACHORRO?",
+          "choices": ["CACHORRA", "GATA", "MENINA", "LEOA"],
+          "answer": "CACHORRA"
+        },
+        {
+          "emoji": "👦",
+          "prompt": "Qual é o feminino de MENINO?",
+          "choices": ["MENINA", "MENINOS", "MENINO", "MULHER"],
+          "answer": "MENINA"
+        },
+        {
+          "emoji": "👨",
+          "prompt": "Qual é o feminino de HOMEM?",
+          "choices": ["MULHER", "HOMENS", "HOMEM", "MENINA"],
+          "answer": "MULHER"
+        },
+        {
+          "emoji": "🦁",
+          "prompt": "Qual é o feminino de LEÃO?",
+          "choices": ["LEOA", "LEÕES", "GATA", "LEÃO"],
+          "answer": "LEOA"
         }
       ]
     },
@@ -1180,36 +1176,36 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-rimas",
       "title": "Palavras que rimam",
       "icon": "🎵",
-      "type": "memory",
+      "type": "matching",
       "items": [
         {
           "emoji": "🎵",
-          "prompt": "Encontre os pares que combinam.",
+          "prompt": "Ligue as palavras que rimam.",
           "pairs": [
             {
               "key": "m0",
-              "a": "🐈",
-              "b": "PATO"
+              "left": "🐈 GATO",
+              "right": "PATO"
             },
             {
               "key": "m1",
-              "a": "🏠",
-              "b": "ASA"
+              "left": "🏠 CASA",
+              "right": "ASA"
             },
             {
               "key": "m2",
-              "a": "⚽",
-              "b": "MOLA"
+              "left": "⚽ BOLA",
+              "right": "MOLA"
             },
             {
               "key": "m3",
-              "a": "🐸",
-              "b": "PAPO"
+              "left": "🐸 SAPO",
+              "right": "PAPO"
             },
             {
               "key": "m4",
-              "a": "🍞",
-              "b": "MÃO"
+              "left": "🍞 PÃO",
+              "right": "MÃO"
             }
           ]
         }
@@ -1243,31 +1239,31 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🔊",
-          "prompt": "Ligue cada pista à resposta correta.",
+          "prompt": "Ligue as palavras que terminam com o mesmo som.",
           "pairs": [
             {
               "key": "p0",
-              "left": "🐈 Qual termina como GATO?",
+              "left": "🐈 GATO",
               "right": "PATO"
             },
             {
               "key": "p1",
-              "left": "🏠 Qual termina como CASA?",
+              "left": "🏠 CASA",
               "right": "ASA"
             },
             {
               "key": "p2",
-              "left": "⚽ Qual termina como BOLA?",
+              "left": "⚽ BOLA",
               "right": "MOLA"
             },
             {
               "key": "p3",
-              "left": "🍞 Qual termina como PÃO?",
+              "left": "🍞 PÃO",
               "right": "MÃO"
             },
             {
               "key": "p4",
-              "left": "🐸 Qual termina como SAPO?",
+              "left": "🐸 SAPO",
               "right": "PAPO"
             }
           ]
@@ -1416,34 +1412,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-interpretacao",
       "title": "Pequena interpretação",
       "icon": "📚",
-      "type": "crossword",
+      "context": "Lia tem um gato chamado Nino. Nino dorme na cama. Pela manhã, Lia coloca água no potinho dele. Depois, ela lê um livro enquanto Nino brinca com uma bola azul.",
+      "type": "choice",
       "items": [
         {
-          "emoji": "📚",
-          "prompt": "Complete as palavras usando as pistas.",
-          "entries": [
-            {
-              "answer": "CAMA",
-              "clue": "Onde o gato dorme",
-              "row": 2,
-              "col": 0,
-              "dir": "h"
-            },
-            {
-              "answer": "AGUA",
-              "clue": "Onde o peixe nada",
-              "row": 0,
-              "col": 1,
-              "dir": "v"
-            },
-            {
-              "answer": "LIVRO",
-              "clue": "O que Pedro leu",
-              "row": 4,
-              "col": 0,
-              "dir": "h"
-            }
-          ]
+          "emoji": "🐈",
+          "prompt": "Como se chama o gato de Lia?",
+          "choices": ["NINO", "LIA", "BOLA", "LIVRO"],
+          "answer": "NINO"
+        },
+        {
+          "emoji": "🛏️",
+          "prompt": "Onde Nino dorme?",
+          "choices": ["NA CAMA", "NO SOFÁ", "NO QUINTAL", "NA MESA"],
+          "answer": "NA CAMA"
+        },
+        {
+          "emoji": "💧",
+          "prompt": "O que Lia coloca no potinho de Nino?",
+          "choices": ["ÁGUA", "LEITE", "SUCO", "AREIA"],
+          "answer": "ÁGUA"
+        },
+        {
+          "emoji": "📖",
+          "prompt": "O que Lia faz depois?",
+          "choices": ["LÊ UM LIVRO", "DORME", "CORRE", "COZINHA"],
+          "answer": "LÊ UM LIVRO"
+        },
+        {
+          "emoji": "🔵",
+          "prompt": "Com o que Nino brinca?",
+          "choices": ["UMA BOLA AZUL", "UM CARRINHO", "UMA CORDA", "UM LIVRO"],
+          "answer": "UMA BOLA AZUL"
         }
       ]
     }
