@@ -414,13 +414,13 @@ function CrosswordChallenge({
 
 type WordPlacement = { word: string; raw: string; cells: string[] };
 
-function makeWordGrid(words: string[], size = 9) {
+function makeWordGrid(words: string[], size = 8) {
   const grid = Array.from({ length: size }, () => Array<string>(size).fill(""));
   const placements: WordPlacement[] = [];
   for (const raw of words) {
     const word = raw.normalize("NFC").replace(/\s/g, "").toUpperCase();
     let placed = false;
-    for (let tries = 0; tries < 500 && !placed; tries++) {
+    for (let tries = 0; tries < 1000 && !placed; tries++) {
       const vertical = Math.random() < 0.5;
       const maxRow = vertical ? size - word.length : size - 1;
       const maxColumn = vertical ? size - 1 : size - word.length;
@@ -445,6 +445,11 @@ function makeWordGrid(words: string[], size = 9) {
       placements.push({ word, raw, cells });
       placed = true;
     }
+  }
+  // Uma grade menor deixa as letras maiores. Se uma distribuição aleatória
+  // não acomodar todas as palavras sem cruzamentos, tenta novamente em 9×9.
+  if (placements.length !== words.length && size < 9) {
+    return makeWordGrid(words, 9);
   }
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   grid.forEach((row) => row.forEach((letter, column) => {
@@ -506,7 +511,10 @@ function WordSearchChallenge({ item, onSolved }: ChallengeCallbacks & { item: Wo
           </span>
         ))}
       </div>
-      <div className="mx-auto grid w-fit grid-cols-9 gap-px rounded-2xl bg-white p-1.5 shadow-sm">
+      <div
+        className="mx-auto grid w-fit gap-px rounded-2xl bg-white p-0.5 shadow-sm"
+        style={{ gridTemplateColumns: `repeat(${data.grid.length}, minmax(0, 1fr))` }}
+      >
         {data.grid.flatMap((row, rowIndex) => row.map((letter, columnIndex) => {
           const id = `${rowIndex}-${columnIndex}`;
           return (
@@ -514,7 +522,11 @@ function WordSearchChallenge({ item, onSolved }: ChallengeCallbacks & { item: Wo
               key={id}
               type="button"
               onClick={() => select(rowIndex, columnIndex)}
-              className={`grid h-[34px] w-[34px] place-items-center rounded-md text-base font-black sm:h-10 sm:w-10 ${
+              className={`grid place-items-center rounded-md text-lg font-black ${
+                data.grid.length > 8
+                  ? "h-[clamp(30px,9.5vw,40px)] w-[clamp(30px,9.5vw,40px)]"
+                  : "h-[clamp(34px,10.5vw,44px)] w-[clamp(34px,10.5vw,44px)]"
+              } ${
                 path.includes(id) ? "bg-yellow" : foundCells.has(id) ? "bg-green" : "bg-navy/5"
               }`}
             >
