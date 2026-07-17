@@ -6628,31 +6628,31 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "👀",
-          "prompt": "Ligue cada pista à resposta correta.",
+          "prompt": "Ligue cada ação ao sentido usado.",
           "pairs": [
             {
               "key": "p0",
-              "left": "🍋 Qual sentido percebemos ao provar limão?",
+              "left": "🍋 Provar um limão",
               "right": "Paladar"
             },
             {
               "key": "p1",
-              "left": "🎵 Qual sentido usamos para ouvir música?",
+              "left": "🎵 Ouvir uma música",
               "right": "Audição"
             },
             {
               "key": "p2",
-              "left": "🌹 Qual sentido usamos para sentir o cheiro da f…",
+              "left": "🌹 Sentir o cheiro de uma flor",
               "right": "Olfato"
             },
             {
               "key": "p3",
-              "left": "🧸 Qual sentido usamos para perceber se algo é m…",
+              "left": "🧸 Sentir um brinquedo macio",
               "right": "Tato"
             },
             {
               "key": "p4",
-              "left": "🌈 Qual sentido usamos para ver as cores?",
+              "left": "🌈 Ver as cores",
               "right": "Visão"
             }
           ]
@@ -6682,45 +6682,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-alimentacao-saudavel",
       "title": "Alimentação saudável",
       "icon": "🍎",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
           "emoji": "🍎",
-          "prompt": "Leve os alimentos para SAUDÁVEL ou CONSUMIR COM MODERAÇÃO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🍎 Qual é uma opção saudável?",
-              "target": "Maçã"
-            },
-            {
-              "id": "c1",
-              "label": "🥦 Qual alimento é um vegetal?",
-              "target": "Brócolis"
-            },
-            {
-              "id": "c2",
-              "label": "💧 Qual bebida é importante para o corpo?",
-              "target": "Água"
-            },
-            {
-              "id": "c3",
-              "label": "🍽️ Uma alimentação saudável deve ser...",
-              "target": "Variada"
-            },
-            {
-              "id": "c4",
-              "label": "🍌 Qual fruta pode fazer parte de um lanche saud…",
-              "target": "Banana"
-            }
-          ],
-          "targets": [
+          "prompt": "Qual é uma opção saudável para o lanche?",
+          "choices": [
             "Maçã",
+            "Pirulito",
+            "Refrigerante",
+            "Salgadinho"
+          ],
+          "answer": "Maçã"
+        },
+        {
+          "emoji": "🥦",
+          "prompt": "Qual destes alimentos é um vegetal?",
+          "choices": [
             "Brócolis",
+            "Biscoito",
+            "Chocolate",
+            "Sorvete"
+          ],
+          "answer": "Brócolis"
+        },
+        {
+          "emoji": "💧",
+          "prompt": "Qual bebida é importante para hidratar o corpo?",
+          "choices": [
             "Água",
+            "Refrigerante",
+            "Calda de chocolate",
+            "Xarope"
+          ],
+          "answer": "Água"
+        },
+        {
+          "emoji": "🍽️",
+          "prompt": "Como deve ser uma alimentação saudável?",
+          "choices": [
             "Variada",
-            "Banana"
-          ]
+            "Só com doces",
+            "Sem frutas",
+            "Sempre igual"
+          ],
+          "answer": "Variada"
+        },
+        {
+          "emoji": "🍌",
+          "prompt": "A banana pode fazer parte de qual refeição?",
+          "choices": [
+            "Um lanche saudável",
+            "Um prato de brinquedo",
+            "Uma caixa de lápis",
+            "Uma mochila"
+          ],
+          "answer": "Um lanche saudável"
         }
       ]
     },
@@ -6728,38 +6745,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-agua-corpo",
       "title": "A importância da água",
       "icon": "💧",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
           "emoji": "💧",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "💦 Por que devemos beber água?",
-              "right": "Para hidratar o corpo"
-            },
-            {
-              "key": "p1",
-              "left": "☀️ Em dias quentes, precisamos...",
-              "right": "Beber água"
-            },
-            {
-              "key": "p2",
-              "left": "🏃 Depois de brincar e suar, é importante...",
-              "right": "Beber água"
-            },
-            {
-              "key": "p3",
-              "left": "🚰 Qual água é adequada para beber?",
-              "right": "Água potável"
-            },
-            {
-              "key": "p4",
-              "left": "🧴 Onde podemos levar água para beber?",
-              "right": "Garrafa limpa"
-            }
-          ]
+          "prompt": "Por que devemos beber água?",
+          "choices": [
+            "Para hidratar o corpo",
+            "Para ficar com mais sede",
+            "Para molhar a roupa",
+            "Para sujar os dentes"
+          ],
+          "answer": "Para hidratar o corpo"
+        },
+        {
+          "emoji": "☀️",
+          "prompt": "Em um dia quente, o que ajuda a hidratar o corpo?",
+          "choices": [
+            "Beber água",
+            "Vestir um casaco",
+            "Comer um pirulito",
+            "Guardar a garrafinha"
+          ],
+          "answer": "Beber água"
+        },
+        {
+          "emoji": "🏃",
+          "prompt": "Depois de brincar e suar, o que devemos fazer?",
+          "choices": [
+            "Beber água",
+            "Continuar com sede",
+            "Esconder a garrafinha",
+            "Comer muito sal"
+          ],
+          "answer": "Beber água"
+        },
+        {
+          "emoji": "🚰",
+          "prompt": "Qual água é adequada para beber?",
+          "choices": [
+            "Água potável",
+            "Água suja",
+            "Água com sabão",
+            "Água da poça"
+          ],
+          "answer": "Água potável"
+        },
+        {
+          "emoji": "🎒",
+          "prompt": "O que podemos levar na mochila para beber durante o dia?",
+          "choices": [
+            "Garrafinha de água",
+            "Pote de tinta",
+            "Cola",
+            "Sabonete"
+          ],
+          "answer": "Garrafinha de água"
         }
       ]
     },
@@ -6785,38 +6826,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-ossos-musculos",
       "title": "Ossos e músculos",
       "icon": "🦴",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
           "emoji": "🦴",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "🦴 O que ajuda a sustentar o corpo?",
-              "right": "Ossos"
-            },
-            {
-              "key": "p1",
-              "left": "💪 O que ajuda o corpo a se movimentar?",
-              "right": "Músculos"
-            },
-            {
-              "key": "p2",
-              "left": "🦴 Onde encontramos ossos?",
-              "right": "Dentro do corpo"
-            },
-            {
-              "key": "p3",
-              "left": "🏃 Ao correr, usamos principalmente...",
-              "right": "Músculos e ossos"
-            },
-            {
-              "key": "p4",
-              "left": "🥛 Uma alimentação equilibrada ajuda a manter os…",
-              "right": "Saudáveis"
-            }
-          ]
+          "prompt": "O que ajuda a sustentar o nosso corpo?",
+          "choices": [
+            "Os ossos",
+            "Os cabelos",
+            "As unhas",
+            "As roupas"
+          ],
+          "answer": "Os ossos"
+        },
+        {
+          "emoji": "💪",
+          "prompt": "O que ajuda o corpo a se movimentar?",
+          "choices": [
+            "Os músculos",
+            "Os dentes",
+            "Os cabelos",
+            "As roupas"
+          ],
+          "answer": "Os músculos"
+        },
+        {
+          "emoji": "🩻",
+          "prompt": "Onde ficam os ossos?",
+          "choices": [
+            "Dentro do corpo",
+            "Sobre a roupa",
+            "Dentro do sapato",
+            "Fora do corpo"
+          ],
+          "answer": "Dentro do corpo"
+        },
+        {
+          "emoji": "🏃",
+          "prompt": "O que usamos para correr e pular?",
+          "choices": [
+            "Músculos e ossos",
+            "Cabelos e unhas",
+            "Dentes e roupas",
+            "Olhos e orelhas"
+          ],
+          "answer": "Músculos e ossos"
+        },
+        {
+          "emoji": "🥛 🏃",
+          "prompt": "Qual hábito ajuda a cuidar dos ossos e músculos?",
+          "choices": [
+            "Alimentar-se bem e brincar",
+            "Ficar sempre parado",
+            "Comer apenas doces",
+            "Dormir muito pouco"
+          ],
+          "answer": "Alimentar-se bem e brincar"
         }
       ]
     },
@@ -6842,45 +6907,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-clima-roupas",
       "title": "Clima e roupas",
       "icon": "🧥",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🧥",
-          "prompt": "Leve cada roupa para o clima correto.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "☀️ Em um dia quente, qual roupa é mais adequada?",
-              "target": "Roupa leve"
-            },
-            {
-              "id": "c1",
-              "label": "❄️ Em um dia frio, o que ajuda a aquecer?",
-              "target": "Casaco"
-            },
-            {
-              "id": "c2",
-              "label": "🌧️ Em um dia chuvoso, o que podemos usar?",
-              "target": "Guarda-chuva"
-            },
-            {
-              "id": "c3",
-              "label": "🧢 Em um dia de muito sol, o que pode proteger a…",
-              "target": "Boné"
-            },
-            {
-              "id": "c4",
-              "label": "🥾 Em um lugar com lama, qual calçado ajuda?",
-              "target": "Bota"
-            }
-          ],
-          "targets": [
+          "emoji": "☀️",
+          "prompt": "Qual roupa é mais adequada para um dia quente?",
+          "choices": [
             "Roupa leve",
+            "Casaco grosso",
+            "Cachecol de lã",
+            "Luva de inverno"
+          ],
+          "answer": "Roupa leve"
+        },
+        {
+          "emoji": "❄️",
+          "prompt": "O que ajuda a aquecer o corpo em um dia frio?",
+          "choices": [
             "Casaco",
+            "Roupa de banho",
+            "Chinelo",
+            "Regata"
+          ],
+          "answer": "Casaco"
+        },
+        {
+          "emoji": "🌧️",
+          "prompt": "O que podemos usar em um dia chuvoso?",
+          "choices": [
             "Guarda-chuva",
+            "Óculos de natação",
+            "Ventilador",
+            "Toalha de praia"
+          ],
+          "answer": "Guarda-chuva"
+        },
+        {
+          "emoji": "🧢",
+          "prompt": "O que pode proteger a cabeça em um dia de muito sol?",
+          "choices": [
             "Boné",
+            "Meia",
+            "Luva",
             "Bota"
-          ]
+          ],
+          "answer": "Boné"
+        },
+        {
+          "emoji": "🥾",
+          "prompt": "Qual calçado ajuda a proteger os pés em um lugar com lama?",
+          "choices": [
+            "Bota",
+            "Chinelo",
+            "Meia",
+            "Pantufa"
+          ],
+          "answer": "Bota"
         }
       ]
     },
@@ -6888,38 +6970,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-sol-sombra",
       "title": "Sol, luz e sombra",
       "icon": "🌞",
-      "type": "matching",
+      "type": "choice",
       "items": [
         {
           "emoji": "🌞",
-          "prompt": "Ligue cada pista à resposta correta.",
-          "pairs": [
-            {
-              "key": "p0",
-              "left": "☀️ O Sol é uma fonte de...",
-              "right": "Luz e calor"
-            },
-            {
-              "key": "p1",
-              "left": "🌳 A sombra aparece quando algo bloqueia a...",
-              "right": "Luz"
-            },
-            {
-              "key": "p2",
-              "left": "🔦 Qual objeto produz luz?",
-              "right": "Lanterna"
-            },
-            {
-              "key": "p3",
-              "left": "🌙 A Lua parece brilhar porque...",
-              "right": "Reflete a luz do Sol"
-            },
-            {
-              "key": "p4",
-              "left": "🕶️ O que ajuda a proteger os olhos do Sol forte?",
-              "right": "Óculos de sol adequados"
-            }
-          ]
+          "prompt": "O que o Sol fornece durante o dia?",
+          "choices": [
+            "Luz e calor",
+            "Chuva e vento",
+            "Neve e gelo",
+            "Som e música"
+          ],
+          "answer": "Luz e calor"
+        },
+        {
+          "emoji": "🌳",
+          "prompt": "O que pode aparecer quando a árvore bloqueia a luz do Sol?",
+          "choices": [
+            "Sombra",
+            "Chuva",
+            "Arco-íris",
+            "Fumaça"
+          ],
+          "answer": "Sombra"
+        },
+        {
+          "emoji": "🔦",
+          "prompt": "Qual objeto pode produzir luz?",
+          "choices": [
+            "Lanterna",
+            "Travesseiro",
+            "Colher",
+            "Sapato"
+          ],
+          "answer": "Lanterna"
+        },
+        {
+          "emoji": "🌳 ☀️",
+          "prompt": "Em um dia muito quente, onde podemos nos proteger do Sol?",
+          "choices": [
+            "Na sombra",
+            "No meio da rua",
+            "Perto do fogo",
+            "Sob uma lâmpada"
+          ],
+          "answer": "Na sombra"
+        },
+        {
+          "emoji": "👀 ☀️",
+          "prompt": "Qual é um cuidado importante com os olhos?",
+          "choices": [
+            "Não olhar diretamente para o Sol",
+            "Olhar fixamente para o Sol",
+            "Apontar uma lanterna para os olhos",
+            "Esfregar os olhos com força"
+          ],
+          "answer": "Não olhar diretamente para o Sol"
         }
       ]
     },
@@ -6948,31 +7054,31 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "items": [
         {
           "emoji": "🧱",
-          "prompt": "Ligue cada pista à resposta correta.",
+          "prompt": "Ligue cada objeto ao material de que ele pode ser feito.",
           "pairs": [
             {
               "key": "p0",
-              "left": "🪟 Uma janela pode ser feita de...",
+              "left": "🪟 Janela",
               "right": "Vidro"
             },
             {
               "key": "p1",
-              "left": "🥄 Uma colher pode ser feita de...",
+              "left": "🥄 Colher",
               "right": "Metal"
             },
             {
               "key": "p2",
-              "left": "📦 Uma caixa pode ser feita de...",
+              "left": "📦 Caixa",
               "right": "Papelão"
             },
             {
               "key": "p3",
-              "left": "🪑 Uma cadeira pode ser feita de...",
+              "left": "🪑 Cadeira",
               "right": "Madeira"
             },
             {
               "key": "p4",
-              "left": "🧴 Uma garrafa pode ser feita de...",
+              "left": "🧴 Garrafa",
               "right": "Plástico"
             }
           ]
@@ -6983,43 +7089,52 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-duro-macio",
       "title": "Duro ou macio?",
       "icon": "🧸",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🧸",
-          "prompt": "Leve cada objeto para DURO ou MACIO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🪨 A pedra costuma ser...",
-              "target": "Dura"
-            },
-            {
-              "id": "c1",
-              "label": "🧸 Um urso de pelúcia costuma ser...",
-              "target": "Macio"
-            },
-            {
-              "id": "c2",
-              "label": "🛏️ Um travesseiro costuma ser...",
-              "target": "Macio"
-            },
-            {
-              "id": "c3",
-              "label": "🔨 Um martelo costuma ser...",
-              "target": "Duro"
-            },
-            {
-              "id": "c4",
-              "label": "🍞 O miolo do pão costuma ser...",
-              "target": "Macio"
-            }
-          ],
-          "targets": [
+          "emoji": "🪨",
+          "prompt": "A pedra é dura ou macia?",
+          "choices": [
             "Dura",
-            "Macio",
-            "Duro"
-          ]
+            "Macia"
+          ],
+          "answer": "Dura"
+        },
+        {
+          "emoji": "🧸",
+          "prompt": "O urso de pelúcia é duro ou macio?",
+          "choices": [
+            "Duro",
+            "Macio"
+          ],
+          "answer": "Macio"
+        },
+        {
+          "emoji": "🛏️",
+          "prompt": "O travesseiro é duro ou macio?",
+          "choices": [
+            "Duro",
+            "Macio"
+          ],
+          "answer": "Macio"
+        },
+        {
+          "emoji": "🔨",
+          "prompt": "O martelo é duro ou macio?",
+          "choices": [
+            "Duro",
+            "Macio"
+          ],
+          "answer": "Duro"
+        },
+        {
+          "emoji": "🍞",
+          "prompt": "O miolo do pão é duro ou macio?",
+          "choices": [
+            "Duro",
+            "Macio"
+          ],
+          "answer": "Macio"
         }
       ]
     },
@@ -7027,44 +7142,52 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-solido-liquido",
       "title": "Sólido ou líquido?",
       "icon": "🧊",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🧊",
-          "prompt": "Leve cada material para SÓLIDO ou LÍQUIDO.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "💧 A água em um copo está no estado...",
-              "target": "Líquido"
-            },
-            {
-              "id": "c1",
-              "label": "🧊 O gelo está no estado...",
-              "target": "Sólido"
-            },
-            {
-              "id": "c2",
-              "label": "🥛 O leite é...",
-              "target": "Líquido"
-            },
-            {
-              "id": "c3",
-              "label": "🪨 A pedra é...",
-              "target": "Sólida"
-            },
-            {
-              "id": "c4",
-              "label": "🍯 O mel é um material...",
-              "target": "Líquido espesso"
-            }
-          ],
-          "targets": [
-            "Líquido",
+          "emoji": "💧",
+          "prompt": "Em qual estado está a água no copo?",
+          "choices": [
             "Sólido",
-            "Sólida",
-            "Líquido espesso"
-          ]
+            "Líquido"
+          ],
+          "answer": "Líquido"
+        },
+        {
+          "emoji": "🧊",
+          "prompt": "Em qual estado está o gelo?",
+          "choices": [
+            "Sólido",
+            "Líquido"
+          ],
+          "answer": "Sólido"
+        },
+        {
+          "emoji": "🥛",
+          "prompt": "Em qual estado está o leite?",
+          "choices": [
+            "Sólido",
+            "Líquido"
+          ],
+          "answer": "Líquido"
+        },
+        {
+          "emoji": "🪨",
+          "prompt": "Em qual estado está a pedra?",
+          "choices": [
+            "Sólido",
+            "Líquido"
+          ],
+          "answer": "Sólido"
+        },
+        {
+          "emoji": "🍯",
+          "prompt": "Em qual estado está o mel?",
+          "choices": [
+            "Sólido",
+            "Líquido"
+          ],
+          "answer": "Líquido"
         }
       ]
     },
@@ -7072,42 +7195,52 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-flutua-afunda",
       "title": "Flutua ou afunda?",
       "icon": "🛶",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "🛶",
-          "prompt": "Leve cada objeto para FLUTUA ou AFUNDA.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "🪨 O que geralmente acontece com uma pedra na ág…",
-              "target": "Afunda"
-            },
-            {
-              "id": "c1",
-              "label": "🛶 O que uma canoa faz na água?",
-              "target": "Flutua"
-            },
-            {
-              "id": "c2",
-              "label": "🪵 Um pedaço leve de madeira geralmente...",
-              "target": "Flutua"
-            },
-            {
-              "id": "c3",
-              "label": "⚓ Uma âncora geralmente...",
-              "target": "Afunda"
-            },
-            {
-              "id": "c4",
-              "label": "🦆 Um pato na água geralmente...",
-              "target": "Flutua"
-            }
+          "emoji": "🪨 💧",
+          "prompt": "O que geralmente acontece com uma pedra colocada na água?",
+          "choices": [
+            "Flutua",
+            "Afunda"
           ],
-          "targets": [
-            "Afunda",
-            "Flutua"
-          ]
+          "answer": "Afunda"
+        },
+        {
+          "emoji": "🛶 💧",
+          "prompt": "O que uma canoa faz na água?",
+          "choices": [
+            "Flutua",
+            "Afunda"
+          ],
+          "answer": "Flutua"
+        },
+        {
+          "emoji": "🪵 💧",
+          "prompt": "O que um pedaço leve de madeira geralmente faz na água?",
+          "choices": [
+            "Flutua",
+            "Afunda"
+          ],
+          "answer": "Flutua"
+        },
+        {
+          "emoji": "⚓ 💧",
+          "prompt": "O que uma âncora geralmente faz na água?",
+          "choices": [
+            "Flutua",
+            "Afunda"
+          ],
+          "answer": "Afunda"
+        },
+        {
+          "emoji": "🦆 💧",
+          "prompt": "O que um pato geralmente faz na água?",
+          "choices": [
+            "Flutua",
+            "Afunda"
+          ],
+          "answer": "Flutua"
         }
       ]
     },
@@ -7150,45 +7283,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "ci-lixo-reciclagem",
       "title": "Reciclagem",
       "icon": "♻️",
-      "type": "dragdrop",
+      "type": "choice",
       "items": [
         {
-          "emoji": "♻️",
-          "prompt": "Leve cada material para o tipo de reciclagem correto.",
-          "cards": [
-            {
-              "id": "c0",
-              "label": "📄 Qual material pode ser reciclado?",
-              "target": "Papel limpo"
-            },
-            {
-              "id": "c1",
-              "label": "🥫 Uma lata é feita principalmente de...",
-              "target": "Metal"
-            },
-            {
-              "id": "c2",
-              "label": "🍾 Uma garrafa de vidro deve ir para a coleta de…",
-              "target": "Vidro"
-            },
-            {
-              "id": "c3",
-              "label": "🧴 Uma embalagem plástica limpa pode ser...",
-              "target": "Reciclada"
-            },
-            {
-              "id": "c4",
-              "label": "♻️ Reciclar ajuda a...",
-              "target": "Reduzir o lixo"
-            }
-          ],
-          "targets": [
-            "Papel limpo",
+          "emoji": "📄",
+          "prompt": "Em qual grupo devemos separar uma folha de papel limpa?",
+          "choices": [
+            "Papel",
             "Metal",
             "Vidro",
-            "Reciclada",
-            "Reduzir o lixo"
-          ]
+            "Plástico"
+          ],
+          "answer": "Papel"
+        },
+        {
+          "emoji": "🥫",
+          "prompt": "Em qual grupo devemos separar uma lata limpa?",
+          "choices": [
+            "Papel",
+            "Metal",
+            "Vidro",
+            "Plástico"
+          ],
+          "answer": "Metal"
+        },
+        {
+          "emoji": "🍾",
+          "prompt": "Em qual grupo devemos separar uma garrafa de vidro?",
+          "choices": [
+            "Papel",
+            "Metal",
+            "Vidro",
+            "Plástico"
+          ],
+          "answer": "Vidro"
+        },
+        {
+          "emoji": "🧴",
+          "prompt": "Em qual grupo devemos separar uma embalagem plástica limpa?",
+          "choices": [
+            "Papel",
+            "Metal",
+            "Vidro",
+            "Plástico"
+          ],
+          "answer": "Plástico"
+        },
+        {
+          "emoji": "♻️",
+          "prompt": "O que a reciclagem ajuda a fazer?",
+          "choices": [
+            "Reduzir o lixo",
+            "Sujar as ruas",
+            "Desperdiçar materiais",
+            "Misturar todos os resíduos"
+          ],
+          "answer": "Reduzir o lixo"
         }
       ]
     },
