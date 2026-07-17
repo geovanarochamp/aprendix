@@ -14,33 +14,55 @@ type World = {
   delay: number;
 };
 
-// Ordem em 2 fileiras na água: fileira de cima (perto do horizonte) e de baixo.
-// Distribuição orgânica no mar: 3 ilhas na faixa de cima, Matemática no meio,
-// 2 embaixo — formando um diamante que preenche a água.
+// Duas fileiras orgânicas no mar, preenchendo o desktop sem sobrepor as ilhas.
 const worldLayout: World[] = [
   {
     id: "portugues",
     name: "Ilha das Palavras — Português",
     image: assetUrl("words.png"),
-    spot: "left-[28%] top-[50%] -translate-x-1/2",
-    size: "w-64 xl:w-72",
+    spot: "left-[28%] top-[46%] -translate-x-1/2",
+    size: "w-60 xl:w-72",
     delay: 0,
   },
   {
     id: "logica",
     name: "Castelo dos Desafios — Lógica",
     image: assetUrl("logic.png"),
-    spot: "left-[72%] top-[50%] -translate-x-1/2",
-    size: "w-64 xl:w-72",
+    spot: "left-[50%] top-[38%] -translate-x-1/2",
+    size: "w-64 xl:w-80",
     delay: 0.5,
+  },
+  {
+    id: "geografia",
+    name: "Exploradores do Mundo — Geografia",
+    image: assetUrl("geography.png"),
+    spot: "left-[72%] top-[46%] -translate-x-1/2",
+    size: "w-60 xl:w-72",
+    delay: 1,
   },
   {
     id: "matematica",
     name: "Vale dos Números — Matemática",
     image: assetUrl("numbers.png"),
-    spot: "left-[50%] top-[48%] -translate-x-1/2",
+    spot: "left-[50%] top-[68%] -translate-x-1/2",
     size: "w-64 xl:w-80",
     delay: 0.8,
+  },
+  {
+    id: "palavras",
+    name: "Ateliê das Palavras — Jogos de palavras",
+    image: assetUrl("art.png"),
+    spot: "left-[17%] top-[63%] -translate-x-1/2",
+    size: "w-52 xl:w-60",
+    delay: 0.2,
+  },
+  {
+    id: "ciencias",
+    name: "Laboratório da Descoberta — Ciências",
+    image: assetUrl("science.png"),
+    spot: "left-[71%] top-[70%] -translate-x-1/2",
+    size: "w-60 xl:w-72",
+    delay: 1.3,
   },
 ];
 
@@ -48,6 +70,9 @@ const worldOrder = [
   "portugues",
   "matematica",
   "logica",
+  "geografia",
+  "ciencias",
+  "palavras",
 ];
 const worlds = worldOrder.map(
   (id) => worldLayout.find((world) => world.id === id)!,
@@ -145,6 +170,7 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
                 name={world.name}
                 image={world.image}
                 delay={world.delay}
+                showLabel={world.id === "palavras"}
                 onClick={() => onSelect?.(world.id)}
               />
             </motion.div>
@@ -181,6 +207,7 @@ export function Worlds({ onBack, onSwitchProfile, onSelect }: WorldsProps) {
                 name={current.name}
                 image={current.image}
                 delay={0}
+                showLabel={current.id === "palavras"}
                 onClick={() => onSelect?.(current.id)}
               />
             </motion.div>

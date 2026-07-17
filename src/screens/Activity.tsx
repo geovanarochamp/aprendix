@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Dixi } from "../components/Dixi";
+import { SpecialActivity } from "../components/activities/SpecialActivity";
 import { getExercise } from "../data/exercises";
 import { getWorld, lessonsForWorld, worldCategory, type WorldColor } from "../data/worlds";
 import { useGameStore } from "../store/useGameStore";
@@ -68,7 +69,8 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
   }
 
   const total = exercise.items.length;
-  const answer = item.answer;
+  const answer = "answer" in item ? item.answer : null;
+  const isStandard = exercise.type === "choice" || exercise.type === "count";
 
   // O campo `emoji` às vezes traz uma sequência/expressão (padrões de lógica,
   // contagem, contas de matemática) em vez de um único emoji. Nesses casos
@@ -175,9 +177,9 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
           </svg>
         </button>
         <div className="flex-1">
-          <div className="mb-1 flex items-center justify-between text-sm font-black text-navy/60">
-            <span className="truncate pr-2">{world?.subject} · {exercise.title}</span>
-            <span>{index + 1} de {total}</span>
+          <div className="mb-1 flex min-w-0 items-center justify-between text-sm font-black text-navy/60">
+            <span className="min-w-0 truncate pr-2">{world?.subject} · {exercise.title}</span>
+            <span className="shrink-0 whitespace-nowrap">{index + 1} de {total}</span>
           </div>
           <div className="h-3 overflow-hidden rounded-full bg-navy/10">
             <motion.div
@@ -200,7 +202,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.22 }}
           >
-            {isSequence ? (
+            {isStandard && isSequence ? (
               <div className="my-4 flex w-full max-w-lg flex-wrap items-center justify-center gap-2 rounded-[2.25rem] bg-gradient-to-br from-yellow to-orange/70 px-4 py-6 shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)] sm:gap-3 sm:px-6">
                 {visualTokens.map((token, i) => {
                   const blank = token === "__";
@@ -220,15 +222,15 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
                   );
                 })}
               </div>
-            ) : (
+            ) : isStandard ? (
               <div className="my-4 grid h-48 w-48 place-items-center rounded-full bg-gradient-to-br from-yellow to-orange/70 text-8xl shadow-[inset_0_0_0_8px_rgba(255,255,255,0.6)]">
                 {item.emoji}
               </div>
-            )}
+            ) : null}
 
-            <p className="mb-5 text-center text-2xl font-black leading-snug">{item.prompt}</p>
+            <p className={`${isStandard ? "mb-5" : "mb-3 mt-3"} text-center text-2xl font-black leading-snug`}>{item.prompt}</p>
 
-            {item.hint ? (
+            {"hint" in item && item.hint ? (
               <div className="mb-5 rounded-2xl border-4 border-dashed border-purple/30 bg-white px-5 py-3 text-center text-2xl font-black tracking-wide text-navy shadow-[0_4px_0_rgba(30,31,63,0.1)] sm:text-3xl">
                 {checked
                   ? item.hint.replace("___", String(answer))
@@ -259,7 +261,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
                     );
                   })}
                 </div>
-              ) : (
+              ) : exercise.type === "choice" ? (
                 <div className="grid grid-cols-2 gap-3">
                   {choices.map((ch) => {
                     const isSel = selected === ch;
@@ -284,6 +286,20 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
                     );
                   })}
                 </div>
+              ) : (
+                <SpecialActivity
+                  key={`${exercise.id}-${index}`}
+                  exercise={exercise}
+                  itemIndex={index}
+                  onSolved={() => {
+                    setChecked(true);
+                    setWrong(false);
+                  }}
+                  onMistake={() => {
+                    setWrong(true);
+                    setWrongCount((count) => count + 1);
+                  }}
+                />
               )}
             </div>
 
@@ -291,7 +307,7 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
             <div className="mt-4 min-h-[56px] w-full max-w-lg">
               {checked ? (
                 <div className="grid place-items-center rounded-2xl bg-green/15 px-4 py-3 text-center text-base font-black text-green">
-                  Muito bem! 🎉{item.explain ? <span className="block text-navy/70">{item.explain}</span> : null}
+                  Muito bem! 🎉{"explain" in item && item.explain ? <span className="block text-navy/70">{item.explain}</span> : null}
                 </div>
               ) : wrong ? (
                 <div className="grid place-items-center rounded-2xl bg-yellow/40 px-4 py-3 text-center text-base font-black text-orange">
@@ -304,17 +320,19 @@ export function Activity({ worldId, lessonId, onBack, onOpenLesson }: ActivityPr
       </div>
 
       {/* botão conferir/próximo */}
-      <button
-        type="button"
-        disabled={selected === null}
-        onClick={onPrimary}
-        className={[
-          "min-h-14 w-full max-w-lg rounded-2xl px-6 text-lg font-black transition",
-          selected === null ? "cursor-not-allowed bg-navy/15 text-navy/40" : accent[color].solid,
-        ].join(" ")}
-      >
-        {checked ? (index === total - 1 ? "Ver resultado" : "Próximo") : "Conferir"}
-      </button>
+      {(isStandard || checked) && (
+        <button
+          type="button"
+          disabled={isStandard && selected === null}
+          onClick={onPrimary}
+          className={[
+            "min-h-14 w-full max-w-lg rounded-2xl px-6 text-lg font-black transition",
+            isStandard && selected === null ? "cursor-not-allowed bg-navy/15 text-navy/40" : accent[color].solid,
+          ].join(" ")}
+        >
+          {checked ? (index === total - 1 ? "Ver resultado" : "Próximo") : "Conferir"}
+        </button>
+      )}
     </main>
   );
 }

@@ -1,26 +1,29 @@
-// Arsenal de exercícios (portado de aprendix-play-v3.html).
-// choice: escolha entre opções | count: escolher a quantidade (1..5).
-export type ChoiceItem = {
-  emoji: string;
-  prompt: string;
-  hint?: string;
-  choices: string[];
-  answer: string;
-  explain?: string;
-};
-export type CountItem = {
-  emoji: string;
-  prompt: string;
-  hint?: string;
-  answer: number;
-  explain?: string;
-};
+// Exercícios importados de aprendix-play-v10-caligrafia-didatica.html.
+// Caligrafia foi excluída por decisão do produto.
+export type ChoiceItem = { emoji: string; prompt: string; hint?: string; choices: string[]; answer: string; explain?: string };
+export type CountItem = { emoji: string; prompt: string; hint?: string; answer: number; explain?: string };
+export type MatchingItem = { emoji: string; prompt: string; pairs: { key: string; left: string; right: string }[] };
+export type UnscrambleItem = { emoji: string; prompt: string; answer: string };
+export type DragDropItem = { emoji: string; prompt: string; cards: { id: string; label: string; target: string }[]; targets: string[] };
+export type CrosswordItem = { emoji: string; prompt: string; entries: { answer: string; clue: string; row: number; col: number; dir: "h" | "v" }[] };
+export type MemoryItem = { emoji: string; prompt: string; pairs: { key: string; value?: string; a?: string; b?: string }[] };
+export type SequenceItem = { emoji: string; prompt: string; steps: string[] };
+export type WordSearchItem = { emoji: string; prompt: string; words: string[] };
+export type MazeItem = { emoji: string; prompt: string; grid: string[]; goalLabel?: string };
+
 export type Exercise =
   | { id: string; title: string; icon: string; type: "choice"; items: ChoiceItem[] }
-  | { id: string; title: string; icon: string; type: "count"; items: CountItem[] };
+  | { id: string; title: string; icon: string; type: "count"; items: CountItem[] }
+  | { id: string; title: string; icon: string; type: "matching"; items: MatchingItem[] }
+  | { id: string; title: string; icon: string; type: "unscramble"; items: UnscrambleItem[] }
+  | { id: string; title: string; icon: string; type: "dragdrop"; items: DragDropItem[] }
+  | { id: string; title: string; icon: string; type: "crossword"; items: CrosswordItem[] }
+  | { id: string; title: string; icon: string; type: "memory"; items: MemoryItem[] }
+  | { id: string; title: string; icon: string; type: "sequence"; items: SequenceItem[] }
+  | { id: string; title: string; icon: string; type: "wordsearch"; items: WordSearchItem[] }
+  | { id: string; title: string; icon: string; type: "maze"; items: MazeItem[] };
 
-/** chaves batem com a categoria de exercícios */
-export type ExerciseCategory = "portugues" | "matematica" | "logica";
+export type ExerciseCategory = "portugues" | "matematica" | "logica" | "geografia" | "ciencias" | "palavras";
 
 export const exercises: Record<ExerciseCategory, Exercise[]> = {
   "portugues": [
@@ -116,28 +119,6 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "A"
         },
         {
-          "emoji": "🐸",
-          "prompt": "Qual é a última letra de SAPO?",
-          "choices": [
-            "A",
-            "E",
-            "O",
-            "U"
-          ],
-          "answer": "O"
-        },
-        {
-          "emoji": "🦁",
-          "prompt": "Qual é a última letra de LEÃO?",
-          "choices": [
-            "A",
-            "E",
-            "O",
-            "U"
-          ],
-          "answer": "O"
-        },
-        {
           "emoji": "🐟",
           "prompt": "Qual é a última letra de PEIXE?",
           "choices": [
@@ -147,13 +128,35 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
             "O"
           ],
           "answer": "E"
+        },
+        {
+          "emoji": "🍍",
+          "prompt": "Qual é a última letra de ABACAXI?",
+          "choices": [
+            "A",
+            "E",
+            "I",
+            "O"
+          ],
+          "answer": "I"
+        },
+        {
+          "emoji": "🦃",
+          "prompt": "Qual é a última letra de PERU?",
+          "choices": [
+            "A",
+            "E",
+            "I",
+            "U"
+          ],
+          "answer": "U"
         }
       ]
     },
     {
       "id": "pt-vogal",
       "title": "Encontre a vogal",
-      "icon": "🔤",
+      "icon": "🅰️",
       "type": "choice",
       "items": [
         {
@@ -214,6 +217,321 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       ]
     },
     {
+      "id": "pt-consoante",
+      "title": "Encontre a consoante",
+      "icon": "🔤",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐈",
+          "prompt": "Com qual consoante começa GATO?",
+          "choices": [
+            "A",
+            "O",
+            "G",
+            "U"
+          ],
+          "answer": "G"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Com qual consoante começa SAPO?",
+          "choices": [
+            "A",
+            "O",
+            "S",
+            "E"
+          ],
+          "answer": "S"
+        },
+        {
+          "emoji": "🦋",
+          "prompt": "Com qual consoante começa BORBOLETA?",
+          "choices": [
+            "A",
+            "E",
+            "O",
+            "B"
+          ],
+          "answer": "B"
+        },
+        {
+          "emoji": "🍌",
+          "prompt": "Com qual consoante começa BANANA?",
+          "choices": [
+            "A",
+            "N",
+            "E",
+            "I"
+          ],
+          "answer": "N"
+        },
+        {
+          "emoji": "🐘",
+          "prompt": "Com qual consoante começa ELEFANTE?",
+          "choices": [
+            "E",
+            "A",
+            "F",
+            "O"
+          ],
+          "answer": "F"
+        }
+      ]
+    },
+    {
+      "id": "pt-maiuscula",
+      "title": "Maiúscula e minúscula",
+      "icon": "Aa",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "A a",
+          "prompt": "Qual é a letra minúscula de A?",
+          "choices": [
+            "a",
+            "e",
+            "o",
+            "u"
+          ],
+          "answer": "a"
+        },
+        {
+          "emoji": "B b",
+          "prompt": "Qual é a letra maiúscula de b?",
+          "choices": [
+            "B",
+            "D",
+            "P",
+            "R"
+          ],
+          "answer": "B"
+        },
+        {
+          "emoji": "M m",
+          "prompt": "Qual é a letra minúscula de M?",
+          "choices": [
+            "n",
+            "m",
+            "w",
+            "v"
+          ],
+          "answer": "m"
+        },
+        {
+          "emoji": "G g",
+          "prompt": "Qual é a letra maiúscula de g?",
+          "choices": [
+            "C",
+            "G",
+            "J",
+            "Q"
+          ],
+          "answer": "G"
+        },
+        {
+          "emoji": "T t",
+          "prompt": "Qual é a letra minúscula de T?",
+          "choices": [
+            "f",
+            "t",
+            "l",
+            "i"
+          ],
+          "answer": "t"
+        }
+      ]
+    },
+    {
+      "id": "pt-anterior",
+      "title": "Letra anterior",
+      "icon": "⬅️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "B",
+          "prompt": "Qual letra vem antes de B?",
+          "choices": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "A"
+        },
+        {
+          "emoji": "F",
+          "prompt": "Qual letra vem antes de F?",
+          "choices": [
+            "D",
+            "E",
+            "G",
+            "H"
+          ],
+          "answer": "E"
+        },
+        {
+          "emoji": "M",
+          "prompt": "Qual letra vem antes de M?",
+          "choices": [
+            "K",
+            "L",
+            "N",
+            "O"
+          ],
+          "answer": "L"
+        },
+        {
+          "emoji": "R",
+          "prompt": "Qual letra vem antes de R?",
+          "choices": [
+            "P",
+            "Q",
+            "S",
+            "T"
+          ],
+          "answer": "Q"
+        },
+        {
+          "emoji": "Z",
+          "prompt": "Qual letra vem antes de Z?",
+          "choices": [
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "answer": "Y"
+        }
+      ]
+    },
+    {
+      "id": "pt-seguinte",
+      "title": "Letra seguinte",
+      "icon": "➡️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "A",
+          "prompt": "Qual letra vem depois de A?",
+          "choices": [
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "B"
+        },
+        {
+          "emoji": "E",
+          "prompt": "Qual letra vem depois de E?",
+          "choices": [
+            "D",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "F"
+        },
+        {
+          "emoji": "L",
+          "prompt": "Qual letra vem depois de L?",
+          "choices": [
+            "K",
+            "M",
+            "N",
+            "O"
+          ],
+          "answer": "M"
+        },
+        {
+          "emoji": "Q",
+          "prompt": "Qual letra vem depois de Q?",
+          "choices": [
+            "P",
+            "R",
+            "S",
+            "T"
+          ],
+          "answer": "R"
+        },
+        {
+          "emoji": "Y",
+          "prompt": "Qual letra vem depois de Y?",
+          "choices": [
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "answer": "Z"
+        }
+      ]
+    },
+    {
+      "id": "pt-alfabetica",
+      "title": "Ordem alfabética",
+      "icon": "🔡",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "A B C",
+          "prompt": "Qual grupo está em ordem alfabética?",
+          "choices": [
+            "A, B, C",
+            "C, B, A",
+            "B, A, C",
+            "A, C, B"
+          ],
+          "answer": "A, B, C"
+        },
+        {
+          "emoji": "D E F",
+          "prompt": "Qual grupo está em ordem alfabética?",
+          "choices": [
+            "D, E, F",
+            "F, E, D",
+            "E, D, F",
+            "D, F, E"
+          ],
+          "answer": "D, E, F"
+        },
+        {
+          "emoji": "G H I",
+          "prompt": "Qual grupo está em ordem alfabética?",
+          "choices": [
+            "G, H, I",
+            "I, H, G",
+            "H, G, I",
+            "G, I, H"
+          ],
+          "answer": "G, H, I"
+        },
+        {
+          "emoji": "M N O",
+          "prompt": "Qual grupo está em ordem alfabética?",
+          "choices": [
+            "M, N, O",
+            "O, N, M",
+            "N, M, O",
+            "M, O, N"
+          ],
+          "answer": "M, N, O"
+        },
+        {
+          "emoji": "X Y Z",
+          "prompt": "Qual grupo está em ordem alfabética?",
+          "choices": [
+            "X, Y, Z",
+            "Z, Y, X",
+            "Y, X, Z",
+            "X, Z, Y"
+          ],
+          "answer": "X, Y, Z"
+        }
+      ]
+    },
+    {
       "id": "pt-silabas",
       "title": "Quantas sílabas?",
       "icon": "🟣",
@@ -252,440 +570,62 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       ]
     },
     {
-      "id": "pt-complete",
-      "title": "Complete a palavra",
-      "icon": "✏️",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🐈",
-          "prompt": "G _ T O",
-          "choices": [
-            "A",
-            "E",
-            "I",
-            "O"
-          ],
-          "answer": "A"
-        },
-        {
-          "emoji": "🐄",
-          "prompt": "V _ C A",
-          "choices": [
-            "A",
-            "E",
-            "I",
-            "O"
-          ],
-          "answer": "A"
-        },
-        {
-          "emoji": "🐸",
-          "prompt": "S _ P O",
-          "choices": [
-            "A",
-            "E",
-            "I",
-            "O"
-          ],
-          "answer": "A"
-        },
-        {
-          "emoji": "🦁",
-          "prompt": "L _ Ã O",
-          "choices": [
-            "A",
-            "E",
-            "I",
-            "O"
-          ],
-          "answer": "E"
-        },
-        {
-          "emoji": "🐙",
-          "prompt": "P _ L V O",
-          "choices": [
-            "A",
-            "E",
-            "I",
-            "O"
-          ],
-          "answer": "O"
-        }
-      ]
-    },
-    {
-      "id": "pt-consoante",
-      "title": "Encontre a consoante",
-      "icon": "🔤",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🐈",
-          "prompt": "Com qual consoante começa GATO?",
-          "choices": [
-            "A",
-            "G",
-            "E",
-            "O"
-          ],
-          "answer": "G"
-        },
-        {
-          "emoji": "🧳",
-          "prompt": "Com qual consoante começa MALA?",
-          "choices": [
-            "I",
-            "U",
-            "M",
-            "A"
-          ],
-          "answer": "M"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "Com qual consoante começa BOLA?",
-          "choices": [
-            "E",
-            "B",
-            "A",
-            "O"
-          ],
-          "answer": "B"
-        },
-        {
-          "emoji": "🐭",
-          "prompt": "Com qual consoante começa RATO?",
-          "choices": [
-            "R",
-            "A",
-            "E",
-            "I"
-          ],
-          "answer": "R"
-        },
-        {
-          "emoji": "🦆",
-          "prompt": "Com qual consoante começa PATO?",
-          "choices": [
-            "O",
-            "U",
-            "P",
-            "A"
-          ],
-          "answer": "P"
-        }
-      ]
-    },
-    {
-      "id": "pt-caixa",
-      "title": "Maiúscula e minúscula",
-      "icon": "🔠",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "A",
-          "prompt": "Qual é a letra 'A' minúscula?",
-          "choices": [
-            "a",
-            "e",
-            "b",
-            "o"
-          ],
-          "answer": "a"
-        },
-        {
-          "emoji": "b",
-          "prompt": "Qual é a letra 'b' maiúscula?",
-          "choices": [
-            "D",
-            "B",
-            "P",
-            "R"
-          ],
-          "answer": "B"
-        },
-        {
-          "emoji": "M",
-          "prompt": "Qual é a letra 'M' minúscula?",
-          "choices": [
-            "n",
-            "m",
-            "w",
-            "u"
-          ],
-          "answer": "m"
-        },
-        {
-          "emoji": "e",
-          "prompt": "Qual é a letra 'e' maiúscula?",
-          "choices": [
-            "F",
-            "E",
-            "C",
-            "B"
-          ],
-          "answer": "E"
-        },
-        {
-          "emoji": "S",
-          "prompt": "Qual é a letra 'S' minúscula?",
-          "choices": [
-            "z",
-            "c",
-            "s",
-            "o"
-          ],
-          "answer": "s"
-        }
-      ]
-    },
-    {
-      "id": "pt-letra-anterior",
-      "title": "Letra anterior",
-      "icon": "⬅️",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem antes de B?",
-          "choices": [
-            "A",
-            "C",
-            "D",
-            "E"
-          ],
-          "answer": "A"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem antes de E?",
-          "choices": [
-            "C",
-            "D",
-            "F",
-            "G"
-          ],
-          "answer": "D"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem antes de M?",
-          "choices": [
-            "K",
-            "L",
-            "N",
-            "O"
-          ],
-          "answer": "L"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem antes de P?",
-          "choices": [
-            "N",
-            "O",
-            "Q",
-            "R"
-          ],
-          "answer": "O"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem antes de T?",
-          "choices": [
-            "R",
-            "S",
-            "U",
-            "V"
-          ],
-          "answer": "S"
-        }
-      ]
-    },
-    {
-      "id": "pt-letra-seguinte",
-      "title": "Letra seguinte",
-      "icon": "➡️",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem depois de A?",
-          "choices": [
-            "B",
-            "C",
-            "D",
-            "E"
-          ],
-          "answer": "B"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem depois de D?",
-          "choices": [
-            "B",
-            "C",
-            "E",
-            "F"
-          ],
-          "answer": "E"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem depois de H?",
-          "choices": [
-            "G",
-            "I",
-            "J",
-            "K"
-          ],
-          "answer": "I"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem depois de N?",
-          "choices": [
-            "L",
-            "M",
-            "O",
-            "P"
-          ],
-          "answer": "O"
-        },
-        {
-          "emoji": "🔤",
-          "prompt": "Qual letra vem depois de R?",
-          "choices": [
-            "P",
-            "Q",
-            "S",
-            "T"
-          ],
-          "answer": "S"
-        }
-      ]
-    },
-    {
-      "id": "pt-alfabetica",
-      "title": "Qual vem primeiro?",
-      "icon": "🔡",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🏠 🧳",
-          "prompt": "CASA ou MALA: qual palavra vem primeiro na ordem alfabética?",
-          "hint": "CASA começa com C · MALA começa com M",
-          "choices": [
-            "CASA",
-            "MALA"
-          ],
-          "answer": "CASA"
-        },
-        {
-          "emoji": "🍍 🍌",
-          "prompt": "ABACAXI ou BANANA: qual palavra vem primeiro na ordem alfabética?",
-          "hint": "ABACAXI começa com A · BANANA começa com B",
-          "choices": [
-            "ABACAXI",
-            "BANANA"
-          ],
-          "answer": "ABACAXI"
-        },
-        {
-          "emoji": "🐸 🦁",
-          "prompt": "LEÃO ou SAPO: qual palavra vem primeiro na ordem alfabética?",
-          "hint": "LEÃO começa com L · SAPO começa com S",
-          "choices": [
-            "LEÃO",
-            "SAPO"
-          ],
-          "answer": "LEÃO"
-        },
-        {
-          "emoji": "⚽ 🐈",
-          "prompt": "BOLA ou GATO: qual palavra vem primeiro na ordem alfabética?",
-          "hint": "BOLA começa com B · GATO começa com G",
-          "choices": [
-            "BOLA",
-            "GATO"
-          ],
-          "answer": "BOLA"
-        },
-        {
-          "emoji": "🦆 🐄",
-          "prompt": "PATO ou VACA: qual palavra vem primeiro na ordem alfabética?",
-          "hint": "PATO começa com P · VACA começa com V",
-          "choices": [
-            "PATO",
-            "VACA"
-          ],
-          "answer": "PATO"
-        }
-      ]
-    },
-    {
       "id": "pt-primeira-silaba",
       "title": "Primeira sílaba",
-      "icon": "🟢",
+      "icon": "1️⃣",
       "type": "choice",
       "items": [
         {
           "emoji": "🐈",
           "prompt": "Qual é a primeira sílaba de GATO?",
-          "hint": "___ · TO",
           "choices": [
             "GA",
-            "TO",
             "GO",
-            "TA"
+            "TA",
+            "TO"
           ],
           "answer": "GA"
         },
         {
           "emoji": "🐄",
           "prompt": "Qual é a primeira sílaba de VACA?",
-          "hint": "___ · CA",
           "choices": [
-            "CA",
             "VA",
-            "VO",
+            "CA",
+            "VE",
             "CO"
           ],
           "answer": "VA"
         },
         {
-          "emoji": "⚽",
-          "prompt": "Qual é a primeira sílaba de BOLA?",
-          "hint": "___ · LA",
+          "emoji": "🦋",
+          "prompt": "Qual é a primeira sílaba de BORBOLETA?",
           "choices": [
-            "LA",
+            "BOR",
             "BO",
-            "BA",
-            "LO"
+            "LE",
+            "TA"
           ],
-          "answer": "BO"
+          "answer": "BOR"
         },
         {
-          "emoji": "🏠",
-          "prompt": "Qual é a primeira sílaba de CASA?",
-          "hint": "___ · SA",
+          "emoji": "🐸",
+          "prompt": "Qual é a primeira sílaba de SAPO?",
           "choices": [
             "SA",
-            "CA",
-            "CO",
-            "SO"
+            "SO",
+            "PA",
+            "PO"
           ],
-          "answer": "CA"
+          "answer": "SA"
         },
         {
           "emoji": "🍌",
           "prompt": "Qual é a primeira sílaba de BANANA?",
-          "hint": "___ · NA · NA",
           "choices": [
-            "NA",
             "BA",
-            "BO",
+            "NA",
+            "BE",
             "NO"
           ],
           "answer": "BA"
@@ -695,262 +635,186 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
     {
       "id": "pt-ultima-silaba",
       "title": "Última sílaba",
-      "icon": "🔵",
-      "type": "choice",
+      "icon": "🔚",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual é a última sílaba de GATO?",
-          "hint": "GA · ___",
-          "choices": [
-            "GA",
-            "TO",
-            "GO",
-            "TA"
-          ],
-          "answer": "TO"
-        },
-        {
-          "emoji": "🐄",
-          "prompt": "Qual é a última sílaba de VACA?",
-          "hint": "VA · ___",
-          "choices": [
-            "CA",
-            "VA",
-            "VO",
-            "CO"
-          ],
-          "answer": "CA"
-        },
-        {
-          "emoji": "🍌",
-          "prompt": "Qual é a última sílaba de BANANA?",
-          "hint": "BA · NA · ___",
-          "choices": [
-            "NA",
-            "BA",
-            "BO",
-            "NO"
-          ],
-          "answer": "NA"
-        },
-        {
-          "emoji": "🏠",
-          "prompt": "Qual é a última sílaba de CASA?",
-          "hint": "CA · ___",
-          "choices": [
-            "SA",
-            "CA",
-            "CO",
-            "SO"
-          ],
-          "answer": "SA"
-        },
-        {
-          "emoji": "🦆",
-          "prompt": "Qual é a última sílaba de PATO?",
-          "hint": "PA · ___",
-          "choices": [
-            "PA",
-            "TO",
-            "PO",
-            "TA"
-          ],
-          "answer": "TO"
+          "emoji": "🔚",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🐈 Qual é a última sílaba de GATO?",
+              "right": "TO"
+            },
+            {
+              "key": "p1",
+              "left": "🐄 Qual é a última sílaba de VACA?",
+              "right": "CA"
+            },
+            {
+              "key": "p2",
+              "left": "🦋 Qual é a última sílaba de BORBOLETA?",
+              "right": "TA"
+            },
+            {
+              "key": "p3",
+              "left": "🐸 Qual é a última sílaba de SAPO?",
+              "right": "PO"
+            },
+            {
+              "key": "p4",
+              "left": "🍌 Qual é a última sílaba de BANANA?",
+              "right": "NA"
+            }
+          ]
         }
       ]
     },
     {
       "id": "pt-complete-silaba",
       "title": "Complete a sílaba",
-      "icon": "✏️",
-      "type": "choice",
-      "items": [
-        {
-          "emoji": "🐈",
-          "prompt": "Qual pedacinho completa a palavra GATO?",
-          "hint": "GA + ___ = GATO",
-          "choices": [
-            "TO",
-            "BO",
-            "LO",
-            "MO"
-          ],
-          "answer": "TO"
-        },
-        {
-          "emoji": "🐄",
-          "prompt": "Qual pedacinho completa a palavra VACA?",
-          "hint": "VA + ___ = VACA",
-          "choices": [
-            "CA",
-            "LA",
-            "PA",
-            "TA"
-          ],
-          "answer": "CA"
-        },
-        {
-          "emoji": "🍌",
-          "prompt": "Qual pedacinho completa a palavra BANANA?",
-          "hint": "BA + ___ + NA = BANANA",
-          "choices": [
-            "NA",
-            "LA",
-            "TA",
-            "RA"
-          ],
-          "answer": "NA"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "Qual pedacinho completa a palavra BOLA?",
-          "hint": "BO + ___ = BOLA",
-          "choices": [
-            "LA",
-            "CA",
-            "MA",
-            "NA"
-          ],
-          "answer": "LA"
-        },
-        {
-          "emoji": "🦁",
-          "prompt": "Qual pedacinho completa a palavra LEÃO?",
-          "hint": "LE + ___ = LEÃO",
-          "choices": [
-            "ÃO",
-            "AR",
-            "AL",
-            "AS"
-          ],
-          "answer": "ÃO"
-        }
-      ]
-    },
-    {
-      "id": "pt-monte-palavra",
-      "title": "Monte a palavra",
       "icon": "🧩",
       "type": "choice",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Junte GA + TO. Que palavra forma?",
+          "prompt": "Qual sílaba completa GATO?",
           "choices": [
-            "GATO",
-            "TOGA",
-            "GOTA",
-            "TAGO"
+            "GA",
+            "CA",
+            "PA",
+            "TA"
           ],
-          "answer": "GATO"
+          "answer": "GA",
+          "hint": "___ + TO = GATO"
         },
         {
           "emoji": "🐄",
-          "prompt": "Junte VA + CA. Que palavra forma?",
+          "prompt": "Qual sílaba completa VACA?",
           "choices": [
-            "CAVA",
-            "VACA",
-            "VOCA",
-            "CAVO"
+            "CO",
+            "CA",
+            "GA",
+            "TA"
           ],
-          "answer": "VACA"
+          "answer": "CA",
+          "hint": "VA + ___ = VACA"
         },
         {
-          "emoji": "⚽",
-          "prompt": "Junte BO + LA. Que palavra forma?",
+          "emoji": "🐸",
+          "prompt": "Qual sílaba completa SAPO?",
           "choices": [
-            "LOBA",
-            "BOLA",
-            "BALO",
-            "LABO"
+            "SA",
+            "CA",
+            "PA",
+            "TA"
           ],
-          "answer": "BOLA"
+          "answer": "SA",
+          "hint": "___ + PO = SAPO"
         },
         {
-          "emoji": "🏠",
-          "prompt": "Junte CA + SA. Que palavra forma?",
+          "emoji": "🍌",
+          "prompt": "Qual sílaba completa BANANA?",
           "choices": [
-            "SACA",
-            "CASA",
-            "SOCA",
-            "CASO"
+            "NA",
+            "NE",
+            "NO",
+            "NU"
           ],
-          "answer": "CASA"
+          "answer": "NA",
+          "hint": "BA + ___ + NA = BANANA"
         },
         {
-          "emoji": "🦆",
-          "prompt": "Junte PA + TO. Que palavra forma?",
+          "emoji": "🦋",
+          "prompt": "Qual sílaba completa BORBOLETA?",
           "choices": [
-            "TOPA",
-            "PATO",
-            "POTA",
-            "TAPO"
+            "TE",
+            "TI",
+            "TA",
+            "TO"
           ],
-          "answer": "PATO"
+          "answer": "TA",
+          "hint": "BOR + BO + LE + ___ = BORBOLETA"
         }
       ]
     },
     {
-      "id": "pt-separe-silabas",
-      "title": "Separe as sílabas",
-      "icon": "✂️",
-      "type": "choice",
+      "id": "pt-monte",
+      "title": "Monte a palavra",
+      "icon": "🧱",
+      "type": "unscramble",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Como separamos GATO?",
-          "choices": [
-            "GA-TO",
-            "GAT-O",
-            "G-ATO",
-            "GATO"
-          ],
-          "answer": "GA-TO"
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "GATO"
+        },
+        {
+          "emoji": "🐄",
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "VACA"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "SAPO"
         },
         {
           "emoji": "🍌",
-          "prompt": "Como separamos BANANA?",
-          "choices": [
-            "BA-NA-NA",
-            "BAN-ANA",
-            "BANA-NA",
-            "B-ANANA"
-          ],
-          "answer": "BA-NA-NA"
-        },
-        {
-          "emoji": "🦋",
-          "prompt": "Como separamos BORBOLETA?",
-          "choices": [
-            "BOR-BO-LE-TA",
-            "BORBO-LETA",
-            "BO-RBOLE-TA",
-            "BORB-OLETA"
-          ],
-          "answer": "BOR-BO-LE-TA"
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "BANANA"
         },
         {
           "emoji": "🦉",
-          "prompt": "Como separamos CORUJA?",
-          "choices": [
-            "CO-RU-JA",
-            "COR-UJA",
-            "CORU-JA",
-            "C-ORUJA"
-          ],
-          "answer": "CO-RU-JA"
-        },
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "CORUJA"
+        }
+      ]
+    },
+    {
+      "id": "pt-separe",
+      "title": "Separe as sílabas",
+      "icon": "✂️",
+      "type": "dragdrop",
+      "items": [
         {
-          "emoji": "🏠",
-          "prompt": "Como separamos CASA?",
-          "choices": [
-            "CA-SA",
-            "CAS-A",
-            "C-ASA",
-            "CASA"
+          "emoji": "✂️",
+          "prompt": "Leve cada palavra para a separação silábica correta.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🐈 Como separamos GATO?",
+              "target": "GA · TO"
+            },
+            {
+              "id": "c1",
+              "label": "🐄 Como separamos VACA?",
+              "target": "VA · CA"
+            },
+            {
+              "id": "c2",
+              "label": "🐸 Como separamos SAPO?",
+              "target": "SA · PO"
+            },
+            {
+              "id": "c3",
+              "label": "🦉 Como separamos CORUJA?",
+              "target": "CO · RU · JA"
+            },
+            {
+              "id": "c4",
+              "label": "🍌 Como separamos BANANA?",
+              "target": "BA · NA · NA"
+            }
           ],
-          "answer": "CA-SA"
+          "targets": [
+            "GA · TO",
+            "VA · CA",
+            "SA · PO",
+            "CO · RU · JA",
+            "BA · NA · NA"
+          ]
         }
       ]
     },
@@ -958,62 +822,73 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-mesma-silaba",
       "title": "Mesma sílaba",
       "icon": "🔗",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual palavra começa igual a GATO?",
-          "choices": [
-            "GALO",
-            "BOLA",
-            "PATO",
-            "VACA"
-          ],
-          "answer": "GALO"
-        },
+          "emoji": "🔗",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🐄 Qual palavra começa como VACA?",
+              "right": "VASSOURA"
+            },
+            {
+              "key": "p1",
+              "left": "🐈 Qual palavra começa como GATO?",
+              "right": "GALINHA"
+            },
+            {
+              "key": "p2",
+              "left": "🐸 Qual palavra começa como SAPO?",
+              "right": "SABÃO"
+            },
+            {
+              "key": "p3",
+              "left": "🍌 Qual palavra começa como BANANA?",
+              "right": "BALA"
+            },
+            {
+              "key": "p4",
+              "left": "🦉 Qual palavra começa como CORUJA?",
+              "right": "COPO"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pt-complete",
+      "title": "Complete a palavra",
+      "icon": "✏️",
+      "type": "crossword",
+      "items": [
         {
-          "emoji": "🐄",
-          "prompt": "Qual palavra começa igual a VACA?",
-          "choices": [
-            "VASO",
-            "CASA",
-            "GATO",
-            "BOLA"
-          ],
-          "answer": "VASO"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "Qual palavra começa igual a BOLA?",
-          "choices": [
-            "BONÉ",
-            "MALA",
-            "GATO",
-            "SAPO"
-          ],
-          "answer": "BONÉ"
-        },
-        {
-          "emoji": "🍌",
-          "prompt": "Qual palavra começa igual a BANANA?",
-          "choices": [
-            "BALÃO",
-            "CANOA",
-            "LIMÃO",
-            "PATO"
-          ],
-          "answer": "BALÃO"
-        },
-        {
-          "emoji": "🏠",
-          "prompt": "Qual palavra começa igual a CASA?",
-          "choices": [
-            "CAMA",
-            "MALA",
-            "SAPO",
-            "BOLA"
-          ],
-          "answer": "CAMA"
+          "emoji": "✏️",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "GATO",
+              "clue": "🐈",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "VACA",
+              "clue": "🐄",
+              "row": 0,
+              "col": 1,
+              "dir": "v"
+            },
+            {
+              "answer": "SAPO",
+              "clue": "🐸",
+              "row": 4,
+              "col": 1,
+              "dir": "h"
+            }
+          ]
         }
       ]
     },
@@ -1021,188 +896,147 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-imagem-palavra",
       "title": "Imagem e palavra",
       "icon": "🖼️",
-      "type": "choice",
+      "type": "memory",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Que palavra combina com a figura?",
-          "choices": [
-            "GATO",
-            "PATO",
-            "RATO",
-            "MATO"
-          ],
-          "answer": "GATO"
-        },
-        {
-          "emoji": "🍎",
-          "prompt": "Que palavra combina com a figura?",
-          "choices": [
-            "MAÇÃ",
-            "UVA",
-            "PERA",
-            "LIMÃO"
-          ],
-          "answer": "MAÇÃ"
-        },
-        {
-          "emoji": "🌞",
-          "prompt": "Que palavra combina com a figura?",
-          "choices": [
-            "SOL",
-            "LUA",
-            "MAR",
-            "CÉU"
-          ],
-          "answer": "SOL"
-        },
-        {
-          "emoji": "🏠",
-          "prompt": "Que palavra combina com a figura?",
-          "choices": [
-            "CASA",
-            "CARRO",
-            "BOLA",
-            "MESA"
-          ],
-          "answer": "CASA"
-        },
-        {
-          "emoji": "🐟",
-          "prompt": "Que palavra combina com a figura?",
-          "choices": [
-            "PEIXE",
-            "PATO",
-            "GATO",
-            "CAVALO"
-          ],
-          "answer": "PEIXE"
+          "emoji": "🖼️",
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "🐈",
+              "b": "GATO"
+            },
+            {
+              "key": "m1",
+              "a": "🐄",
+              "b": "VACA"
+            },
+            {
+              "key": "m2",
+              "a": "🐸",
+              "b": "SAPO"
+            },
+            {
+              "key": "m3",
+              "a": "🍌",
+              "b": "BANANA"
+            },
+            {
+              "key": "m4",
+              "a": "🚗",
+              "b": "CARRO"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pt-palavra-correta",
+      "id": "pt-correta",
       "title": "Palavra correta",
       "icon": "✅",
       "type": "choice",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Qual está escrita corretamente?",
+          "prompt": "Qual palavra está escrita corretamente?",
           "choices": [
             "GATO",
             "GATU",
-            "JATO",
-            "QATO"
+            "CATO",
+            "GATOA"
           ],
           "answer": "GATO"
         },
         {
-          "emoji": "🏠",
-          "prompt": "Qual está escrita corretamente?",
+          "emoji": "🐄",
+          "prompt": "Qual palavra está escrita corretamente?",
           "choices": [
-            "KASA",
-            "CAZA",
-            "CASA",
-            "CASSA"
+            "VACA",
+            "VAKA",
+            "FACA",
+            "VACAA"
           ],
-          "answer": "CASA"
+          "answer": "VACA"
         },
         {
-          "emoji": "⚽",
-          "prompt": "Qual está escrita corretamente?",
+          "emoji": "🐸",
+          "prompt": "Qual palavra está escrita corretamente?",
           "choices": [
-            "BOLA",
-            "BÓLA",
-            "VOLA",
-            "BOULA"
+            "SAPO",
+            "CAPO",
+            "SAPU",
+            "SAPOO"
           ],
-          "answer": "BOLA"
+          "answer": "SAPO"
         },
         {
           "emoji": "🍌",
-          "prompt": "Qual está escrita corretamente?",
+          "prompt": "Qual palavra está escrita corretamente?",
           "choices": [
             "BANANA",
             "BANANNA",
-            "BANNANA",
-            "VANANA"
+            "BANENA",
+            "PANANA"
           ],
           "answer": "BANANA"
         },
         {
-          "emoji": "🌞",
-          "prompt": "Qual está escrita corretamente?",
+          "emoji": "🏠",
+          "prompt": "Qual palavra está escrita corretamente?",
           "choices": [
-            "SOL",
-            "SOU",
-            "SÓL",
-            "SSOL"
+            "CASA",
+            "CAZA",
+            "CASSA",
+            "CASAA"
           ],
-          "answer": "SOL"
+          "answer": "CASA"
         }
       ]
     },
     {
-      "id": "pt-palavra-intrusa",
+      "id": "pt-intrusa",
       "title": "Palavra intrusa",
-      "icon": "🕵️",
-      "type": "choice",
+      "icon": "🚫",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "🍎🍌🍇",
-          "prompt": "Qual palavra NÃO é uma fruta?",
-          "choices": [
-            "MAÇÃ",
-            "BANANA",
-            "UVA",
-            "CADEIRA"
+          "emoji": "🚫",
+          "prompt": "Leve cada palavra para o grupo a que pertence.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🐾 Qual palavra não é animal?",
+              "target": "CASA"
+            },
+            {
+              "id": "c1",
+              "label": "🍎 Qual palavra não é fruta?",
+              "target": "PATO"
+            },
+            {
+              "id": "c2",
+              "label": "🚗 Qual palavra não é transporte?",
+              "target": "BOLA"
+            },
+            {
+              "id": "c3",
+              "label": "🎨 Qual palavra não é cor?",
+              "target": "GATO"
+            },
+            {
+              "id": "c4",
+              "label": "🏫 Qual palavra não é material escolar?",
+              "target": "BANANA"
+            }
           ],
-          "answer": "CADEIRA"
-        },
-        {
-          "emoji": "🐈🐕🐄",
-          "prompt": "Qual palavra NÃO é um animal?",
-          "choices": [
-            "GATO",
-            "CACHORRO",
-            "MESA",
-            "VACA"
-          ],
-          "answer": "MESA"
-        },
-        {
-          "emoji": "🔴🔵🟢",
-          "prompt": "Qual palavra NÃO é uma cor?",
-          "choices": [
-            "AZUL",
-            "VERDE",
+          "targets": [
+            "CASA",
+            "PATO",
             "BOLA",
-            "VERMELHO"
-          ],
-          "answer": "BOLA"
-        },
-        {
-          "emoji": "👕👗👖",
-          "prompt": "Qual palavra NÃO é uma roupa?",
-          "choices": [
-            "CAMISA",
-            "VESTIDO",
-            "CALÇA",
-            "LIVRO"
-          ],
-          "answer": "LIVRO"
-        },
-        {
-          "emoji": "🍽️",
-          "prompt": "Qual palavra NÃO é uma comida?",
-          "choices": [
-            "ARROZ",
-            "FEIJÃO",
-            "CARRO",
-            "PÃO"
-          ],
-          "answer": "CARRO"
+            "GATO",
+            "BANANA"
+          ]
         }
       ]
     },
@@ -1210,62 +1044,32 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-ordene-letras",
       "title": "Ordene as letras",
       "icon": "🔀",
-      "type": "choice",
+      "type": "unscramble",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "Organize as letras T-A-G-O e forme um animal:",
-          "choices": [
-            "GATO",
-            "TOGA",
-            "GOTA",
-            "TAGO"
-          ],
+          "prompt": "Organize as letras para formar a resposta.",
           "answer": "GATO"
         },
         {
-          "emoji": "🌞",
-          "prompt": "Organize as letras L-O-S e forme uma palavra:",
-          "choices": [
-            "SOL",
-            "LOS",
-            "OLS",
-            "SLO"
-          ],
-          "answer": "SOL"
+          "emoji": "🐄",
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "VACA"
         },
         {
-          "emoji": "⚽",
-          "prompt": "Organize as letras A-B-O-L:",
-          "choices": [
-            "BOLA",
-            "LOBA",
-            "BALO",
-            "ABLO"
-          ],
-          "answer": "BOLA"
+          "emoji": "🐸",
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "SAPO"
         },
         {
           "emoji": "🏠",
-          "prompt": "Organize as letras S-A-C-A:",
-          "choices": [
-            "CASA",
-            "SACA",
-            "ASCA",
-            "CAAS"
-          ],
+          "prompt": "Organize as letras para formar a resposta.",
           "answer": "CASA"
         },
         {
-          "emoji": "🦆",
-          "prompt": "Organize as letras O-T-P-A:",
-          "choices": [
-            "PATO",
-            "TOPA",
-            "POTA",
-            "APTO"
-          ],
-          "answer": "PATO"
+          "emoji": "⚽",
+          "prompt": "Organize as letras para formar a resposta.",
+          "answer": "BOLA"
         }
       ]
     },
@@ -1273,178 +1077,102 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-tamanho-palavra",
       "title": "Palavra maior ou menor",
       "icon": "📏",
-      "type": "choice",
+      "type": "sequence",
       "items": [
         {
-          "emoji": "🐈🐘",
-          "prompt": "Qual palavra é MAIOR (tem mais letras)?",
-          "choices": [
-            "ELEFANTE",
-            "GATO"
-          ],
-          "answer": "ELEFANTE"
-        },
-        {
-          "emoji": "🌞🌈",
-          "prompt": "Qual palavra é MENOR (tem menos letras)?",
-          "choices": [
+          "emoji": "📏",
+          "prompt": "Organize as palavras da menor para a maior.",
+          "steps": [
             "SOL",
-            "ARCO-ÍRIS"
-          ],
-          "answer": "SOL"
-        },
-        {
-          "emoji": "🐜🐂",
-          "prompt": "Qual palavra é MAIOR (tem mais letras)?",
-          "choices": [
-            "FORMIGA",
-            "BOI"
-          ],
-          "answer": "FORMIGA"
-        },
-        {
-          "emoji": "🍇🍉",
-          "prompt": "Qual palavra é MENOR (tem menos letras)?",
-          "choices": [
-            "UVA",
-            "MELANCIA"
-          ],
-          "answer": "UVA"
-        },
-        {
-          "emoji": "🦋🐝",
-          "prompt": "Qual palavra é MAIOR (tem mais letras)?",
-          "choices": [
-            "BORBOLETA",
-            "ABELHA"
-          ],
-          "answer": "BORBOLETA"
+            "GATO",
+            "BANANA",
+            "ELEFANTE"
+          ]
         }
       ]
     },
     {
-      "id": "pt-singular-plural",
+      "id": "pt-plural",
       "title": "Singular e plural",
-      "icon": "➕",
-      "type": "choice",
+      "icon": "👥",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual é o plural de GATO?",
-          "choices": [
-            "GATOS",
-            "GATO",
-            "GATAS",
-            "GATE"
-          ],
-          "answer": "GATOS"
-        },
-        {
-          "emoji": "🌸",
-          "prompt": "Qual é o plural de FLOR?",
-          "choices": [
-            "FLORES",
-            "FLORS",
-            "FLOR",
-            "FLORAS"
-          ],
-          "answer": "FLORES"
-        },
-        {
-          "emoji": "🏠",
-          "prompt": "Qual é o plural de CASA?",
-          "choices": [
-            "CASAS",
-            "CASA",
-            "CASES",
-            "CASOS"
-          ],
-          "answer": "CASAS"
-        },
-        {
-          "emoji": "🐕",
-          "prompt": "Qual é o singular de CACHORROS?",
-          "choices": [
-            "CACHORRO",
-            "CACHORROS",
-            "CACHORRA",
-            "CACHORRE"
-          ],
-          "answer": "CACHORRO"
-        },
-        {
-          "emoji": "⭐",
-          "prompt": "Qual é o plural de ESTRELA?",
-          "choices": [
-            "ESTRELAS",
-            "ESTRELA",
-            "ESTRELES",
-            "ESTRELOS"
-          ],
-          "answer": "ESTRELAS"
+          "emoji": "👥",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🐈 🐈 Qual é o plural de GATO?",
+              "right": "GATOS"
+            },
+            {
+              "key": "p1",
+              "left": "🏠 🏠 Qual é o plural de CASA?",
+              "right": "CASAS"
+            },
+            {
+              "key": "p2",
+              "left": "⚽ ⚽ Qual é o plural de BOLA?",
+              "right": "BOLAS"
+            },
+            {
+              "key": "p3",
+              "left": "🐸 🐸 Qual é o plural de SAPO?",
+              "right": "SAPOS"
+            },
+            {
+              "key": "p4",
+              "left": "📚 Qual é o singular de LIVROS?",
+              "right": "LIVRO"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pt-masculino-feminino",
+      "id": "pt-genero",
       "title": "Masculino e feminino",
-      "icon": "⚥",
-      "type": "choice",
+      "icon": "👧👦",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual é o feminino de GATO?",
-          "choices": [
+          "emoji": "👧👦",
+          "prompt": "Leve cada palavra para MASCULINO ou FEMININO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🐈 Qual é o feminino de GATO?",
+              "target": "GATA"
+            },
+            {
+              "id": "c1",
+              "label": "🐕 Qual é o feminino de CACHORRO?",
+              "target": "CACHORRA"
+            },
+            {
+              "id": "c2",
+              "label": "👦 Qual é o feminino de MENINO?",
+              "target": "MENINA"
+            },
+            {
+              "id": "c3",
+              "label": "👨 Qual é o feminino de HOMEM?",
+              "target": "MULHER"
+            },
+            {
+              "id": "c4",
+              "label": "🦁 Qual é o feminino de LEÃO?",
+              "target": "LEOA"
+            }
+          ],
+          "targets": [
             "GATA",
-            "GATO",
-            "GATE",
-            "GATU"
-          ],
-          "answer": "GATA"
-        },
-        {
-          "emoji": "👦",
-          "prompt": "Qual é o feminino de MENINO?",
-          "choices": [
+            "CACHORRA",
             "MENINA",
-            "MENINO",
-            "MENINE",
-            "MENÃO"
-          ],
-          "answer": "MENINA"
-        },
-        {
-          "emoji": "🦁",
-          "prompt": "Qual é o feminino de LEÃO?",
-          "choices": [
-            "LEOA",
-            "LEÃO",
-            "LEONA",
-            "LEA"
-          ],
-          "answer": "LEOA"
-        },
-        {
-          "emoji": "👩",
-          "prompt": "Qual é o masculino de MULHER?",
-          "choices": [
-            "HOMEM",
-            "MULHERO",
-            "MENINO",
-            "MOÇO"
-          ],
-          "answer": "HOMEM"
-        },
-        {
-          "emoji": "🐴",
-          "prompt": "Qual é o feminino de CAVALO?",
-          "choices": [
-            "ÉGUA",
-            "CAVALA",
-            "CAVALINHA",
-            "POTRA"
-          ],
-          "answer": "ÉGUA"
+            "MULHER",
+            "LEOA"
+          ]
         }
       ]
     },
@@ -1452,326 +1180,194 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "pt-rimas",
       "title": "Palavras que rimam",
       "icon": "🎵",
-      "type": "choice",
+      "type": "memory",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual palavra rima com GATO?",
-          "choices": [
-            "PATO",
-            "BOLA",
-            "CASA",
-            "SOL"
-          ],
-          "answer": "PATO"
-        },
-        {
-          "emoji": "✋",
-          "prompt": "Qual palavra rima com MÃO?",
-          "choices": [
-            "PÃO",
-            "MESA",
-            "GATO",
-            "LUA"
-          ],
-          "answer": "PÃO"
-        },
-        {
-          "emoji": "⭐",
-          "prompt": "Qual palavra rima com ESTRELA?",
-          "choices": [
-            "PANELA",
-            "CASA",
-            "SOL",
-            "GATO"
-          ],
-          "answer": "PANELA"
-        },
-        {
-          "emoji": "🌸",
-          "prompt": "Qual palavra rima com FLOR?",
-          "choices": [
-            "AMOR",
-            "MESA",
-            "BOLA",
-            "PATO"
-          ],
-          "answer": "AMOR"
-        },
-        {
-          "emoji": "🐝",
-          "prompt": "Qual palavra rima com ABELHA?",
-          "choices": [
-            "ORELHA",
-            "GATO",
-            "CASA",
-            "LUA"
-          ],
-          "answer": "ORELHA"
+          "emoji": "🎵",
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "🐈",
+              "b": "PATO"
+            },
+            {
+              "key": "m1",
+              "a": "🏠",
+              "b": "ASA"
+            },
+            {
+              "key": "m2",
+              "a": "⚽",
+              "b": "MOLA"
+            },
+            {
+              "key": "m3",
+              "a": "🐸",
+              "b": "PAPO"
+            },
+            {
+              "key": "m4",
+              "a": "🍞",
+              "b": "MÃO"
+            }
+          ]
         }
       ]
     },
     {
       "id": "pt-som-inicial",
-      "title": "Mesma letra inicial",
-      "icon": "🔊",
-      "type": "choice",
+      "title": "Mesmo som inicial",
+      "icon": "👂",
+      "type": "wordsearch",
       "items": [
         {
-          "emoji": "🏠",
-          "prompt": "Qual começa com a mesma letra de CASA?",
-          "choices": [
-            "CAMA",
-            "MESA",
-            "BOLA",
-            "PATO"
-          ],
-          "answer": "CAMA"
-        },
-        {
-          "emoji": "🌞",
-          "prompt": "Qual começa com a mesma letra de SOL?",
-          "choices": [
+          "emoji": "👂",
+          "prompt": "Encontre todas as palavras escondidas.",
+          "words": [
+            "GATO",
+            "GALO",
+            "VACA",
+            "VASO",
             "SAPO",
-            "LUA",
-            "GATO",
-            "PATO"
-          ],
-          "answer": "SAPO"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "Qual começa com a mesma letra de BOLA?",
-          "choices": [
-            "BONÉ",
-            "MALA",
-            "CASA",
-            "SOL"
-          ],
-          "answer": "BONÉ"
-        },
-        {
-          "emoji": "🌙",
-          "prompt": "Qual começa com a mesma letra de LUA?",
-          "choices": [
-            "LIVRO",
-            "GATO",
-            "MESA",
-            "PATO"
-          ],
-          "answer": "LIVRO"
-        },
-        {
-          "emoji": "🦆",
-          "prompt": "Qual começa com a mesma letra de PATO?",
-          "choices": [
-            "PENA",
-            "GATO",
-            "MALA",
-            "SOL"
-          ],
-          "answer": "PENA"
+            "SACO"
+          ]
         }
       ]
     },
     {
       "id": "pt-som-final",
-      "title": "Encontre a rima",
-      "icon": "🔈",
-      "type": "choice",
+      "title": "Mesmo som final",
+      "icon": "🔊",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "Qual palavra rima com GATO?",
-          "choices": [
-            "PATO",
-            "BOLA",
-            "CASA",
-            "SOL"
-          ],
-          "answer": "PATO"
-        },
-        {
-          "emoji": "🌸",
-          "prompt": "Qual palavra rima com FLOR?",
-          "choices": [
-            "AMOR",
-            "MESA",
-            "GATO",
-            "LUA"
-          ],
-          "answer": "AMOR"
-        },
-        {
-          "emoji": "🍞",
-          "prompt": "Qual palavra rima com PÃO?",
-          "choices": [
-            "MÃO",
-            "MESA",
-            "BOLA",
-            "SOL"
-          ],
-          "answer": "MÃO"
-        },
-        {
-          "emoji": "🏠",
-          "prompt": "Qual palavra rima com CASA?",
-          "choices": [
-            "ASA",
-            "GATO",
-            "SOL",
-            "PATO"
-          ],
-          "answer": "ASA"
-        },
-        {
-          "emoji": "🍳",
-          "prompt": "Qual palavra rima com PANELA?",
-          "choices": [
-            "JANELA",
-            "GATO",
-            "SOL",
-            "MÃO"
-          ],
-          "answer": "JANELA"
+          "emoji": "🔊",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🐈 Qual termina como GATO?",
+              "right": "PATO"
+            },
+            {
+              "key": "p1",
+              "left": "🏠 Qual termina como CASA?",
+              "right": "ASA"
+            },
+            {
+              "key": "p2",
+              "left": "⚽ Qual termina como BOLA?",
+              "right": "MOLA"
+            },
+            {
+              "key": "p3",
+              "left": "🍞 Qual termina como PÃO?",
+              "right": "MÃO"
+            },
+            {
+              "key": "p4",
+              "left": "🐸 Qual termina como SAPO?",
+              "right": "PAPO"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pt-complete-frase",
+      "id": "pt-frase",
       "title": "Complete a frase",
-      "icon": "📝",
-      "type": "choice",
+      "icon": "💬",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "O gato bebe ____.",
-          "choices": [
-            "leite",
-            "pedra",
-            "carro",
-            "porta"
+          "emoji": "💬",
+          "prompt": "Leve cada palavra até a frase correta.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🐈 O ___ mia.",
+              "target": "gato"
+            },
+            {
+              "id": "c1",
+              "label": "🐟 O peixe vive na ___.",
+              "target": "água"
+            },
+            {
+              "id": "c2",
+              "label": "☀️ O sol brilha no ___.",
+              "target": "céu"
+            },
+            {
+              "id": "c3",
+              "label": "📚 Eu leio um ___.",
+              "target": "livro"
+            },
+            {
+              "id": "c4",
+              "label": "🍎 A maçã é uma ___.",
+              "target": "fruta"
+            }
           ],
-          "answer": "leite"
-        },
-        {
-          "emoji": "🌞",
-          "prompt": "De dia vemos o ____ no céu.",
-          "choices": [
-            "sol",
-            "sapato",
-            "livro",
-            "garfo"
-          ],
-          "answer": "sol"
-        },
-        {
-          "emoji": "🐟",
-          "prompt": "O peixe vive na ____.",
-          "choices": [
+          "targets": [
+            "gato",
             "água",
-            "árvore",
-            "cama",
-            "rua"
-          ],
-          "answer": "água"
-        },
-        {
-          "emoji": "🍎",
-          "prompt": "Eu como uma ____ vermelha.",
-          "choices": [
-            "maçã",
-            "bola",
-            "mesa",
-            "nuvem"
-          ],
-          "answer": "maçã"
-        },
-        {
-          "emoji": "🛏️",
-          "prompt": "À noite eu vou ____.",
-          "choices": [
-            "dormir",
-            "correr",
-            "pular",
-            "nadar"
-          ],
-          "answer": "dormir"
+            "céu",
+            "livro",
+            "fruta"
+          ]
         }
       ]
     },
     {
       "id": "pt-leia-imagem",
       "title": "Leia e escolha a imagem",
-      "icon": "👀",
-      "type": "choice",
+      "icon": "📖",
+      "type": "memory",
       "items": [
         {
-          "emoji": "❓",
-          "prompt": "Qual é o CACHORRO?",
-          "choices": [
-            "🐕",
-            "🐈",
-            "🐟",
-            "🐘"
-          ],
-          "answer": "🐕"
-        },
-        {
-          "emoji": "❓",
-          "prompt": "Qual é a MAÇÃ?",
-          "choices": [
-            "🍎",
-            "🍌",
-            "🍇",
-            "🍉"
-          ],
-          "answer": "🍎"
-        },
-        {
-          "emoji": "❓",
-          "prompt": "Qual é o SOL?",
-          "choices": [
-            "🌞",
-            "🌙",
-            "⭐",
-            "☁️"
-          ],
-          "answer": "🌞"
-        },
-        {
-          "emoji": "❓",
-          "prompt": "Qual é a BOLA?",
-          "choices": [
-            "⚽",
-            "🚗",
-            "📚",
-            "🪑"
-          ],
-          "answer": "⚽"
-        },
-        {
-          "emoji": "❓",
-          "prompt": "Qual é o PEIXE?",
-          "choices": [
-            "🐟",
-            "🐦",
-            "🐝",
-            "🦋"
-          ],
-          "answer": "🐟"
+          "emoji": "📖",
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "GATO",
+              "b": "🐈"
+            },
+            {
+              "key": "m1",
+              "a": "BOLA",
+              "b": "⚽"
+            },
+            {
+              "key": "m2",
+              "a": "CASA",
+              "b": "🏠"
+            },
+            {
+              "key": "m3",
+              "a": "PEIXE",
+              "b": "🐟"
+            },
+            {
+              "key": "m4",
+              "a": "BANANA",
+              "b": "🍌"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pt-verdadeiro-falso",
+      "id": "pt-vf",
       "title": "Verdadeiro ou falso",
-      "icon": "❔",
+      "icon": "✅",
       "type": "choice",
       "items": [
         {
           "emoji": "🐈",
-          "prompt": "A palavra GATO começa com a letra G. Isso é...",
+          "prompt": "A palavra GATO começa com G.",
           "choices": [
             "Verdadeiro",
             "Falso"
@@ -1779,8 +1375,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "Verdadeiro"
         },
         {
-          "emoji": "🍌",
-          "prompt": "A palavra BANANA tem 2 sílabas. Isso é...",
+          "emoji": "🐄",
+          "prompt": "A palavra VACA termina com O.",
           "choices": [
             "Verdadeiro",
             "Falso"
@@ -1788,8 +1384,17 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "answer": "Falso"
         },
         {
-          "emoji": "🌞",
-          "prompt": "A letra A é uma vogal. Isso é...",
+          "emoji": "🍌",
+          "prompt": "BANANA tem três sílabas.",
+          "choices": [
+            "Verdadeiro",
+            "Falso"
+          ],
+          "answer": "Verdadeiro"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "SAPO começa com a sílaba SA.",
           "choices": [
             "Verdadeiro",
             "Falso"
@@ -1798,84 +1403,47 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         },
         {
           "emoji": "🏠",
-          "prompt": "A palavra CASA termina com a letra O. Isso é...",
+          "prompt": "CASA tem cinco letras.",
           "choices": [
             "Verdadeiro",
             "Falso"
           ],
           "answer": "Falso"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "BOLA e MOLA rimam. Isso é...",
-          "choices": [
-            "Verdadeiro",
-            "Falso"
-          ],
-          "answer": "Verdadeiro"
         }
       ]
     },
     {
       "id": "pt-interpretacao",
       "title": "Pequena interpretação",
-      "icon": "📖",
-      "type": "choice",
+      "icon": "📚",
+      "type": "crossword",
       "items": [
         {
-          "emoji": "🐈",
-          "prompt": "“O gato subiu no telhado.” Onde o gato subiu?",
-          "choices": [
-            "No telhado",
-            "Na árvore",
-            "No carro",
-            "Na cama"
-          ],
-          "answer": "No telhado"
-        },
-        {
-          "emoji": "🍎",
-          "prompt": "“Ana comeu uma maçã.” O que Ana comeu?",
-          "choices": [
-            "Uma maçã",
-            "Uma banana",
-            "Um bolo",
-            "Uma pera"
-          ],
-          "answer": "Uma maçã"
-        },
-        {
-          "emoji": "🌧️",
-          "prompt": "“Estava chovendo, então peguei o guarda-chuva.” Por que peguei o guarda-chuva?",
-          "choices": [
-            "Porque chovia",
-            "Porque fazia sol",
-            "Porque ventava",
-            "Porque nevava"
-          ],
-          "answer": "Porque chovia"
-        },
-        {
-          "emoji": "🐕",
-          "prompt": "“O cachorro estava com fome e comeu a ração.” Como o cachorro estava?",
-          "choices": [
-            "Com fome",
-            "Com sono",
-            "Com medo",
-            "Feliz"
-          ],
-          "answer": "Com fome"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "“João jogou bola no parque com os amigos.” Onde João jogou bola?",
-          "choices": [
-            "No parque",
-            "Na escola",
-            "Em casa",
-            "Na praia"
-          ],
-          "answer": "No parque"
+          "emoji": "📚",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "CAMA",
+              "clue": "Onde o gato dorme",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "AGUA",
+              "clue": "Onde o peixe nada",
+              "row": 0,
+              "col": 1,
+              "dir": "v"
+            },
+            {
+              "answer": "LIVRO",
+              "clue": "O que Pedro leu",
+              "row": 4,
+              "col": 0,
+              "dir": "h"
+            }
+          ]
         }
       ]
     }
@@ -2415,62 +1983,45 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-contar",
       "title": "Conte os objetos",
       "icon": "🍎",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "🍎 🍎 🍎",
-          "prompt": "Quantas maçãs aparecem?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
+          "emoji": "🍎",
+          "prompt": "Leve cada grupo de objetos até a quantidade correta.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🍎 🍎 🍎 Quantas maçãs aparecem?",
+              "target": "3"
+            },
+            {
+              "id": "c1",
+              "label": "⭐ ⭐ ⭐ ⭐ Quantas estrelas aparecem?",
+              "target": "4"
+            },
+            {
+              "id": "c2",
+              "label": "🐟 🐟 🐟 🐟 🐟 Quantos peixes aparecem?",
+              "target": "5"
+            },
+            {
+              "id": "c3",
+              "label": "⚽ ⚽ Quantas bolas aparecem?",
+              "target": "2"
+            },
+            {
+              "id": "c4",
+              "label": "🌼 🌼 🌼 🌼 🌼 🌼 Quantas flores aparecem?",
+              "target": "6"
+            }
           ],
-          "answer": "3"
-        },
-        {
-          "emoji": "⭐ ⭐ ⭐ ⭐",
-          "prompt": "Quantas estrelas aparecem?",
-          "choices": [
+          "targets": [
             "3",
             "4",
             "5",
+            "2",
             "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "🐟 🐟 🐟 🐟 🐟",
-          "prompt": "Quantos peixes aparecem?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "⚽ ⚽",
-          "prompt": "Quantas bolas aparecem?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "🌼 🌼 🌼 🌼 🌼 🌼",
-          "prompt": "Quantas flores aparecem?",
-          "choices": [
-            "5",
-            "6",
-            "7",
-            "8"
-          ],
-          "answer": "6"
+          ]
         }
       ]
     },
@@ -2478,62 +2029,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-faltam",
       "title": "Quantos faltam?",
       "icon": "🧺",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🍎 🍎 🍎",
-          "prompt": "Para ter 5 maçãs, quantas faltam?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "⭐ ⭐ ⭐ ⭐",
-          "prompt": "Para ter 6 estrelas, quantas faltam?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "⚽ ⚽",
-          "prompt": "Para ter 5 bolas, quantas faltam?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "🐟 🐟 🐟 🐟 🐟",
-          "prompt": "Para ter 8 peixes, quantos faltam?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "🌼 🌼 🌼",
-          "prompt": "Para ter 7 flores, quantas faltam?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
+          "emoji": "🧺",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🍎 🍎 🍎 Para ter 5 maçãs, quantas faltam?",
+              "right": "2"
+            },
+            {
+              "key": "p1",
+              "left": "⭐ ⭐ ⭐ ⭐ Para ter 6 estrelas, quantas faltam?",
+              "right": "2"
+            },
+            {
+              "key": "p2",
+              "left": "⚽ ⚽ Para ter 5 bolas, quantas faltam?",
+              "right": "3"
+            },
+            {
+              "key": "p3",
+              "left": "🐟 🐟 🐟 🐟 🐟 Para ter 8 peixes, quantos faltam?",
+              "right": "3"
+            },
+            {
+              "key": "p4",
+              "left": "🌼 🌼 🌼 Para ter 7 flores, quantas faltam?",
+              "right": "4"
+            }
+          ]
         }
       ]
     },
@@ -2541,62 +2068,44 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-sobraram",
       "title": "Quantos sobraram?",
       "icon": "📦",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "🍎",
-          "prompt": "Havia 5 maçãs. Comemos 2. Quantas sobraram?",
-          "choices": [
-            "2",
+          "emoji": "📦",
+          "prompt": "Leve cada situação até a quantidade que sobrou.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🍎 Havia 5 maçãs. Comemos 2. Quantas sobraram?",
+              "target": "3"
+            },
+            {
+              "id": "c1",
+              "label": "⚽ Havia 7 bolas. Guardamos 3. Quantas ficaram f…",
+              "target": "4"
+            },
+            {
+              "id": "c2",
+              "label": "⭐ Havia 9 estrelas. Tiramos 4. Quantas sobraram?",
+              "target": "5"
+            },
+            {
+              "id": "c3",
+              "label": "🐟 Havia 6 peixes. 1 saiu. Quantos ficaram?",
+              "target": "5"
+            },
+            {
+              "id": "c4",
+              "label": "🌼 Havia 10 flores. Colhemos 3. Quantas sobraram?",
+              "target": "7"
+            }
+          ],
+          "targets": [
             "3",
             "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "⚽",
-          "prompt": "Havia 7 bolas. Guardamos 3. Quantas ficaram fora?",
-          "choices": [
-            "3",
-            "4",
             "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "⭐",
-          "prompt": "Havia 9 estrelas. Tiramos 4. Quantas sobraram?",
-          "choices": [
-            "4",
-            "5",
-            "6",
             "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "🐟",
-          "prompt": "Havia 6 peixes. 1 saiu. Quantos ficaram?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "🌼",
-          "prompt": "Havia 10 flores. Colhemos 3. Quantas sobraram?",
-          "choices": [
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "answer": "7"
+          ]
         }
       ]
     },
@@ -2604,51 +2113,18 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-grupo2",
       "title": "Agrupe de dois em dois",
       "icon": "👯",
-      "type": "choice",
+      "type": "sequence",
       "items": [
         {
-          "emoji": "● ● ● ● ● ●",
-          "prompt": "Quantos grupos de 2 podemos formar?",
-          "choices": [
+          "emoji": "👯",
+          "prompt": "Organize a contagem de dois em dois.",
+          "steps": [
             "2",
-            "3",
             "4",
-            "6"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "★ ★ ★ ★ ★ ★ ★ ★",
-          "prompt": "Quantos pares de estrelas?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "🍎 🍎 🍎 🍎",
-          "prompt": "Quantos grupos de 2?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "⚽ ⚽ ⚽ ⚽ ⚽ ⚽ ⚽ ⚽ ⚽ ⚽",
-          "prompt": "Quantos pares de bolas?",
-          "choices": [
-            "4",
-            "5",
             "6",
+            "8",
             "10"
-          ],
-          "answer": "5"
+          ]
         }
       ]
     },
@@ -2656,51 +2132,18 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-grupo5",
       "title": "Agrupe de cinco em cinco",
       "icon": "🖐️",
-      "type": "choice",
+      "type": "sequence",
       "items": [
         {
-          "emoji": "10 objetos",
-          "prompt": "Quantos grupos de 5 há em 10?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "5"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "15 objetos",
-          "prompt": "Quantos grupos de 5 há em 15?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "20 objetos",
-          "prompt": "Quantos grupos de 5 há em 20?",
-          "choices": [
-            "3",
-            "4",
+          "emoji": "🖐️",
+          "prompt": "Organize a contagem de cinco em cinco.",
+          "steps": [
             "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "25 objetos",
-          "prompt": "Quantos grupos de 5 há em 25?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
+            "10",
+            "15",
+            "20",
+            "25"
+          ]
         }
       ]
     },
@@ -2708,51 +2151,18 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-grupo10",
       "title": "Agrupe de dez em dez",
       "icon": "🔟",
-      "type": "choice",
+      "type": "sequence",
       "items": [
         {
-          "emoji": "20 objetos",
-          "prompt": "Quantos grupos de 10 há em 20?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "30 objetos",
-          "prompt": "Quantos grupos de 10 há em 30?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "40 objetos",
-          "prompt": "Quantos grupos de 10 há em 40?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "50 objetos",
-          "prompt": "Quantos grupos de 10 há em 50?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "10"
-          ],
-          "answer": "5"
+          "emoji": "🔟",
+          "prompt": "Organize a contagem de dez em dez.",
+          "steps": [
+            "10",
+            "20",
+            "30",
+            "40",
+            "50"
+          ]
         }
       ]
     },
@@ -2760,62 +2170,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-soma-fig",
       "title": "Soma com figuras",
       "icon": "🍎",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🍎 🍎  +  🍎",
-          "prompt": "Quantas maçãs ao todo?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "⭐ ⭐ ⭐  +  ⭐ ⭐",
-          "prompt": "Quantas estrelas ao todo?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "⚽ ⚽  +  ⚽ ⚽",
-          "prompt": "Quantas bolas ao todo?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "🐟 🐟 🐟 🐟  +  🐟",
-          "prompt": "Quantos peixes ao todo?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "🌼 🌼 🌼  +  🌼 🌼 🌼",
-          "prompt": "Quantas flores ao todo?",
-          "choices": [
-            "5",
-            "6",
-            "7",
-            "8"
-          ],
-          "answer": "6"
+          "emoji": "🍎",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🍎 🍎  +  🍎 Quantas maçãs ao todo?",
+              "right": "3"
+            },
+            {
+              "key": "p1",
+              "left": "⭐ ⭐ ⭐  +  ⭐ ⭐ Quantas estrelas ao todo?",
+              "right": "5"
+            },
+            {
+              "key": "p2",
+              "left": "⚽ ⚽  +  ⚽ ⚽ Quantas bolas ao todo?",
+              "right": "4"
+            },
+            {
+              "key": "p3",
+              "left": "🐟 🐟 🐟 🐟  +  🐟 Quantos peixes ao todo?",
+              "right": "5"
+            },
+            {
+              "key": "p4",
+              "left": "🌼 🌼 🌼  +  🌼 🌼 🌼 Quantas flores ao todo?",
+              "right": "6"
+            }
+          ]
         }
       ]
     },
@@ -2886,62 +2272,42 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-complete-soma",
       "title": "Complete a soma",
       "icon": "❓",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "2 + __ = 5",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
+          "emoji": "❓",
+          "prompt": "Leve cada conta até o resultado correto.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "2 + __ = 5 Qual número falta?",
+              "target": "3"
+            },
+            {
+              "id": "c1",
+              "label": "__ + 4 = 7 Qual número falta?",
+              "target": "3"
+            },
+            {
+              "id": "c2",
+              "label": "5 + __ = 9 Qual número falta?",
+              "target": "4"
+            },
+            {
+              "id": "c3",
+              "label": "__ + 6 = 10 Qual número falta?",
+              "target": "4"
+            },
+            {
+              "id": "c4",
+              "label": "8 + __ = 12 Qual número falta?",
+              "target": "4"
+            }
           ],
-          "answer": "3"
-        },
-        {
-          "emoji": "__ + 4 = 7",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "2",
+          "targets": [
             "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "5 + __ = 9",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "__ + 6 = 10",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "8 + __ = 12",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "4"
+            "4"
+          ]
         }
       ]
     },
@@ -2949,62 +2315,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-sub-fig",
       "title": "Subtração com figuras",
       "icon": "🍎",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
-          "emoji": "🍎 🍎 🍎  −  🍎",
-          "prompt": "Quantas maçãs sobraram?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "⭐ ⭐ ⭐ ⭐ ⭐  −  ⭐ ⭐",
-          "prompt": "Quantas estrelas sobraram?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "⚽ ⚽ ⚽ ⚽  −  ⚽",
-          "prompt": "Quantas bolas sobraram?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "🐟 🐟 🐟 🐟 🐟  −  🐟 🐟",
-          "prompt": "Quantos peixes sobraram?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "🌼 🌼 🌼 🌼 🌼 🌼  −  🌼 🌼",
-          "prompt": "Quantas flores sobraram?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
+          "emoji": "🍎",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🍎 🍎 🍎  −  🍎 Quantas maçãs sobraram?",
+              "right": "2"
+            },
+            {
+              "key": "p1",
+              "left": "⭐ ⭐ ⭐ ⭐ ⭐  −  ⭐ ⭐ Quantas estrelas sobraram?",
+              "right": "3"
+            },
+            {
+              "key": "p2",
+              "left": "⚽ ⚽ ⚽ ⚽  −  ⚽ Quantas bolas sobraram?",
+              "right": "3"
+            },
+            {
+              "key": "p3",
+              "left": "🐟 🐟 🐟 🐟 🐟  −  🐟 🐟 Quantos peixes sobraram?",
+              "right": "3"
+            },
+            {
+              "key": "p4",
+              "left": "🌼 🌼 🌼 🌼 🌼 🌼  −  🌼 🌼 Quantas flores sobraram?",
+              "right": "4"
+            }
+          ]
         }
       ]
     },
@@ -3075,62 +2417,45 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-complete-sub",
       "title": "Complete a subtração",
       "icon": "❓",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "5 − __ = 3",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "1",
+          "emoji": "❓",
+          "prompt": "Leve cada conta incompleta até o número que falta.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "5 − __ = 3 Qual número falta?",
+              "target": "2"
+            },
+            {
+              "id": "c1",
+              "label": "__ − 2 = 6 Qual número falta?",
+              "target": "8"
+            },
+            {
+              "id": "c2",
+              "label": "9 − __ = 5 Qual número falta?",
+              "target": "4"
+            },
+            {
+              "id": "c3",
+              "label": "__ − 4 = 6 Qual número falta?",
+              "target": "10"
+            },
+            {
+              "id": "c4",
+              "label": "12 − __ = 7 Qual número falta?",
+              "target": "5"
+            }
+          ],
+          "targets": [
             "2",
-            "3",
-            "4"
-          ],
-          "answer": "2"
-        },
-        {
-          "emoji": "__ − 2 = 6",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "6",
-            "7",
             "8",
-            "9"
-          ],
-          "answer": "8"
-        },
-        {
-          "emoji": "9 − __ = 5",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "3",
             "4",
-            "5",
-            "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "__ − 4 = 6",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "8",
-            "9",
             "10",
-            "11"
-          ],
-          "answer": "10"
-        },
-        {
-          "emoji": "12 − __ = 7",
-          "prompt": "Qual número falta?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
+            "5"
+          ]
         }
       ]
     },
@@ -3138,62 +2463,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-dobro",
       "title": "Dobro",
       "icon": "✌️",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
-          "emoji": "2",
-          "prompt": "Qual é o dobro de 2?",
-          "choices": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "3",
-          "prompt": "Qual é o dobro de 3?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "6"
-        },
-        {
-          "emoji": "4",
-          "prompt": "Qual é o dobro de 4?",
-          "choices": [
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "answer": "8"
-        },
-        {
-          "emoji": "5",
-          "prompt": "Qual é o dobro de 5?",
-          "choices": [
-            "8",
-            "9",
-            "10",
-            "11"
-          ],
-          "answer": "10"
-        },
-        {
-          "emoji": "6",
-          "prompt": "Qual é o dobro de 6?",
-          "choices": [
-            "10",
-            "11",
-            "12",
-            "13"
-          ],
-          "answer": "12"
+          "emoji": "✌️",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "2 Qual é o dobro de 2?",
+              "right": "4"
+            },
+            {
+              "key": "p1",
+              "left": "3 Qual é o dobro de 3?",
+              "right": "6"
+            },
+            {
+              "key": "p2",
+              "left": "4 Qual é o dobro de 4?",
+              "right": "8"
+            },
+            {
+              "key": "p3",
+              "left": "5 Qual é o dobro de 5?",
+              "right": "10"
+            },
+            {
+              "key": "p4",
+              "left": "6 Qual é o dobro de 6?",
+              "right": "12"
+            }
+          ]
         }
       ]
     },
@@ -3201,62 +2502,45 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-metade",
       "title": "Metade",
       "icon": "🍰",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "4",
-          "prompt": "Qual é a metade de 4?",
-          "choices": [
-            "1",
-            "2",
-            "3",
-            "4"
+          "emoji": "🍰",
+          "prompt": "Leve cada quantidade até a sua metade.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "4 Qual é a metade de 4?",
+              "target": "2"
+            },
+            {
+              "id": "c1",
+              "label": "6 Qual é a metade de 6?",
+              "target": "3"
+            },
+            {
+              "id": "c2",
+              "label": "8 Qual é a metade de 8?",
+              "target": "4"
+            },
+            {
+              "id": "c3",
+              "label": "10 Qual é a metade de 10?",
+              "target": "5"
+            },
+            {
+              "id": "c4",
+              "label": "12 Qual é a metade de 12?",
+              "target": "6"
+            }
           ],
-          "answer": "2"
-        },
-        {
-          "emoji": "6",
-          "prompt": "Qual é a metade de 6?",
-          "choices": [
+          "targets": [
             "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": "3"
-        },
-        {
-          "emoji": "8",
-          "prompt": "Qual é a metade de 8?",
-          "choices": [
             "3",
             "4",
             "5",
             "6"
-          ],
-          "answer": "4"
-        },
-        {
-          "emoji": "10",
-          "prompt": "Qual é a metade de 10?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "12",
-          "prompt": "Qual é a metade de 12?",
-          "choices": [
-            "5",
-            "6",
-            "7",
-            "8"
-          ],
-          "answer": "6"
+          ]
         }
       ]
     },
@@ -3327,62 +2611,21 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-prob-sub",
       "title": "Probleminhas de subtração",
       "icon": "📘",
-      "type": "choice",
+      "type": "maze",
       "items": [
         {
-          "emoji": "🍬",
-          "prompt": "Pedro tinha 6 balas e comeu 2. Quantas sobraram?",
-          "choices": [
-            "3",
-            "4",
-            "5",
-            "6"
+          "emoji": "📘",
+          "prompt": "Leve o Dixi até a resposta do probleminha.",
+          "grid": [
+            "S..#...",
+            "##.#.#.",
+            "...#.#.",
+            ".###.#.",
+            ".....#.",
+            ".#####.",
+            "......G"
           ],
-          "answer": "4"
-        },
-        {
-          "emoji": "🎈",
-          "prompt": "Havia 8 balões e 3 estouraram. Quantos sobraram?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "🐟",
-          "prompt": "No aquário havia 9 peixes e 4 saíram. Quantos ficaram?",
-          "choices": [
-            "4",
-            "5",
-            "6",
-            "7"
-          ],
-          "answer": "5"
-        },
-        {
-          "emoji": "✏️",
-          "prompt": "Lia tinha 10 lápis e perdeu 3. Quantos ficaram?",
-          "choices": [
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "answer": "7"
-        },
-        {
-          "emoji": "🍪",
-          "prompt": "Havia 12 biscoitos e comemos 5. Quantos sobraram?",
-          "choices": [
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "answer": "7"
+          "goalLabel": "Resposta correta"
         }
       ]
     },
@@ -3390,62 +2633,43 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-dinheiro",
       "title": "Sistema monetário",
       "icon": "💰",
-      "type": "choice",
+      "type": "dragdrop",
       "items": [
         {
-          "emoji": "R$ 2 + R$ 3",
-          "prompt": "Quanto dinheiro há ao todo?",
-          "choices": [
-            "R$ 4",
+          "emoji": "💰",
+          "prompt": "Leve cada compra até o valor correto.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "R$ 2 + R$ 3 Quanto dinheiro há ao todo?",
+              "target": "R$ 5"
+            },
+            {
+              "id": "c1",
+              "label": "R$ 5 Uma bala custa R$ 2. Quanto sobra?",
+              "target": "R$ 3"
+            },
+            {
+              "id": "c2",
+              "label": "R$ 10 Um brinquedo custa R$ 7. Quanto sobra?",
+              "target": "R$ 3"
+            },
+            {
+              "id": "c3",
+              "label": "🪙 🪙 🪙 Três moedas de R$ 1 valem quanto?",
+              "target": "R$ 3"
+            },
+            {
+              "id": "c4",
+              "label": "R$ 5 + R$ 5 Quanto temos?",
+              "target": "R$ 10"
+            }
+          ],
+          "targets": [
             "R$ 5",
-            "R$ 6",
-            "R$ 7"
-          ],
-          "answer": "R$ 5"
-        },
-        {
-          "emoji": "R$ 5",
-          "prompt": "Uma bala custa R$ 2. Quanto sobra?",
-          "choices": [
-            "R$ 2",
             "R$ 3",
-            "R$ 4",
-            "R$ 5"
-          ],
-          "answer": "R$ 3"
-        },
-        {
-          "emoji": "R$ 10",
-          "prompt": "Um brinquedo custa R$ 7. Quanto sobra?",
-          "choices": [
-            "R$ 2",
-            "R$ 3",
-            "R$ 4",
-            "R$ 5"
-          ],
-          "answer": "R$ 3"
-        },
-        {
-          "emoji": "🪙 🪙 🪙",
-          "prompt": "Três moedas de R$ 1 valem quanto?",
-          "choices": [
-            "R$ 1",
-            "R$ 2",
-            "R$ 3",
-            "R$ 4"
-          ],
-          "answer": "R$ 3"
-        },
-        {
-          "emoji": "R$ 5 + R$ 5",
-          "prompt": "Quanto temos?",
-          "choices": [
-            "R$ 8",
-            "R$ 9",
-            "R$ 10",
-            "R$ 11"
-          ],
-          "answer": "R$ 10"
+            "R$ 10"
+          ]
         }
       ]
     },
@@ -3453,62 +2677,18 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-calendario",
       "title": "Calendário",
       "icon": "📅",
-      "type": "choice",
+      "type": "sequence",
       "items": [
         {
           "emoji": "📅",
-          "prompt": "Quantos dias tem uma semana?",
-          "choices": [
-            "5",
-            "6",
-            "7",
-            "8"
-          ],
-          "answer": "7"
-        },
-        {
-          "emoji": "📅",
-          "prompt": "Qual dia vem depois de segunda-feira?",
-          "choices": [
-            "domingo",
-            "terça-feira",
-            "quarta-feira",
-            "sexta-feira"
-          ],
-          "answer": "terça-feira"
-        },
-        {
-          "emoji": "📅",
-          "prompt": "Qual dia vem antes de sexta-feira?",
-          "choices": [
-            "quarta-feira",
-            "quinta-feira",
-            "sábado",
-            "domingo"
-          ],
-          "answer": "quinta-feira"
-        },
-        {
-          "emoji": "📅",
-          "prompt": "Quantos meses tem um ano?",
-          "choices": [
-            "10",
-            "11",
-            "12",
-            "13"
-          ],
-          "answer": "12"
-        },
-        {
-          "emoji": "📅",
-          "prompt": "Qual mês vem depois de junho?",
-          "choices": [
-            "maio",
-            "julho",
-            "agosto",
-            "setembro"
-          ],
-          "answer": "julho"
+          "prompt": "Organize os dias da semana.",
+          "steps": [
+            "SEGUNDA",
+            "TERÇA",
+            "QUARTA",
+            "QUINTA",
+            "SEXTA"
+          ]
         }
       ]
     },
@@ -3516,62 +2696,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-horas",
       "title": "Horas exatas",
       "icon": "🕒",
-      "type": "choice",
+      "type": "matching",
       "items": [
         {
           "emoji": "🕒",
-          "prompt": "Que horas o relógio mostra?",
-          "choices": [
-            "2 horas",
-            "3 horas",
-            "4 horas",
-            "5 horas"
-          ],
-          "answer": "3 horas"
-        },
-        {
-          "emoji": "🕕",
-          "prompt": "Que horas o relógio mostra?",
-          "choices": [
-            "5 horas",
-            "6 horas",
-            "7 horas",
-            "8 horas"
-          ],
-          "answer": "6 horas"
-        },
-        {
-          "emoji": "🕘",
-          "prompt": "Que horas o relógio mostra?",
-          "choices": [
-            "8 horas",
-            "9 horas",
-            "10 horas",
-            "11 horas"
-          ],
-          "answer": "9 horas"
-        },
-        {
-          "emoji": "🕛",
-          "prompt": "Que horas o relógio mostra?",
-          "choices": [
-            "10 horas",
-            "11 horas",
-            "12 horas",
-            "1 hora"
-          ],
-          "answer": "12 horas"
-        },
-        {
-          "emoji": "🕓",
-          "prompt": "Que horas o relógio mostra?",
-          "choices": [
-            "3 horas",
-            "4 horas",
-            "5 horas",
-            "6 horas"
-          ],
-          "answer": "4 horas"
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🕒 Que horas o relógio mostra?",
+              "right": "3 horas"
+            },
+            {
+              "key": "p1",
+              "left": "🕕 Que horas o relógio mostra?",
+              "right": "6 horas"
+            },
+            {
+              "key": "p2",
+              "left": "🕘 Que horas o relógio mostra?",
+              "right": "9 horas"
+            },
+            {
+              "key": "p3",
+              "left": "🕛 Que horas o relógio mostra?",
+              "right": "12 horas"
+            },
+            {
+              "key": "p4",
+              "left": "🕓 Que horas o relógio mostra?",
+              "right": "4 horas"
+            }
+          ]
         }
       ]
     },
@@ -3579,62 +2735,38 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
       "id": "mt-formas",
       "title": "Formas geométricas",
       "icon": "🔺",
-      "type": "choice",
+      "type": "memory",
       "items": [
         {
           "emoji": "🔺",
-          "prompt": "Que forma é esta?",
-          "choices": [
-            "Círculo",
-            "Quadrado",
-            "Triângulo",
-            "Retângulo"
-          ],
-          "answer": "Triângulo"
-        },
-        {
-          "emoji": "🟦",
-          "prompt": "Que forma é esta?",
-          "choices": [
-            "Círculo",
-            "Quadrado",
-            "Triângulo",
-            "Retângulo"
-          ],
-          "answer": "Quadrado"
-        },
-        {
-          "emoji": "⚪",
-          "prompt": "Que forma é esta?",
-          "choices": [
-            "Círculo",
-            "Quadrado",
-            "Triângulo",
-            "Retângulo"
-          ],
-          "answer": "Círculo"
-        },
-        {
-          "emoji": "▭",
-          "prompt": "Que forma é esta?",
-          "choices": [
-            "Círculo",
-            "Quadrado",
-            "Triângulo",
-            "Retângulo"
-          ],
-          "answer": "Retângulo"
-        },
-        {
-          "emoji": "🔷",
-          "prompt": "Que forma parece um diamante?",
-          "choices": [
-            "Losango",
-            "Círculo",
-            "Quadrado",
-            "Triângulo"
-          ],
-          "answer": "Losango"
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "🔺",
+              "b": "Triângulo"
+            },
+            {
+              "key": "m1",
+              "a": "🟦",
+              "b": "Quadrado"
+            },
+            {
+              "key": "m2",
+              "a": "⚪",
+              "b": "Círculo"
+            },
+            {
+              "key": "m3",
+              "a": "▭",
+              "b": "Retângulo"
+            },
+            {
+              "key": "m4",
+              "a": "🔷",
+              "b": "Losango"
+            }
+          ]
         }
       ]
     }
@@ -4560,7 +3692,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🐶",
             "🐱",
-            "🐰"
+            "🐰",
+            "🐭"
           ],
           "answer": "🐶"
         },
@@ -4570,7 +3703,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🍎",
             "🍌",
-            "🍇"
+            "🍇",
+            "🍓"
           ],
           "answer": "🍎"
         },
@@ -4873,7 +4007,8 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
           "choices": [
             "🚲",
             "🚗",
-            "🚌"
+            "🚌",
+            "🚂"
           ],
           "answer": "🚲"
         },
@@ -5462,11 +4597,3354 @@ export const exercises: Record<ExerciseCategory, Exercise[]> = {
         }
       ]
     }
+  ],
+  "geografia": [
+    {
+      "id": "geo-comodos",
+      "title": "Cômodos da casa",
+      "icon": "🏠",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🛏️",
+          "prompt": "Em qual cômodo geralmente dormimos?",
+          "choices": [
+            "Quarto",
+            "Cozinha",
+            "Banheiro",
+            "Garagem"
+          ],
+          "answer": "Quarto"
+        },
+        {
+          "emoji": "🚿",
+          "prompt": "Em qual cômodo tomamos banho?",
+          "choices": [
+            "Banheiro",
+            "Sala",
+            "Quarto",
+            "Cozinha"
+          ],
+          "answer": "Banheiro"
+        },
+        {
+          "emoji": "🍳",
+          "prompt": "Em qual cômodo preparamos a comida?",
+          "choices": [
+            "Cozinha",
+            "Quarto",
+            "Sala",
+            "Garagem"
+          ],
+          "answer": "Cozinha"
+        },
+        {
+          "emoji": "📺",
+          "prompt": "Em qual cômodo a família costuma assistir televisão?",
+          "choices": [
+            "Sala",
+            "Banheiro",
+            "Garagem",
+            "Quarto"
+          ],
+          "answer": "Sala"
+        },
+        {
+          "emoji": "🚗",
+          "prompt": "Onde o carro costuma ficar guardado?",
+          "choices": [
+            "Garagem",
+            "Cozinha",
+            "Quarto",
+            "Banheiro"
+          ],
+          "answer": "Garagem"
+        }
+      ]
+    },
+    {
+      "id": "geo-acoes-casa",
+      "title": "Onde fazemos isso?",
+      "icon": "🧼",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🪥",
+          "prompt": "Onde escovamos os dentes?",
+          "choices": [
+            "Banheiro",
+            "Sala",
+            "Garagem",
+            "Quintal"
+          ],
+          "answer": "Banheiro"
+        },
+        {
+          "emoji": "🍽️",
+          "prompt": "Onde fazemos as refeições?",
+          "choices": [
+            "Cozinha",
+            "Banheiro",
+            "Garagem",
+            "Quarto"
+          ],
+          "answer": "Cozinha"
+        },
+        {
+          "emoji": "😴",
+          "prompt": "Onde costumamos dormir?",
+          "choices": [
+            "Quarto",
+            "Cozinha",
+            "Sala",
+            "Varanda"
+          ],
+          "answer": "Quarto"
+        },
+        {
+          "emoji": "🧺",
+          "prompt": "Onde podemos lavar roupas?",
+          "choices": [
+            "Lavanderia",
+            "Sala",
+            "Quarto",
+            "Garagem"
+          ],
+          "answer": "Lavanderia"
+        },
+        {
+          "emoji": "🛋️",
+          "prompt": "Onde costumamos receber visitas?",
+          "choices": [
+            "Sala",
+            "Banheiro",
+            "Lavanderia",
+            "Garagem"
+          ],
+          "answer": "Sala"
+        }
+      ]
+    },
+    {
+      "id": "geo-lugares-cidade",
+      "title": "Lugares da cidade",
+      "icon": "🏙️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🏫",
+          "prompt": "Onde as crianças estudam?",
+          "choices": [
+            "Escola",
+            "Hospital",
+            "Banco",
+            "Mercado"
+          ],
+          "answer": "Escola"
+        },
+        {
+          "emoji": "🏥",
+          "prompt": "Onde vamos quando precisamos de atendimento médico?",
+          "choices": [
+            "Hospital",
+            "Padaria",
+            "Parque",
+            "Cinema"
+          ],
+          "answer": "Hospital"
+        },
+        {
+          "emoji": "🛒",
+          "prompt": "Onde compramos alimentos e produtos para casa?",
+          "choices": [
+            "Mercado",
+            "Biblioteca",
+            "Escola",
+            "Praça"
+          ],
+          "answer": "Mercado"
+        },
+        {
+          "emoji": "📚",
+          "prompt": "Onde podemos pegar livros emprestados?",
+          "choices": [
+            "Biblioteca",
+            "Farmácia",
+            "Banco",
+            "Posto"
+          ],
+          "answer": "Biblioteca"
+        },
+        {
+          "emoji": "🌳",
+          "prompt": "Onde podemos brincar ao ar livre na cidade?",
+          "choices": [
+            "Parque",
+            "Hospital",
+            "Banco",
+            "Delegacia"
+          ],
+          "answer": "Parque"
+        }
+      ]
+    },
+    {
+      "id": "geo-compras-servicos",
+      "title": "Onde encontramos?",
+      "icon": "🛍️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🥖",
+          "prompt": "Onde compramos pão?",
+          "choices": [
+            "Padaria",
+            "Farmácia",
+            "Hospital",
+            "Banco"
+          ],
+          "answer": "Padaria"
+        },
+        {
+          "emoji": "💊",
+          "prompt": "Onde compramos remédios?",
+          "choices": [
+            "Farmácia",
+            "Escola",
+            "Praça",
+            "Biblioteca"
+          ],
+          "answer": "Farmácia"
+        },
+        {
+          "emoji": "✉️",
+          "prompt": "Onde enviamos cartas e encomendas?",
+          "choices": [
+            "Correio",
+            "Mercado",
+            "Hospital",
+            "Cinema"
+          ],
+          "answer": "Correio"
+        },
+        {
+          "emoji": "💰",
+          "prompt": "Onde guardamos e movimentamos dinheiro?",
+          "choices": [
+            "Banco",
+            "Padaria",
+            "Parque",
+            "Escola"
+          ],
+          "answer": "Banco"
+        },
+        {
+          "emoji": "⛽",
+          "prompt": "Onde abastecemos um carro?",
+          "choices": [
+            "Posto de combustível",
+            "Biblioteca",
+            "Praça",
+            "Hospital"
+          ],
+          "answer": "Posto de combustível"
+        }
+      ]
+    },
+    {
+      "id": "geo-profissoes-lugares",
+      "title": "Quem trabalha aqui?",
+      "icon": "👩‍⚕️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🏥",
+          "prompt": "Quem costuma trabalhar em um hospital?",
+          "choices": [
+            "Médico",
+            "Padeiro",
+            "Carteiro",
+            "Motorista"
+          ],
+          "answer": "Médico"
+        },
+        {
+          "emoji": "🏫",
+          "prompt": "Quem ensina na escola?",
+          "choices": [
+            "Professor",
+            "Dentista",
+            "Piloto",
+            "Cozinheiro"
+          ],
+          "answer": "Professor"
+        },
+        {
+          "emoji": "🥖",
+          "prompt": "Quem trabalha fazendo pães na padaria?",
+          "choices": [
+            "Padeiro",
+            "Professor",
+            "Médico",
+            "Bombeiro"
+          ],
+          "answer": "Padeiro"
+        },
+        {
+          "emoji": "🚒",
+          "prompt": "Quem apaga incêndios?",
+          "choices": [
+            "Bombeiro",
+            "Bibliotecário",
+            "Caixa",
+            "Pintor"
+          ],
+          "answer": "Bombeiro"
+        },
+        {
+          "emoji": "📚",
+          "prompt": "Quem organiza livros em uma biblioteca?",
+          "choices": [
+            "Bibliotecário",
+            "Mecânico",
+            "Agricultor",
+            "Piloto"
+          ],
+          "answer": "Bibliotecário"
+        }
+      ]
+    },
+    {
+      "id": "geo-transportes",
+      "title": "Meios de transporte",
+      "icon": "🚌",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🚗",
+          "prompt": "Qual destes é um meio de transporte?",
+          "choices": [
+            "Carro",
+            "Árvore",
+            "Casa",
+            "Cadeira"
+          ],
+          "answer": "Carro"
+        },
+        {
+          "emoji": "🚲",
+          "prompt": "Qual transporte usamos pedalando?",
+          "choices": [
+            "Bicicleta",
+            "Avião",
+            "Barco",
+            "Trem"
+          ],
+          "answer": "Bicicleta"
+        },
+        {
+          "emoji": "🚌",
+          "prompt": "Qual transporte leva várias pessoas pela cidade?",
+          "choices": [
+            "Ônibus",
+            "Patins",
+            "Skate",
+            "Canoa"
+          ],
+          "answer": "Ônibus"
+        },
+        {
+          "emoji": "🚂",
+          "prompt": "Qual transporte anda sobre trilhos?",
+          "choices": [
+            "Trem",
+            "Carro",
+            "Navio",
+            "Helicóptero"
+          ],
+          "answer": "Trem"
+        },
+        {
+          "emoji": "🚕",
+          "prompt": "Qual transporte pode levar passageiros pela cidade?",
+          "choices": [
+            "Táxi",
+            "Trator",
+            "Foguete",
+            "Submarino"
+          ],
+          "answer": "Táxi"
+        }
+      ]
+    },
+    {
+      "id": "geo-terrestres",
+      "title": "Transportes terrestres",
+      "icon": "🚗",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🚗",
+          "prompt": "Qual anda por ruas e estradas?",
+          "choices": [
+            "Carro",
+            "Navio",
+            "Avião",
+            "Canoa"
+          ],
+          "answer": "Carro"
+        },
+        {
+          "emoji": "🚌",
+          "prompt": "Qual é um transporte terrestre coletivo?",
+          "choices": [
+            "Ônibus",
+            "Barco",
+            "Helicóptero",
+            "Balsa"
+          ],
+          "answer": "Ônibus"
+        },
+        {
+          "emoji": "🚲",
+          "prompt": "Qual é um transporte terrestre sem motor?",
+          "choices": [
+            "Bicicleta",
+            "Avião",
+            "Navio",
+            "Lancha"
+          ],
+          "answer": "Bicicleta"
+        },
+        {
+          "emoji": "🚂",
+          "prompt": "Qual transporte terrestre anda em trilhos?",
+          "choices": [
+            "Trem",
+            "Barco",
+            "Balão",
+            "Submarino"
+          ],
+          "answer": "Trem"
+        },
+        {
+          "emoji": "🏍️",
+          "prompt": "Qual é um transporte terrestre de duas rodas?",
+          "choices": [
+            "Motocicleta",
+            "Navio",
+            "Avião",
+            "Canoa"
+          ],
+          "answer": "Motocicleta"
+        }
+      ]
+    },
+    {
+      "id": "geo-aquaticos",
+      "title": "Transportes aquáticos",
+      "icon": "🚢",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🚢",
+          "prompt": "Qual transporte anda na água?",
+          "choices": [
+            "Navio",
+            "Carro",
+            "Trem",
+            "Ônibus"
+          ],
+          "answer": "Navio"
+        },
+        {
+          "emoji": "🛶",
+          "prompt": "Qual destes é um transporte aquático pequeno?",
+          "choices": [
+            "Canoa",
+            "Bicicleta",
+            "Avião",
+            "Metrô"
+          ],
+          "answer": "Canoa"
+        },
+        {
+          "emoji": "⛴️",
+          "prompt": "Qual pode transportar pessoas e veículos pela água?",
+          "choices": [
+            "Balsa",
+            "Ônibus",
+            "Trem",
+            "Táxi"
+          ],
+          "answer": "Balsa"
+        },
+        {
+          "emoji": "🚤",
+          "prompt": "Qual é um transporte aquático rápido?",
+          "choices": [
+            "Lancha",
+            "Patinete",
+            "Trator",
+            "Bonde"
+          ],
+          "answer": "Lancha"
+        },
+        {
+          "emoji": "⛵",
+          "prompt": "Qual transporte usa vela para navegar?",
+          "choices": [
+            "Veleiro",
+            "Carro",
+            "Avião",
+            "Trem"
+          ],
+          "answer": "Veleiro"
+        }
+      ]
+    },
+    {
+      "id": "geo-aereos",
+      "title": "Transportes aéreos",
+      "icon": "✈️",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "✈️",
+          "prompt": "Qual transporte voa pelo céu?",
+          "choices": [
+            "Avião",
+            "Navio",
+            "Trem",
+            "Ônibus"
+          ],
+          "answer": "Avião"
+        },
+        {
+          "emoji": "🚁",
+          "prompt": "Qual transporte aéreo possui hélices?",
+          "choices": [
+            "Helicóptero",
+            "Carro",
+            "Balsa",
+            "Metrô"
+          ],
+          "answer": "Helicóptero"
+        },
+        {
+          "emoji": "🎈",
+          "prompt": "Qual transporte pode voar usando ar quente?",
+          "choices": [
+            "Balão",
+            "Canoa",
+            "Trem",
+            "Bicicleta"
+          ],
+          "answer": "Balão"
+        },
+        {
+          "emoji": "✈️",
+          "prompt": "Onde o avião pousa e decola?",
+          "choices": [
+            "Aeroporto",
+            "Porto",
+            "Estação",
+            "Garagem"
+          ],
+          "answer": "Aeroporto"
+        },
+        {
+          "emoji": "🚁",
+          "prompt": "Qual destes pode pousar em um heliporto?",
+          "choices": [
+            "Helicóptero",
+            "Navio",
+            "Ônibus",
+            "Trem"
+          ],
+          "answer": "Helicóptero"
+        }
+      ]
+    },
+    {
+      "id": "geo-dia-noite",
+      "title": "Dia ou noite?",
+      "icon": "🌞",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "☀️",
+          "prompt": "Quando o Sol está brilhando no céu, geralmente é...",
+          "choices": [
+            "Dia",
+            "Noite",
+            "Madrugada escura",
+            "Inverno"
+          ],
+          "answer": "Dia"
+        },
+        {
+          "emoji": "🌙",
+          "prompt": "Quando vemos a Lua e as estrelas, geralmente é...",
+          "choices": [
+            "Noite",
+            "Dia",
+            "Manhã ensolarada",
+            "Verão"
+          ],
+          "answer": "Noite"
+        },
+        {
+          "emoji": "🐓",
+          "prompt": "O galo cantando e o Sol nascendo indicam...",
+          "choices": [
+            "Manhã",
+            "Noite",
+            "Madrugada",
+            "Meia-noite"
+          ],
+          "answer": "Manhã"
+        },
+        {
+          "emoji": "🛏️",
+          "prompt": "A maioria das pessoas costuma dormir durante a...",
+          "choices": [
+            "Noite",
+            "Tarde",
+            "Manhã",
+            "Hora do almoço"
+          ],
+          "answer": "Noite"
+        },
+        {
+          "emoji": "🌇",
+          "prompt": "O pôr do sol acontece no fim da...",
+          "choices": [
+            "Tarde",
+            "Manhã",
+            "Noite",
+            "Madrugada"
+          ],
+          "answer": "Tarde"
+        }
+      ]
+    },
+    {
+      "id": "geo-tempo",
+      "title": "Como está o tempo?",
+      "icon": "🌦️",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🌦️",
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "☀️",
+              "b": "Ensolarado"
+            },
+            {
+              "key": "m1",
+              "a": "🌧️",
+              "b": "Chuvoso"
+            },
+            {
+              "key": "m2",
+              "a": "⛅",
+              "b": "Parcialmente nublado"
+            },
+            {
+              "key": "m3",
+              "a": "⛈️",
+              "b": "Tempestade"
+            },
+            {
+              "key": "m4",
+              "a": "💨",
+              "b": "Vento"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-direita",
+      "title": "Direita",
+      "icon": "👉",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "👉",
+          "prompt": "Leve o Dixi para a direita até a árvore.",
+          "grid": [
+            "S..#...",
+            "##.#.#.",
+            "...#.#.",
+            ".###.#.",
+            ".....#.",
+            ".#####.",
+            "......G"
+          ],
+          "goalLabel": "Árvore"
+        }
+      ]
+    },
+    {
+      "id": "geo-esquerda",
+      "title": "Esquerda",
+      "icon": "👈",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "👈",
+          "prompt": "Leve o Dixi para a esquerda até a casa.",
+          "grid": [
+            "G......",
+            ".#####.",
+            ".....#.",
+            ".###.#.",
+            ".#.....",
+            ".#####.",
+            "......S"
+          ],
+          "goalLabel": "Casa"
+        }
+      ]
+    },
+    {
+      "id": "geo-em-cima",
+      "title": "Em cima",
+      "icon": "⬆️",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "⬆️",
+          "prompt": "Leve cada objeto para EM CIMA.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🐈\n📦 Onde está o gato em relação à caixa?",
+              "target": "Em cima"
+            },
+            {
+              "id": "c1",
+              "label": "📚\n🪑 Onde estão os livros em relação à cadeira?",
+              "target": "Em cima"
+            },
+            {
+              "id": "c2",
+              "label": "☁️\n🏠 Onde está a nuvem em relação à casa?",
+              "target": "Em cima"
+            },
+            {
+              "id": "c3",
+              "label": "🕊️\n🌳 Onde está o pássaro em relação à árvore?",
+              "target": "Em cima"
+            },
+            {
+              "id": "c4",
+              "label": "🧸\n🛏️ Onde está o urso em relação à cama?",
+              "target": "Em cima"
+            }
+          ],
+          "targets": [
+            "Em cima"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-embaixo",
+      "title": "Embaixo",
+      "icon": "⬇️",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "⬇️",
+          "prompt": "Leve cada objeto para EMBAIXO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🪑\n🐈 Onde está o gato em relação à cadeira?",
+              "target": "Embaixo"
+            },
+            {
+              "id": "c1",
+              "label": "☂️\n👦 Onde está o menino em relação ao guarda-chuva?",
+              "target": "Embaixo"
+            },
+            {
+              "id": "c2",
+              "label": "🌳\n🍄 Onde está o cogumelo em relação à árvore?",
+              "target": "Embaixo"
+            },
+            {
+              "id": "c3",
+              "label": "🛏️\n⚽ Onde está a bola em relação à cama?",
+              "target": "Embaixo"
+            },
+            {
+              "id": "c4",
+              "label": "☁️\n🏠 Onde está a casa em relação à nuvem?",
+              "target": "Embaixo"
+            }
+          ],
+          "targets": [
+            "Embaixo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-perto",
+      "title": "Perto",
+      "icon": "📍",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "📍",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🏠 🏫 A escola ao lado da casa está...",
+              "right": "Perto"
+            },
+            {
+              "key": "p1",
+              "left": "👧 🐕 O cachorro ao lado da menina está...",
+              "right": "Perto"
+            },
+            {
+              "key": "p2",
+              "left": "🪑 📚 Os livros sobre a cadeira estão...",
+              "right": "Perto"
+            },
+            {
+              "key": "p3",
+              "left": "🚗 ⛽ O carro ao lado do posto está...",
+              "right": "Perto"
+            },
+            {
+              "key": "p4",
+              "left": "🌳 🐦 O pássaro no galho está...",
+              "right": "Perto da árvore"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-longe",
+      "title": "Longe",
+      "icon": "🔭",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🔭",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🏠                         🏫 A escola muito distante da casa está...",
+              "right": "Longe"
+            },
+            {
+              "key": "p1",
+              "left": "👧                         🐕 O cachorro distante da menina está...",
+              "right": "Longe"
+            },
+            {
+              "key": "p2",
+              "left": "🌳                         🚗 O carro distante da árvore está...",
+              "right": "Longe"
+            },
+            {
+              "key": "p3",
+              "left": "🏥                         🏡 O hospital distante da casa está...",
+              "right": "Longe"
+            },
+            {
+              "key": "p4",
+              "left": "⛰️                         🏙️ A montanha distante da cidade está...",
+              "right": "Longe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-dentro",
+      "title": "Dentro",
+      "icon": "📦",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "📦",
+          "prompt": "Leve cada objeto para DENTRO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "📦🐈 Onde está o gato?",
+              "target": "Dentro da caixa"
+            },
+            {
+              "id": "c1",
+              "label": "🏠👧 Onde está a menina?",
+              "target": "Dentro da casa"
+            },
+            {
+              "id": "c2",
+              "label": "👜✏️ Onde está o lápis?",
+              "target": "Dentro da bolsa"
+            },
+            {
+              "id": "c3",
+              "label": "🚗👨 Onde está o motorista?",
+              "target": "Dentro do carro"
+            },
+            {
+              "id": "c4",
+              "label": "🪹🥚 Onde está o ovo?",
+              "target": "Dentro do ninho"
+            }
+          ],
+          "targets": [
+            "Dentro da caixa",
+            "Dentro da casa",
+            "Dentro da bolsa",
+            "Dentro do carro",
+            "Dentro do ninho"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-fora",
+      "title": "Fora",
+      "icon": "📤",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "📤",
+          "prompt": "Leve cada objeto para FORA.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "📦   🐈 Onde está o gato?",
+              "target": "Fora da caixa"
+            },
+            {
+              "id": "c1",
+              "label": "🏠   👧 Onde está a menina?",
+              "target": "Fora da casa"
+            },
+            {
+              "id": "c2",
+              "label": "👜   ✏️ Onde está o lápis?",
+              "target": "Fora da bolsa"
+            },
+            {
+              "id": "c3",
+              "label": "🚗   👨 Onde está o motorista?",
+              "target": "Fora do carro"
+            },
+            {
+              "id": "c4",
+              "label": "🪹   🥚 Onde está o ovo?",
+              "target": "Fora do ninho"
+            }
+          ],
+          "targets": [
+            "Fora da caixa",
+            "Fora da casa",
+            "Fora da bolsa",
+            "Fora do carro",
+            "Fora do ninho"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-siga-caminho",
+      "title": "Siga o caminho",
+      "icon": "🗺️",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "🗺️",
+          "prompt": "Siga o caminho da casa até a escola.",
+          "grid": [
+            "S..#...",
+            "##.#.#.",
+            "...#.#.",
+            ".###.#.",
+            ".....#.",
+            ".#####.",
+            "......G"
+          ],
+          "goalLabel": "Escola"
+        }
+      ]
+    },
+    {
+      "id": "geo-qual-caminho",
+      "title": "Qual caminho chega?",
+      "icon": "🧭",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "🧭",
+          "prompt": "Escolha o caminho correto para chegar ao destino.",
+          "grid": [
+            "S.#....",
+            "..#.##.",
+            "#.#....",
+            "#.####.",
+            "#......",
+            "######.",
+            "......G"
+          ],
+          "goalLabel": "Destino"
+        }
+      ]
+    },
+    {
+      "id": "geo-vizinhanca",
+      "title": "Minha vizinhança",
+      "icon": "🏘️",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🏘️",
+          "prompt": "Encontre os pares que combinam.",
+          "pairs": [
+            {
+              "key": "m0",
+              "a": "🏠 🏫",
+              "b": "Escola"
+            },
+            {
+              "key": "m1",
+              "a": "🏠 🛒",
+              "b": "Mercado"
+            },
+            {
+              "key": "m2",
+              "a": "🏠 🌳",
+              "b": "Praça"
+            },
+            {
+              "key": "m3",
+              "a": "🏠 🥖",
+              "b": "Padaria"
+            },
+            {
+              "key": "m4",
+              "a": "🏠 💊",
+              "b": "Farmácia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-campo-cidade",
+      "title": "Campo ou cidade?",
+      "icon": "🌾",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🌾",
+          "prompt": "Leve cada imagem para CAMPO ou CIDADE.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🏙️ Prédios altos, muitas ruas e carros são comun…",
+              "target": "Cidade"
+            },
+            {
+              "id": "c1",
+              "label": "🚜 Tratores, plantações e criação de animais são…",
+              "target": "Campo"
+            },
+            {
+              "id": "c2",
+              "label": "🌾 Grandes plantações são mais comuns no...",
+              "target": "Campo"
+            },
+            {
+              "id": "c3",
+              "label": "🏢 Muitos prédios e lojas são mais comuns na...",
+              "target": "Cidade"
+            },
+            {
+              "id": "c4",
+              "label": "🐄 Criação de gado é mais comum no...",
+              "target": "Campo"
+            }
+          ],
+          "targets": [
+            "Cidade",
+            "Campo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-urbana",
+      "title": "Paisagem urbana",
+      "icon": "🌆",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🌆",
+          "prompt": "Encontre todas as palavras escondidas.",
+          "words": [
+            "RUA",
+            "LOJA",
+            "PREDIO",
+            "ONIBUS",
+            "PRACA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-rural",
+      "title": "Paisagem rural",
+      "icon": "🌾",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🌾",
+          "prompt": "Encontre todas as palavras escondidas.",
+          "words": [
+            "VACA",
+            "TRATOR",
+            "CAMPO",
+            "MILHO",
+            "FAZENDA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-naturais",
+      "title": "Elementos naturais",
+      "icon": "🌳",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🌳",
+          "prompt": "Leve cada elemento para NATURAL.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🌳 Qual destes é um elemento natural?",
+              "target": "Árvore"
+            },
+            {
+              "id": "c1",
+              "label": "🏞️ Qual destes é formado pela natureza?",
+              "target": "Rio"
+            },
+            {
+              "id": "c2",
+              "label": "⛰️ Qual destes é um elemento natural da paisagem?",
+              "target": "Montanha"
+            },
+            {
+              "id": "c3",
+              "label": "🌊 Qual destes é natural?",
+              "target": "Mar"
+            },
+            {
+              "id": "c4",
+              "label": "☁️ Qual destes aparece naturalmente no céu?",
+              "target": "Nuvem"
+            }
+          ],
+          "targets": [
+            "Árvore",
+            "Rio",
+            "Montanha",
+            "Mar",
+            "Nuvem"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-construidos",
+      "title": "Elementos construídos",
+      "icon": "🏗️",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🏗️",
+          "prompt": "Leve cada elemento para CONSTRUÍDO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🏠 Qual destes foi construído pelas pessoas?",
+              "target": "Casa"
+            },
+            {
+              "id": "c1",
+              "label": "🌉 Qual destes é uma construção humana?",
+              "target": "Ponte"
+            },
+            {
+              "id": "c2",
+              "label": "🛣️ Qual destes foi feito para a circulação de ve…",
+              "target": "Estrada"
+            },
+            {
+              "id": "c3",
+              "label": "🏫 Qual destes foi construído pelas pessoas?",
+              "target": "Escola"
+            },
+            {
+              "id": "c4",
+              "label": "🚦 Qual destes é um objeto criado para organizar…",
+              "target": "Semáforo"
+            }
+          ],
+          "targets": [
+            "Casa",
+            "Ponte",
+            "Estrada",
+            "Escola",
+            "Semáforo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-cuidar-natureza",
+      "title": "Cuidados com a natureza",
+      "icon": "🌱",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🌱",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🗑️ Qual atitude ajuda a cuidar da natureza?",
+              "right": "Jogar lixo na lixeira"
+            },
+            {
+              "key": "p1",
+              "left": "🚰 O que devemos fazer ao terminar de usar a tor…",
+              "right": "Fechá-la"
+            },
+            {
+              "key": "p2",
+              "left": "🌳 Qual atitude protege as árvores?",
+              "right": "Não quebrar galhos"
+            },
+            {
+              "key": "p3",
+              "left": "♻️ O que significa separar materiais para recicl…",
+              "right": "Ajudar a reaproveitar resíduos"
+            },
+            {
+              "key": "p4",
+              "left": "🐦 Como devemos tratar os animais?",
+              "right": "Com cuidado e respeito"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-lixo",
+      "title": "Lixo no lugar certo",
+      "icon": "🚮",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🚮",
+          "prompt": "Leve cada resíduo para o destino correto.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🍌 Onde devemos jogar uma casca de banana?",
+              "target": "Lixeira"
+            },
+            {
+              "id": "c1",
+              "label": "🧃 Onde devemos colocar uma embalagem vazia?",
+              "target": "Lixeira adequada"
+            },
+            {
+              "id": "c2",
+              "label": "📄 Qual material pode ser separado para reciclag…",
+              "target": "Papel limpo"
+            },
+            {
+              "id": "c3",
+              "label": "🥫 Uma lata limpa pode ser colocada na coleta de…",
+              "target": "Metal"
+            },
+            {
+              "id": "c4",
+              "label": "🍎 Restos de frutas são resíduos...",
+              "target": "Orgânicos"
+            }
+          ],
+          "targets": [
+            "Lixeira",
+            "Lixeira adequada",
+            "Papel limpo",
+            "Metal",
+            "Orgânicos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-mapa-bairro",
+      "title": "Meu bairro no mapa",
+      "icon": "🗺️",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "🗺️",
+          "prompt": "Percorra o mapa do bairro e chegue à escola.",
+          "grid": [
+            "S..#...",
+            "##.#.#.",
+            "...#.#.",
+            ".###.#.",
+            ".....#.",
+            ".#####.",
+            "......G"
+          ],
+          "goalLabel": "Escola"
+        }
+      ]
+    }
+  ],
+  "ciencias": [
+    {
+      "id": "ci-seres-vivos",
+      "title": "Seres vivos e não vivos",
+      "icon": "🌱",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐶",
+          "prompt": "Qual destes é um ser vivo?",
+          "choices": [
+            "Cachorro",
+            "Pedra",
+            "Cadeira",
+            "Lápis"
+          ],
+          "answer": "Cachorro"
+        },
+        {
+          "emoji": "🌳",
+          "prompt": "Qual destes cresce e precisa de água?",
+          "choices": [
+            "Árvore",
+            "Bola",
+            "Carro",
+            "Mesa"
+          ],
+          "answer": "Árvore"
+        },
+        {
+          "emoji": "🪨",
+          "prompt": "Qual destes não é um ser vivo?",
+          "choices": [
+            "Pedra",
+            "Borboleta",
+            "Flor",
+            "Gato"
+          ],
+          "answer": "Pedra"
+        },
+        {
+          "emoji": "🐦",
+          "prompt": "Qual destes nasce, cresce e se alimenta?",
+          "choices": [
+            "Pássaro",
+            "Livro",
+            "Copo",
+            "Sapato"
+          ],
+          "answer": "Pássaro"
+        },
+        {
+          "emoji": "🚲",
+          "prompt": "Qual destes não respira?",
+          "choices": [
+            "Bicicleta",
+            "Cachorro",
+            "Pessoa",
+            "Árvore"
+          ],
+          "answer": "Bicicleta"
+        }
+      ]
+    },
+    {
+      "id": "ci-animais-ambiente",
+      "title": "Onde vivem os animais?",
+      "icon": "🦁",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐟",
+          "prompt": "Onde o peixe vive?",
+          "choices": [
+            "Na água",
+            "Na árvore",
+            "No deserto",
+            "No telhado"
+          ],
+          "answer": "Na água"
+        },
+        {
+          "emoji": "🐒",
+          "prompt": "Onde o macaco costuma viver?",
+          "choices": [
+            "Nas árvores",
+            "No fundo do mar",
+            "Na geladeira",
+            "No asfalto"
+          ],
+          "answer": "Nas árvores"
+        },
+        {
+          "emoji": "🐫",
+          "prompt": "Qual ambiente combina com o camelo?",
+          "choices": [
+            "Deserto",
+            "Oceano",
+            "Polo Sul",
+            "Floresta alagada"
+          ],
+          "answer": "Deserto"
+        },
+        {
+          "emoji": "🐧",
+          "prompt": "Qual ambiente combina com o pinguim?",
+          "choices": [
+            "Região gelada",
+            "Deserto quente",
+            "Copa das árvores",
+            "Cidade"
+          ],
+          "answer": "Região gelada"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Onde o sapo costuma viver?",
+          "choices": [
+            "Perto de água",
+            "No espaço",
+            "Em vulcões",
+            "Dentro de carros"
+          ],
+          "answer": "Perto de água"
+        }
+      ]
+    },
+    {
+      "id": "ci-cobertura-animais",
+      "title": "Pelos, penas e escamas",
+      "icon": "🪶",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐕",
+          "prompt": "O corpo do cachorro é coberto por...",
+          "choices": [
+            "Pelos",
+            "Penas",
+            "Escamas",
+            "Casca"
+          ],
+          "answer": "Pelos"
+        },
+        {
+          "emoji": "🐦",
+          "prompt": "O corpo do pássaro é coberto por...",
+          "choices": [
+            "Penas",
+            "Pelos",
+            "Escamas",
+            "Lã"
+          ],
+          "answer": "Penas"
+        },
+        {
+          "emoji": "🐟",
+          "prompt": "O corpo de muitos peixes é coberto por...",
+          "choices": [
+            "Escamas",
+            "Penas",
+            "Pelos",
+            "Folhas"
+          ],
+          "answer": "Escamas"
+        },
+        {
+          "emoji": "🐑",
+          "prompt": "A ovelha possui...",
+          "choices": [
+            "Lã",
+            "Escamas",
+            "Penas",
+            "Casco de árvore"
+          ],
+          "answer": "Lã"
+        },
+        {
+          "emoji": "🐍",
+          "prompt": "A cobra possui...",
+          "choices": [
+            "Escamas",
+            "Penas",
+            "Pelos",
+            "Lã"
+          ],
+          "answer": "Escamas"
+        }
+      ]
+    },
+    {
+      "id": "ci-movimento-animais",
+      "title": "Como os animais se movem?",
+      "icon": "🐾",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐦",
+          "prompt": "Como o pássaro se desloca principalmente?",
+          "choices": [
+            "Voando",
+            "Nadando",
+            "Rastejando",
+            "Saltando na água"
+          ],
+          "answer": "Voando"
+        },
+        {
+          "emoji": "🐟",
+          "prompt": "Como o peixe se desloca?",
+          "choices": [
+            "Nadando",
+            "Voando",
+            "Correndo",
+            "Rastejando"
+          ],
+          "answer": "Nadando"
+        },
+        {
+          "emoji": "🐍",
+          "prompt": "Como a cobra se desloca?",
+          "choices": [
+            "Rastejando",
+            "Voando",
+            "Pedalando",
+            "Pulando corda"
+          ],
+          "answer": "Rastejando"
+        },
+        {
+          "emoji": "🐎",
+          "prompt": "Como o cavalo se desloca?",
+          "choices": [
+            "Andando e correndo",
+            "Voando",
+            "Nadando sempre",
+            "Rastejando"
+          ],
+          "answer": "Andando e correndo"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Como o sapo se move com frequência?",
+          "choices": [
+            "Saltando",
+            "Voando",
+            "Rolando",
+            "Pedalando"
+          ],
+          "answer": "Saltando"
+        }
+      ]
+    },
+    {
+      "id": "ci-alimentacao-animais",
+      "title": "Alimentação dos animais",
+      "icon": "🥕",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐄",
+          "prompt": "A vaca se alimenta principalmente de...",
+          "choices": [
+            "Capim",
+            "Carne",
+            "Pedras",
+            "Plástico"
+          ],
+          "answer": "Capim"
+        },
+        {
+          "emoji": "🦁",
+          "prompt": "O leão se alimenta principalmente de...",
+          "choices": [
+            "Carne",
+            "Folhas",
+            "Pedras",
+            "Madeira"
+          ],
+          "answer": "Carne"
+        },
+        {
+          "emoji": "🐼",
+          "prompt": "O panda come muito...",
+          "choices": [
+            "Bambu",
+            "Peixe frito",
+            "Areia",
+            "Metal"
+          ],
+          "answer": "Bambu"
+        },
+        {
+          "emoji": "🐰",
+          "prompt": "Qual alimento combina com o coelho?",
+          "choices": [
+            "Folhas e vegetais",
+            "Pedras",
+            "Plástico",
+            "Carne"
+          ],
+          "answer": "Folhas e vegetais"
+        },
+        {
+          "emoji": "🐝",
+          "prompt": "A abelha coleta...",
+          "choices": [
+            "Néctar das flores",
+            "Areia",
+            "Folhas secas apenas",
+            "Pedras"
+          ],
+          "answer": "Néctar das flores"
+        }
+      ]
+    },
+    {
+      "id": "ci-filhotes",
+      "title": "Animais e filhotes",
+      "icon": "🐣",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🐔",
+          "prompt": "Como chamamos o filhote da galinha?",
+          "choices": [
+            "Pintinho",
+            "Bezerro",
+            "Potro",
+            "Cordeiro"
+          ],
+          "answer": "Pintinho"
+        },
+        {
+          "emoji": "🐄",
+          "prompt": "Como chamamos o filhote da vaca?",
+          "choices": [
+            "Bezerro",
+            "Pintinho",
+            "Leitão",
+            "Potro"
+          ],
+          "answer": "Bezerro"
+        },
+        {
+          "emoji": "🐎",
+          "prompt": "Como chamamos o filhote do cavalo?",
+          "choices": [
+            "Potro",
+            "Cordeiro",
+            "Pintinho",
+            "Bezerro"
+          ],
+          "answer": "Potro"
+        },
+        {
+          "emoji": "🐑",
+          "prompt": "Como chamamos o filhote da ovelha?",
+          "choices": [
+            "Cordeiro",
+            "Potro",
+            "Leitão",
+            "Pintinho"
+          ],
+          "answer": "Cordeiro"
+        },
+        {
+          "emoji": "🐖",
+          "prompt": "Como chamamos o filhote do porco?",
+          "choices": [
+            "Leitão",
+            "Bezerro",
+            "Potro",
+            "Cordeiro"
+          ],
+          "answer": "Leitão"
+        }
+      ]
+    },
+    {
+      "id": "ci-partes-planta",
+      "title": "Partes da planta",
+      "icon": "🌻",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🌱",
+          "prompt": "Qual parte fica geralmente debaixo da terra?",
+          "choices": [
+            "Raiz",
+            "Flor",
+            "Folha",
+            "Fruto"
+          ],
+          "answer": "Raiz"
+        },
+        {
+          "emoji": "🌿",
+          "prompt": "Qual parte sustenta folhas e flores?",
+          "choices": [
+            "Caule",
+            "Raiz apenas",
+            "Fruto",
+            "Semente"
+          ],
+          "answer": "Caule"
+        },
+        {
+          "emoji": "🍃",
+          "prompt": "Qual parte da planta costuma ser verde?",
+          "choices": [
+            "Folha",
+            "Pedra",
+            "Casca de ovo",
+            "Nuvem"
+          ],
+          "answer": "Folha"
+        },
+        {
+          "emoji": "🌸",
+          "prompt": "Qual parte pode se transformar em fruto?",
+          "choices": [
+            "Flor",
+            "Raiz",
+            "Pedra",
+            "Galho seco"
+          ],
+          "answer": "Flor"
+        },
+        {
+          "emoji": "🍎",
+          "prompt": "Onde encontramos sementes em muitas plantas?",
+          "choices": [
+            "No fruto",
+            "Na nuvem",
+            "Na pedra",
+            "No vento"
+          ],
+          "answer": "No fruto"
+        }
+      ]
+    },
+    {
+      "id": "ci-planta-precisa",
+      "title": "Do que a planta precisa?",
+      "icon": "💧",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "☀️",
+          "prompt": "Do que muitas plantas precisam para crescer?",
+          "choices": [
+            "Luz do Sol",
+            "Escuridão total",
+            "Plástico",
+            "Metal"
+          ],
+          "answer": "Luz do Sol"
+        },
+        {
+          "emoji": "💧",
+          "prompt": "O que devemos oferecer às plantas?",
+          "choices": [
+            "Água",
+            "Refrigerante",
+            "Óleo",
+            "Tinta"
+          ],
+          "answer": "Água"
+        },
+        {
+          "emoji": "🌱",
+          "prompt": "Onde muitas plantas crescem?",
+          "choices": [
+            "No solo",
+            "No vidro",
+            "No plástico",
+            "No metal"
+          ],
+          "answer": "No solo"
+        },
+        {
+          "emoji": "🌬️",
+          "prompt": "As plantas também precisam de...",
+          "choices": [
+            "Ar",
+            "Fumaça",
+            "Poeira em excesso",
+            "Lixo"
+          ],
+          "answer": "Ar"
+        },
+        {
+          "emoji": "🪴",
+          "prompt": "O que acontece se uma planta ficar muitos dias sem água?",
+          "choices": [
+            "Pode murchar",
+            "Vira pedra",
+            "Começa a voar",
+            "Fica de metal"
+          ],
+          "answer": "Pode murchar"
+        }
+      ]
+    },
+    {
+      "id": "ci-sementes",
+      "title": "Sementes e germinação",
+      "icon": "🌰",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "🌱",
+          "prompt": "O que pode nascer de uma semente?",
+          "choices": [
+            "Uma nova planta",
+            "Uma pedra",
+            "Um brinquedo",
+            "Uma nuvem"
+          ],
+          "answer": "Uma nova planta"
+        },
+        {
+          "emoji": "💧",
+          "prompt": "O que ajuda a semente a germinar?",
+          "choices": [
+            "Água",
+            "Tinta",
+            "Plástico",
+            "Areia seca apenas"
+          ],
+          "answer": "Água"
+        },
+        {
+          "emoji": "🌞",
+          "prompt": "Depois de brotar, a planta precisa de...",
+          "choices": [
+            "Luz",
+            "Escuridão total",
+            "Fumaça",
+            "Lixo"
+          ],
+          "answer": "Luz"
+        },
+        {
+          "emoji": "🫘",
+          "prompt": "O feijão é um exemplo de...",
+          "choices": [
+            "Semente",
+            "Pedra",
+            "Flor",
+            "Raiz"
+          ],
+          "answer": "Semente"
+        },
+        {
+          "emoji": "🌱",
+          "prompt": "Como chamamos o início do crescimento da semente?",
+          "choices": [
+            "Germinação",
+            "Congelamento",
+            "Evaporação",
+            "Ferrugem"
+          ],
+          "answer": "Germinação"
+        }
+      ]
+    },
+    {
+      "id": "ci-corpo",
+      "title": "Partes do corpo",
+      "icon": "🧍",
+      "type": "choice",
+      "items": [
+        {
+          "emoji": "👁️",
+          "prompt": "Qual parte usamos para enxergar?",
+          "choices": [
+            "Olhos",
+            "Ouvidos",
+            "Pés",
+            "Cotovelos"
+          ],
+          "answer": "Olhos"
+        },
+        {
+          "emoji": "👂",
+          "prompt": "Qual parte usamos para ouvir?",
+          "choices": [
+            "Ouvidos",
+            "Olhos",
+            "Mãos",
+            "Joelhos"
+          ],
+          "answer": "Ouvidos"
+        },
+        {
+          "emoji": "👃",
+          "prompt": "Qual parte usamos para sentir cheiros?",
+          "choices": [
+            "Nariz",
+            "Boca",
+            "Pés",
+            "Cabelo"
+          ],
+          "answer": "Nariz"
+        },
+        {
+          "emoji": "🦵",
+          "prompt": "Qual parte ajuda a andar e correr?",
+          "choices": [
+            "Pernas",
+            "Orelhas",
+            "Cílios",
+            "Dentes"
+          ],
+          "answer": "Pernas"
+        },
+        {
+          "emoji": "🖐️",
+          "prompt": "Qual parte usamos para segurar objetos?",
+          "choices": [
+            "Mãos",
+            "Pés",
+            "Ombros",
+            "Cabelos"
+          ],
+          "answer": "Mãos"
+        }
+      ]
+    },
+    {
+      "id": "ci-cinco-sentidos",
+      "title": "Os cinco sentidos",
+      "icon": "👀",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "👀",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🍋 Qual sentido percebemos ao provar limão?",
+              "right": "Paladar"
+            },
+            {
+              "key": "p1",
+              "left": "🎵 Qual sentido usamos para ouvir música?",
+              "right": "Audição"
+            },
+            {
+              "key": "p2",
+              "left": "🌹 Qual sentido usamos para sentir o cheiro da f…",
+              "right": "Olfato"
+            },
+            {
+              "key": "p3",
+              "left": "🧸 Qual sentido usamos para perceber se algo é m…",
+              "right": "Tato"
+            },
+            {
+              "key": "p4",
+              "left": "🌈 Qual sentido usamos para ver as cores?",
+              "right": "Visão"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-higiene",
+      "title": "Higiene do corpo",
+      "icon": "🧼",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "🧼",
+          "prompt": "Organize a lavagem das mãos.",
+          "steps": [
+            "MOLHAR AS MÃOS",
+            "USAR SABÃO",
+            "ESFREGAR",
+            "ENXAGUAR",
+            "SECAR"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-alimentacao-saudavel",
+      "title": "Alimentação saudável",
+      "icon": "🍎",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🍎",
+          "prompt": "Leve os alimentos para SAUDÁVEL ou CONSUMIR COM MODERAÇÃO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🍎 Qual é uma opção saudável?",
+              "target": "Maçã"
+            },
+            {
+              "id": "c1",
+              "label": "🥦 Qual alimento é um vegetal?",
+              "target": "Brócolis"
+            },
+            {
+              "id": "c2",
+              "label": "💧 Qual bebida é importante para o corpo?",
+              "target": "Água"
+            },
+            {
+              "id": "c3",
+              "label": "🍽️ Uma alimentação saudável deve ser...",
+              "target": "Variada"
+            },
+            {
+              "id": "c4",
+              "label": "🍌 Qual fruta pode fazer parte de um lanche saud…",
+              "target": "Banana"
+            }
+          ],
+          "targets": [
+            "Maçã",
+            "Brócolis",
+            "Água",
+            "Variada",
+            "Banana"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-agua-corpo",
+      "title": "A importância da água",
+      "icon": "💧",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "💧",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "💦 Por que devemos beber água?",
+              "right": "Para hidratar o corpo"
+            },
+            {
+              "key": "p1",
+              "left": "☀️ Em dias quentes, precisamos...",
+              "right": "Beber água"
+            },
+            {
+              "key": "p2",
+              "left": "🏃 Depois de brincar e suar, é importante...",
+              "right": "Beber água"
+            },
+            {
+              "key": "p3",
+              "left": "🚰 Qual água é adequada para beber?",
+              "right": "Água potável"
+            },
+            {
+              "key": "p4",
+              "left": "🧴 Onde podemos levar água para beber?",
+              "right": "Garrafa limpa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-dentes",
+      "title": "Cuidando dos dentes",
+      "icon": "🦷",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "🦷",
+          "prompt": "Organize os cuidados com os dentes.",
+          "steps": [
+            "PEGAR A ESCOVA",
+            "COLOCAR CREME DENTAL",
+            "ESCOVAR",
+            "ENXAGUAR"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-ossos-musculos",
+      "title": "Ossos e músculos",
+      "icon": "🦴",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🦴",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🦴 O que ajuda a sustentar o corpo?",
+              "right": "Ossos"
+            },
+            {
+              "key": "p1",
+              "left": "💪 O que ajuda o corpo a se movimentar?",
+              "right": "Músculos"
+            },
+            {
+              "key": "p2",
+              "left": "🦴 Onde encontramos ossos?",
+              "right": "Dentro do corpo"
+            },
+            {
+              "key": "p3",
+              "left": "🏃 Ao correr, usamos principalmente...",
+              "right": "Músculos e ossos"
+            },
+            {
+              "key": "p4",
+              "left": "🥛 Uma alimentação equilibrada ajuda a manter os…",
+              "right": "Saudáveis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-estacoes",
+      "title": "Estações do ano",
+      "icon": "🍂",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "🍂",
+          "prompt": "Organize as estações do ano.",
+          "steps": [
+            "PRIMAVERA",
+            "VERÃO",
+            "OUTONO",
+            "INVERNO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-clima-roupas",
+      "title": "Clima e roupas",
+      "icon": "🧥",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🧥",
+          "prompt": "Leve cada roupa para o clima correto.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "☀️ Em um dia quente, qual roupa é mais adequada?",
+              "target": "Roupa leve"
+            },
+            {
+              "id": "c1",
+              "label": "❄️ Em um dia frio, o que ajuda a aquecer?",
+              "target": "Casaco"
+            },
+            {
+              "id": "c2",
+              "label": "🌧️ Em um dia chuvoso, o que podemos usar?",
+              "target": "Guarda-chuva"
+            },
+            {
+              "id": "c3",
+              "label": "🧢 Em um dia de muito sol, o que pode proteger a…",
+              "target": "Boné"
+            },
+            {
+              "id": "c4",
+              "label": "🥾 Em um lugar com lama, qual calçado ajuda?",
+              "target": "Bota"
+            }
+          ],
+          "targets": [
+            "Roupa leve",
+            "Casaco",
+            "Guarda-chuva",
+            "Boné",
+            "Bota"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-sol-sombra",
+      "title": "Sol, luz e sombra",
+      "icon": "🌞",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🌞",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "☀️ O Sol é uma fonte de...",
+              "right": "Luz e calor"
+            },
+            {
+              "key": "p1",
+              "left": "🌳 A sombra aparece quando algo bloqueia a...",
+              "right": "Luz"
+            },
+            {
+              "key": "p2",
+              "left": "🔦 Qual objeto produz luz?",
+              "right": "Lanterna"
+            },
+            {
+              "key": "p3",
+              "left": "🌙 A Lua parece brilhar porque...",
+              "right": "Reflete a luz do Sol"
+            },
+            {
+              "key": "p4",
+              "left": "🕶️ O que ajuda a proteger os olhos do Sol forte?",
+              "right": "Óculos de sol adequados"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-dia-noite",
+      "title": "Dia e noite",
+      "icon": "🌙",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "🌙",
+          "prompt": "Organize as partes do dia.",
+          "steps": [
+            "MANHÃ",
+            "TARDE",
+            "NOITE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-materiais",
+      "title": "De que é feito?",
+      "icon": "🧱",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🧱",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🪟 Uma janela pode ser feita de...",
+              "right": "Vidro"
+            },
+            {
+              "key": "p1",
+              "left": "🥄 Uma colher pode ser feita de...",
+              "right": "Metal"
+            },
+            {
+              "key": "p2",
+              "left": "📦 Uma caixa pode ser feita de...",
+              "right": "Papelão"
+            },
+            {
+              "key": "p3",
+              "left": "🪑 Uma cadeira pode ser feita de...",
+              "right": "Madeira"
+            },
+            {
+              "key": "p4",
+              "left": "🧴 Uma garrafa pode ser feita de...",
+              "right": "Plástico"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-duro-macio",
+      "title": "Duro ou macio?",
+      "icon": "🧸",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🧸",
+          "prompt": "Leve cada objeto para DURO ou MACIO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🪨 A pedra costuma ser...",
+              "target": "Dura"
+            },
+            {
+              "id": "c1",
+              "label": "🧸 Um urso de pelúcia costuma ser...",
+              "target": "Macio"
+            },
+            {
+              "id": "c2",
+              "label": "🛏️ Um travesseiro costuma ser...",
+              "target": "Macio"
+            },
+            {
+              "id": "c3",
+              "label": "🔨 Um martelo costuma ser...",
+              "target": "Duro"
+            },
+            {
+              "id": "c4",
+              "label": "🍞 O miolo do pão costuma ser...",
+              "target": "Macio"
+            }
+          ],
+          "targets": [
+            "Dura",
+            "Macio",
+            "Duro"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-solido-liquido",
+      "title": "Sólido ou líquido?",
+      "icon": "🧊",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🧊",
+          "prompt": "Leve cada material para SÓLIDO ou LÍQUIDO.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "💧 A água em um copo está no estado...",
+              "target": "Líquido"
+            },
+            {
+              "id": "c1",
+              "label": "🧊 O gelo está no estado...",
+              "target": "Sólido"
+            },
+            {
+              "id": "c2",
+              "label": "🥛 O leite é...",
+              "target": "Líquido"
+            },
+            {
+              "id": "c3",
+              "label": "🪨 A pedra é...",
+              "target": "Sólida"
+            },
+            {
+              "id": "c4",
+              "label": "🍯 O mel é um material...",
+              "target": "Líquido espesso"
+            }
+          ],
+          "targets": [
+            "Líquido",
+            "Sólido",
+            "Sólida",
+            "Líquido espesso"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-flutua-afunda",
+      "title": "Flutua ou afunda?",
+      "icon": "🛶",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "🛶",
+          "prompt": "Leve cada objeto para FLUTUA ou AFUNDA.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "🪨 O que geralmente acontece com uma pedra na ág…",
+              "target": "Afunda"
+            },
+            {
+              "id": "c1",
+              "label": "🛶 O que uma canoa faz na água?",
+              "target": "Flutua"
+            },
+            {
+              "id": "c2",
+              "label": "🪵 Um pedaço leve de madeira geralmente...",
+              "target": "Flutua"
+            },
+            {
+              "id": "c3",
+              "label": "⚓ Uma âncora geralmente...",
+              "target": "Afunda"
+            },
+            {
+              "id": "c4",
+              "label": "🦆 Um pato na água geralmente...",
+              "target": "Flutua"
+            }
+          ],
+          "targets": [
+            "Afunda",
+            "Flutua"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-agua-estados",
+      "title": "Estados da água",
+      "icon": "💧",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "💧",
+          "prompt": "Organize os estados da água do mais frio para o mais quente.",
+          "steps": [
+            "GELO",
+            "ÁGUA",
+            "VAPOR"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-ciclo-agua",
+      "title": "Ciclo da água",
+      "icon": "🌧️",
+      "type": "sequence",
+      "items": [
+        {
+          "emoji": "🌧️",
+          "prompt": "Organize o ciclo da água.",
+          "steps": [
+            "EVAPORAÇÃO",
+            "NUVENS",
+            "CHUVA",
+            "RIOS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-lixo-reciclagem",
+      "title": "Reciclagem",
+      "icon": "♻️",
+      "type": "dragdrop",
+      "items": [
+        {
+          "emoji": "♻️",
+          "prompt": "Leve cada material para o tipo de reciclagem correto.",
+          "cards": [
+            {
+              "id": "c0",
+              "label": "📄 Qual material pode ser reciclado?",
+              "target": "Papel limpo"
+            },
+            {
+              "id": "c1",
+              "label": "🥫 Uma lata é feita principalmente de...",
+              "target": "Metal"
+            },
+            {
+              "id": "c2",
+              "label": "🍾 Uma garrafa de vidro deve ir para a coleta de…",
+              "target": "Vidro"
+            },
+            {
+              "id": "c3",
+              "label": "🧴 Uma embalagem plástica limpa pode ser...",
+              "target": "Reciclada"
+            },
+            {
+              "id": "c4",
+              "label": "♻️ Reciclar ajuda a...",
+              "target": "Reduzir o lixo"
+            }
+          ],
+          "targets": [
+            "Papel limpo",
+            "Metal",
+            "Vidro",
+            "Reciclada",
+            "Reduzir o lixo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-ambiente",
+      "title": "Cuidando do ambiente",
+      "icon": "🌎",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🌎",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "🚮 Qual atitude cuida do ambiente?",
+              "right": "Jogar lixo na lixeira"
+            },
+            {
+              "key": "p1",
+              "left": "🚰 Ao escovar os dentes, devemos...",
+              "right": "Fechar a torneira"
+            },
+            {
+              "key": "p2",
+              "left": "💡 Ao sair de um cômodo vazio, devemos...",
+              "right": "Apagar a luz"
+            },
+            {
+              "key": "p3",
+              "left": "🌳 Plantar árvores ajuda a...",
+              "right": "Cuidar do ambiente"
+            },
+            {
+              "key": "p4",
+              "left": "🛍️ Reutilizar sacolas ajuda a...",
+              "right": "Produzir menos lixo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci-seguranca",
+      "title": "Segurança em casa",
+      "icon": "⚠️",
+      "type": "maze",
+      "items": [
+        {
+          "emoji": "⚠️",
+          "prompt": "Leve o Dixi pelo caminho seguro, longe de fogo, tomadas e remédios.",
+          "grid": [
+            "S..#...",
+            "##.#.#.",
+            "...#.#.",
+            ".###.#.",
+            ".....#.",
+            ".#####.",
+            "......G"
+          ],
+          "goalLabel": "Lugar seguro"
+        }
+      ]
+    },
+    {
+      "id": "ci-experimentos",
+      "title": "Observando e investigando",
+      "icon": "🔬",
+      "type": "matching",
+      "items": [
+        {
+          "emoji": "🔬",
+          "prompt": "Ligue cada pista à resposta correta.",
+          "pairs": [
+            {
+              "key": "p0",
+              "left": "👀 Para fazer uma boa observação, usamos...",
+              "right": "Os sentidos com cuidado"
+            },
+            {
+              "key": "p1",
+              "left": "📋 Depois de observar algo, podemos...",
+              "right": "Registrar o que vimos"
+            },
+            {
+              "key": "p2",
+              "left": "❓ Uma investigação começa muitas vezes com uma.…",
+              "right": "Pergunta"
+            },
+            {
+              "key": "p3",
+              "left": "🧪 Em experimentos, devemos seguir...",
+              "right": "Orientações de segurança"
+            },
+            {
+              "key": "p4",
+              "left": "🔍 Qual objeto ajuda a ver detalhes pequenos?",
+              "right": "Lupa"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "palavras": [
+    {
+      "id": "var-caca-animais",
+      "title": "Caça-palavras: animais",
+      "icon": "🐾",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🐾",
+          "prompt": "Encontre as palavras de animais.",
+          "words": [
+            "GATO",
+            "SAPO",
+            "VACA",
+            "PATO",
+            "RATO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-caca-frutas",
+      "title": "Caça-palavras: frutas",
+      "icon": "🍎",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🍎",
+          "prompt": "Encontre as palavras de frutas.",
+          "words": [
+            "UVA",
+            "PERA",
+            "MANGA",
+            "MELAO",
+            "BANANA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-caca-corpo",
+      "title": "Caça-palavras: corpo",
+      "icon": "🧍",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🧍",
+          "prompt": "Encontre as palavras de partes do corpo.",
+          "words": [
+            "MAO",
+            "PE",
+            "BOCA",
+            "NARIZ",
+            "OLHO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-caca-casa",
+      "title": "Caça-palavras: casa",
+      "icon": "🏠",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🏠",
+          "prompt": "Encontre as palavras de casa.",
+          "words": [
+            "SALA",
+            "CASA",
+            "MESA",
+            "CAMA",
+            "PORTA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-caca-escola",
+      "title": "Caça-palavras: escola",
+      "icon": "🎒",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🎒",
+          "prompt": "Encontre as palavras de escola.",
+          "words": [
+            "LAPIS",
+            "PAPEL",
+            "LIVRO",
+            "COLA",
+            "MESA"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-caca-natureza",
+      "title": "Caça-palavras: natureza",
+      "icon": "🌳",
+      "type": "wordsearch",
+      "items": [
+        {
+          "emoji": "🌳",
+          "prompt": "Encontre as palavras de natureza.",
+          "words": [
+            "SOL",
+            "LUA",
+            "RIO",
+            "FLOR",
+            "ARVORE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-animais",
+      "title": "Palavras cruzadas: animais",
+      "icon": "🐈",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "🐈",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "GATO",
+              "clue": "🐈",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "TIGRE",
+              "clue": "🐅",
+              "row": 0,
+              "col": 0,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-frutas",
+      "title": "Palavras cruzadas: frutas",
+      "icon": "🍌",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "🍌",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "BANANA",
+              "clue": "🍌",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "UVA",
+              "clue": "🍇",
+              "row": 0,
+              "col": 1,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-casa",
+      "title": "Palavras cruzadas: casa",
+      "icon": "🏠",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "🏠",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "CASA",
+              "clue": "🏠",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "QUARTO",
+              "clue": "🛏️",
+              "row": 0,
+              "col": 1,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-corpo",
+      "title": "Palavras cruzadas: corpo",
+      "icon": "👄",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "👄",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "BOCA",
+              "clue": "👄",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "OMBRO",
+              "clue": "💪",
+              "row": 0,
+              "col": 0,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-transporte",
+      "title": "Palavras cruzadas: transportes",
+      "icon": "🚂",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "🚂",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "TREM",
+              "clue": "🚂",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "CARRO",
+              "clue": "🚗",
+              "row": 0,
+              "col": 1,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-cruza-escola",
+      "title": "Palavras cruzadas: escola",
+      "icon": "✏️",
+      "type": "crossword",
+      "items": [
+        {
+          "emoji": "✏️",
+          "prompt": "Complete as palavras usando as pistas.",
+          "entries": [
+            {
+              "answer": "LAPIS",
+              "clue": "✏️",
+              "row": 2,
+              "col": 0,
+              "dir": "h"
+            },
+            {
+              "answer": "PAPEL",
+              "clue": "📄",
+              "row": 0,
+              "col": 2,
+              "dir": "v"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-monte-animais",
+      "title": "Letras embaralhadas: animais",
+      "icon": "🔀",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "🐈",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "GATO"
+        },
+        {
+          "emoji": "🐸",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "SAPO"
+        },
+        {
+          "emoji": "🐄",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "VACA"
+        },
+        {
+          "emoji": "🦆",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "PATO"
+        },
+        {
+          "emoji": "🐀",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "RATO"
+        }
+      ]
+    },
+    {
+      "id": "var-monte-frutas",
+      "title": "Letras embaralhadas: frutas",
+      "icon": "🍓",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "🍇",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "UVA"
+        },
+        {
+          "emoji": "🍐",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "PERA"
+        },
+        {
+          "emoji": "🍌",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "BANANA"
+        },
+        {
+          "emoji": "🥭",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "MANGA"
+        },
+        {
+          "emoji": "🍈",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "MELAO"
+        }
+      ]
+    },
+    {
+      "id": "var-monte-casa",
+      "title": "Letras embaralhadas: casa",
+      "icon": "🏡",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "🏠",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "CASA"
+        },
+        {
+          "emoji": "🛏️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "CAMA"
+        },
+        {
+          "emoji": "🚪",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "PORTA"
+        },
+        {
+          "emoji": "🪑",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "MESA"
+        },
+        {
+          "emoji": "🛋️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "SALA"
+        }
+      ]
+    },
+    {
+      "id": "var-monte-escola",
+      "title": "Letras embaralhadas: escola",
+      "icon": "📚",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "✏️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "LAPIS"
+        },
+        {
+          "emoji": "📖",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "LIVRO"
+        },
+        {
+          "emoji": "📄",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "PAPEL"
+        },
+        {
+          "emoji": "🎒",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "BOLSA"
+        },
+        {
+          "emoji": "🧴",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "COLA"
+        }
+      ]
+    },
+    {
+      "id": "var-monte-corpo",
+      "title": "Letras embaralhadas: corpo",
+      "icon": "👀",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "👁️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "OLHO"
+        },
+        {
+          "emoji": "👄",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "BOCA"
+        },
+        {
+          "emoji": "👃",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "NARIZ"
+        },
+        {
+          "emoji": "🖐️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "MAO"
+        },
+        {
+          "emoji": "🦶",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "PE"
+        }
+      ]
+    },
+    {
+      "id": "var-monte-natureza",
+      "title": "Letras embaralhadas: natureza",
+      "icon": "🌿",
+      "type": "unscramble",
+      "items": [
+        {
+          "emoji": "☀️",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "SOL"
+        },
+        {
+          "emoji": "🌙",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "LUA"
+        },
+        {
+          "emoji": "🌊",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "RIO"
+        },
+        {
+          "emoji": "🌸",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "FLOR"
+        },
+        {
+          "emoji": "🌳",
+          "prompt": "Organize as letras para formar a palavra.",
+          "answer": "ARVORE"
+        }
+      ]
+    },
+    {
+      "id": "var-mem-animais",
+      "title": "Memória: animais",
+      "icon": "🧠",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🧠",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "gato",
+              "value": "🐈"
+            },
+            {
+              "key": "sapo",
+              "value": "🐸"
+            },
+            {
+              "key": "vaca",
+              "value": "🐄"
+            },
+            {
+              "key": "pato",
+              "value": "🦆"
+            },
+            {
+              "key": "rato",
+              "value": "🐀"
+            },
+            {
+              "key": "leao",
+              "value": "🦁"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-mem-frutas",
+      "title": "Memória: frutas",
+      "icon": "🍉",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🍉",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "maca",
+              "value": "🍎"
+            },
+            {
+              "key": "banana",
+              "value": "🍌"
+            },
+            {
+              "key": "uva",
+              "value": "🍇"
+            },
+            {
+              "key": "pera",
+              "value": "🍐"
+            },
+            {
+              "key": "melao",
+              "value": "🍈"
+            },
+            {
+              "key": "morango",
+              "value": "🍓"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-mem-formas",
+      "title": "Memória: formas",
+      "icon": "🔷",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🔷",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "circulo",
+              "value": "⚪"
+            },
+            {
+              "key": "quadrado",
+              "value": "🟦"
+            },
+            {
+              "key": "triangulo",
+              "value": "🔺"
+            },
+            {
+              "key": "losango",
+              "value": "🔷"
+            },
+            {
+              "key": "estrela",
+              "value": "⭐"
+            },
+            {
+              "key": "coracao",
+              "value": "❤️"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-mem-numeros",
+      "title": "Memória: números",
+      "icon": "1️⃣",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "1️⃣",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "1",
+              "value": "1️⃣"
+            },
+            {
+              "key": "2",
+              "value": "2️⃣"
+            },
+            {
+              "key": "3",
+              "value": "3️⃣"
+            },
+            {
+              "key": "4",
+              "value": "4️⃣"
+            },
+            {
+              "key": "5",
+              "value": "5️⃣"
+            },
+            {
+              "key": "6",
+              "value": "6️⃣"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-mem-transporte",
+      "title": "Memória: transportes",
+      "icon": "🚗",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🚗",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "carro",
+              "value": "🚗"
+            },
+            {
+              "key": "onibus",
+              "value": "🚌"
+            },
+            {
+              "key": "trem",
+              "value": "🚂"
+            },
+            {
+              "key": "aviao",
+              "value": "✈️"
+            },
+            {
+              "key": "barco",
+              "value": "🚢"
+            },
+            {
+              "key": "bicicleta",
+              "value": "🚲"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "var-mem-natureza",
+      "title": "Memória: natureza",
+      "icon": "🌎",
+      "type": "memory",
+      "items": [
+        {
+          "emoji": "🌎",
+          "prompt": "Encontre todos os pares.",
+          "pairs": [
+            {
+              "key": "sol",
+              "value": "☀️"
+            },
+            {
+              "key": "lua",
+              "value": "🌙"
+            },
+            {
+              "key": "flor",
+              "value": "🌸"
+            },
+            {
+              "key": "arvore",
+              "value": "🌳"
+            },
+            {
+              "key": "rio",
+              "value": "🌊"
+            },
+            {
+              "key": "nuvem",
+              "value": "☁️"
+            }
+          ]
+        }
+      ]
+    }
   ]
 };
 
-
-export const getExercise = (
-  category: ExerciseCategory,
-  id: string,
-): Exercise | undefined => exercises[category]?.find((e) => e.id === id);
+export const getExercise = (category: ExerciseCategory, id: string): Exercise | undefined =>
+  exercises[category]?.find((exercise) => exercise.id === id);
